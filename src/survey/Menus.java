@@ -38,7 +38,9 @@ public class Menus implements Serializable {
                 case 2:
                     //Display.displaySurvey(survey);
                     //displaySurvey(survey);
-                    System.out.println("Code needed for: " + surveyMenu[selectedSurveyMenuItem - 1]);
+                    //System.out.println("Code needed for: " + surveyMenu[selectedSurveyMenuItem - 1]);
+                    survey = loadSurvey();
+                    survey.displaySurvey();
                     break;
                 case 3:
                     survey = loadSurvey();

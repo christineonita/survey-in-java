@@ -3,6 +3,7 @@ package survey;
 import java.io.Serializable;
 
 public class MultipleChoice extends Question implements Serializable {
+    private static final long serialVersionUID = 493583457744295169L;
     protected String[] questionChoices;
 
     MultipleChoice() {
@@ -37,5 +38,10 @@ public class MultipleChoice extends Question implements Serializable {
             Display.displayString("Please enter choice #" + choiceNumber);
             questionChoices[i] = UserInput.getString();
         }
+    }
+
+    @Override
+    public String[] getQuestionChoices() {
+        return questionChoices;
     }
 }
