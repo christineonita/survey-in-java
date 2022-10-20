@@ -53,7 +53,7 @@ public class Serialize implements Serializable {
             survey = (Survey) in.readObject();
             in.close();
             fileIn.close();
-            Display.displayString("Survey file " + surveyPath + " has been loaded.");
+            Display.displayString("Survey file " + surveyPath + " has been loaded.\n");
         } catch (IOException i) {
             i.printStackTrace();
         } catch (ClassNotFoundException c) {
