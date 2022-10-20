@@ -1,4 +1,5 @@
 package survey;
+
 import java.io.Serializable;
 import java.util.Scanner;
 
@@ -44,8 +45,8 @@ public class Menus implements Serializable {
                     System.out.println("Code needed for: " + surveyMenu[selectedSurveyMenuItem - 1]);
                     break;
                 case 4:
-                    //saveSurvey(survey);
-                    System.out.println("Code needed for: " + surveyMenu[selectedSurveyMenuItem - 1]);
+                    saveSurvey(survey);
+                    //System.out.println("Code needed for: " + surveyMenu[selectedSurveyMenuItem - 1]);
                     break;
                 case 5:
                     //survey = loadSurvey();
@@ -67,6 +68,11 @@ public class Menus implements Serializable {
 
             }
         }
+    }
+
+    private void saveSurvey(Survey survey) {
+        Serialize serialize = new Serialize();
+        serialize.saveSurvey(survey);
     }
 
     public Survey questionTypesMenu(Survey survey) {
