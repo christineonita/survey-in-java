@@ -1,3 +1,5 @@
+package survey;
+
 import java.io.Serializable;
 
 public class Display implements Serializable {
@@ -6,11 +8,14 @@ public class Display implements Serializable {
     public static void displayStringArray(String[] stringArray) {
 
         int option;
-
         for (int i = 0; i < stringArray.length; i++) {
             option = i + 1;
             System.out.println((" " + option + "." + stringArray[i]));
         }
 
+    }
+
+    public static void displayString(String string) {
+        System.out.println(string);
     }
 }

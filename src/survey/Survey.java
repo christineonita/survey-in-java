@@ -1,5 +1,7 @@
+package survey;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Survey implements Serializable {
 
@@ -21,36 +23,49 @@ public class Survey implements Serializable {
         question.setQuestionPrompt(prompt);
     }*/
 
-    public void addMultipleChoice() {
-        System.out.println("code needed to add multiple-choice question to survey");
+    protected void setQuestionPrompt(Question question) {
+        Display.displayString("Enter the question prompt --> ");
+        Scanner scan = new Scanner(System.in);
+
+        String prompt = scan.nextLine();
+        question.setPrompt(prompt);
     }
 
-    public void addTrueOrFalse() {
+    protected void addMultipleChoice() {
+        //System.out.println("code needed to add multiple-choice question to survey");
+        Question question = new MultipleChoice();
+        setQuestionPrompt(question);
+        question.setQuestionChoices();
+        questions.add(question);
+    }
+
+
+    protected void addTrueOrFalse() {
         System.out.println("code needed to add t/f question to survey");
     }
 
-    public void addEssay() {
+    protected void addEssay() {
         System.out.println("code needed to add essay question to survey");
     }
 
-    public void addShortAnswer() {
+    protected void addShortAnswer() {
         System.out.println("code needed to add short answer question to survey");
     }
 
 
-    public void addValidDate() {
+    protected void addValidDate() {
         System.out.println("code needed to add valid date question to survey");
     }
 
-    public void modify() {
+    protected void modify() {
         System.out.println("code needed to add matching question to survey");
     }
 
-    /*public ArrayList<Question> getQuestions() {
+    /*protected ArrayList<Question> getQuestions() {
         return this.questions;
     }*/
 
-    public void clearAllQuestions() {
+    protected void clearAllQuestions() {
         questions.clear();
     }
 }
