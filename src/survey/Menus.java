@@ -41,8 +41,8 @@ public class Menus implements Serializable {
                     System.out.println("Code needed for: " + surveyMenu[selectedSurveyMenuItem - 1]);
                     break;
                 case 3:
-                    //survey = loadSurvey();
-                    System.out.println("Code needed for: " + surveyMenu[selectedSurveyMenuItem - 1]);
+                    survey = loadSurvey();
+                    //System.out.println("Code needed for: " + surveyMenu[selectedSurveyMenuItem - 1]);
                     break;
                 case 4:
                     saveSurvey(survey);
@@ -70,7 +70,12 @@ public class Menus implements Serializable {
         }
     }
 
-    private void saveSurvey(Survey survey) {
+    public Survey loadSurvey() {
+        Serialize serialize = new Serialize();
+        return serialize.loadSurvey();
+    }
+
+    public void saveSurvey(Survey survey) {
         Serialize serialize = new Serialize();
         serialize.saveSurvey(survey);
     }

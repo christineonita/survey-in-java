@@ -39,4 +39,55 @@ public class UserInput implements Serializable {
 
         return input;
     }
+
+    public static int getOption(int start, int end) {
+        int a;
+
+        Scanner scanner = new Scanner(System.in);
+        while (true) {
+            try {
+                a = scanner.nextInt();
+                if (a < end || a > start) {
+                    break;
+                } else {
+                    Display.displayString("Enter a number between " + (start + 1) + "and" + (end - 1));
+                    scanner.nextLine();
+                }
+                /*if(!(a < end || a > start)){
+                    Display.displayString("Enter a number between " + (start + 1) + "and"+ (end - 1));
+                    scanner.nextLine();
+                }*/
+            } catch (InputMismatchException e) {
+                //throw new RuntimeException(e);
+                Display.displayString("Please enter an integer ");
+                scanner.nextLine();
+            }
+        }
+
+        /*
+        public static int getInt(int lower, int upper) {
+		int rtn = 0;
+		boolean num = false;
+		Scanner scan = new Scanner(System.in);
+
+		while (!num) {
+			try {
+				rtn = scan.nextInt();
+				if (rtn > lower || rtn < upper) {
+					num = true;
+				} else {
+					Display.display("Please enter number above " + lower);
+					scan.nextLine();
+				}
+			} catch (InputMismatchException e) {
+				Display.display("Please enter an integer");
+				scan.nextLine();
+			}
+		}
+		scan.nextLine();
+		return rtn;
+	}
+         */
+        return a;
+    }
 }

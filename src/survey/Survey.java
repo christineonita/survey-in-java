@@ -1,4 +1,5 @@
 package survey;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -6,8 +7,10 @@ import java.util.Scanner;
 public class Survey implements Serializable {
 
     private static final long serialVersionUID = 4925296878791173007L;
+    String path;
     //public static ArrayList<Question> questions = new ArrayList<Question>();
     ArrayList<Question> questions = null;
+
     Survey() {
         questions = new ArrayList<Question>();
     }
