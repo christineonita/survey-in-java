@@ -1,6 +1,3 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -9,6 +6,9 @@ public class Survey implements Serializable {
     private static final long serialVersionUID = 4925296878791173007L;
     //public static ArrayList<Question> questions = new ArrayList<Question>();
     ArrayList<Question> questions = null;
+    Survey() {
+        questions = new ArrayList<Question>();
+    }
 
     /*public void setPrompt(Question question) {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));

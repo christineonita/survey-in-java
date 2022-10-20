@@ -71,8 +71,9 @@ public class Menus implements Serializable {
     public Survey questionTypesMenu(Survey survey) {
         int selectedQuestionType;
         survey.clearAllQuestions();
+        boolean n = true;
 
-        while (true) {
+        while (n) {
             // prints survey menu
             Display.displayStringArray(questionTypes);
 
@@ -82,7 +83,7 @@ public class Menus implements Serializable {
             try {
                 selectedQuestionType = scanner.nextInt();
             } catch (Exception e) {
-                System.out.println("Please enter an integer value");
+                System.out.println("Please enter an integer value between 1 and " + questionTypes.length);
                 continue;
             }
 
@@ -106,12 +107,15 @@ public class Menus implements Serializable {
                     survey.modify();
                     break;
                 case 7:
-                    mainMenu();
-                    break;
+                    //mainMenu();
+                    //break;
+                    return survey;
                 default:
-                    System.out.println("Please enter an integer value between 1 and " + questionTypes.length);
-                    break;
+                    //System.out.println("Please enter an integer value between 1 and " + questionTypes.length);
+                    //break;
+                    return survey;
             }
         }
+        return survey;
     }
 }
