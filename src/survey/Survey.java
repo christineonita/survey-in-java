@@ -7,9 +7,11 @@ import java.util.Scanner;
 public class Survey implements Serializable {
 
     private static final long serialVersionUID = 4925296878791173007L;
-    String path;
+    public String nameOfSurvey;
+    String surveyResponseFolder;// = "SurveyResponses";
     //public static ArrayList<Question> questions = new ArrayList<Question>();
     ArrayList<Question> questions = null;
+    String[] userAnswers;
 
     Survey() {
         questions = new ArrayList<Question>();
@@ -83,5 +85,34 @@ public class Survey implements Serializable {
                 }
             }
         }
+    }
+
+    public void take() {
+        int x = 0;
+        Serialize serialize = new Serialize();
+        userAnswers = new String[this.questions.size()];
+
+        for (Question question : questions) {
+            question.take();
+            this.userAnswers[x] = question.userResponse;
+            x++;
+        }
+
+
+        serialize.saveUserAnswers(userAnswers, surveyResponseFolder, nameOfSurvey);
+        
+
+
+        /*
+        public void take() {
+        Serialize ser = new Serialize();
+        answers = new String[this.questions.size()];
+        for (int i = 0; i < this.questions.size(); i++) {
+            this.questions.get(i).take();
+            this.answers[i] = this.questions.get(i).userAnswer;
+        }
+        ser.saveAnswers(answers, filePath);
+    }
+         */
     }
 }

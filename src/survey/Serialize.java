@@ -4,6 +4,8 @@ import java.io.*;
 
 public class Serialize implements Serializable {
     protected String surveyFolderName = "MySurveys";
+    protected String responsesFolderName = "SurveyResponses";
+    String survName;
 
     protected void saveSurvey(Survey survey) {
 
@@ -20,7 +22,7 @@ public class Serialize implements Serializable {
             out.writeObject(survey);
             out.close();
             fileOut.close();
-            Display.displayString("Saved in " + surveyFolderName + "/" + surveyName);
+            Display.displayString("Saved in " + surveyFolderName + " as " + surveyName + ".ser");
         } catch (IOException i) {
             i.printStackTrace();
         }
@@ -61,8 +63,38 @@ public class Serialize implements Serializable {
             c.printStackTrace();
         }
 
-        survey.path = surveyFolderName;
+        //survey.path = surveyFolderName;
+        survey.nameOfSurvey = files[surveyNumber - 1].getName().replace(".ser", "");
+        this.survName = files[surveyNumber - 1].getName().replace(".ser", "");
+        survey.surveyResponseFolder = responsesFolderName;
+
 
         return survey;
+    }
+
+    protected void saveUserAnswers(String[] userAnswers, String surveyResponseFolder, String name) {
+        String pth;
+        //System.out.println(surveyResponseFolder);
+        new File(surveyResponseFolder).mkdirs();
+        int f = new File(surveyResponseFolder).list().length;
+
+        /*File fi = new File("./" + responsesFolderName);
+        File[] files = fi.listFiles();
+        int f = files.length;
+        System.out.println("\n" + f);*/
+
+
+        pth = "./" + surveyResponseFolder + "/" + name + "_responses" + (f + 1) + ".ser";
+
+        try {
+            FileOutputStream fileOut = new FileOutputStream(pth);
+            ObjectOutputStream out = new ObjectOutputStream(fileOut);
+            out.writeObject(userAnswers);
+            out.close();
+            fileOut.close();
+            Display.displayString("Survey responses saved in " + pth);
+        } catch (IOException i) {
+            i.printStackTrace();
+        }
     }
 }

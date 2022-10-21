@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 public abstract class Question implements Serializable {
     private static final long serialVersionUID = 1399189310822722123L;
+    protected String userResponse;
 
     protected String prompt;
     protected String[] choices;
@@ -21,4 +22,6 @@ public abstract class Question implements Serializable {
     public String[] getQuestionChoices() {
         return choices;
     }
+
+    public abstract void take();
 }

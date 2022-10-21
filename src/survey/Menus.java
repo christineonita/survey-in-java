@@ -31,29 +31,21 @@ public class Menus implements Serializable {
 
             switch (selectedSurveyMenuItem) {
                 case 1:
-                    //System.out.println("Code needed for: " + surveyMenu[selectedSurveyMenuItem - 1]);
-                    //questionTypesMenu(survey);
                     survey = questionTypesMenu(survey);
                     break;
                 case 2:
-                    //Display.displaySurvey(survey);
-                    //displaySurvey(survey);
-                    //System.out.println("Code needed for: " + surveyMenu[selectedSurveyMenuItem - 1]);
                     survey = loadSurvey();
                     survey.displaySurvey();
                     break;
                 case 3:
                     survey = loadSurvey();
-                    //System.out.println("Code needed for: " + surveyMenu[selectedSurveyMenuItem - 1]);
                     break;
                 case 4:
                     saveSurvey(survey);
-                    //System.out.println("Code needed for: " + surveyMenu[selectedSurveyMenuItem - 1]);
                     break;
                 case 5:
-                    //survey = loadSurvey();
-                    //survey.take();
-                    System.out.println("Code needed for: " + surveyMenu[selectedSurveyMenuItem - 1]);
+                    survey = loadSurvey();
+                    survey.take();
                     break;
                 case 6:
                     //survey.modify();
