@@ -80,8 +80,10 @@ public class Serialize implements Serializable {
     protected void saveUserAnswers(String[] userAnswers, String surveyResponseFolder, String name) {
         String pth;
         //System.out.println(surveyResponseFolder);
-        new File(surveyResponseFolder).mkdirs();
-        int f = new File(surveyResponseFolder).list().length;
+        String responsesFolderPerSurvey = surveyResponseFolder + File.separator + name + "_responses";
+
+        new File(responsesFolderPerSurvey).mkdirs();
+        int f = new File(responsesFolderPerSurvey).list().length;
 
         /*File fi = new File("./" + responsesFolderName);
         File[] files = fi.listFiles();
@@ -89,7 +91,7 @@ public class Serialize implements Serializable {
         System.out.println("\n" + f);*/
 
 
-        pth = "." + File.separator + surveyResponseFolder + File.separator + name + "_responses" + (f + 1) + ".ser";
+        pth = "." + File.separator + responsesFolderPerSurvey + File.separator + name + "_response" + (f + 1) + ".ser";
 
         try {
             FileOutputStream fileOut = new FileOutputStream(pth);
