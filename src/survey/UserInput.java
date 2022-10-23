@@ -65,31 +65,25 @@ public class UserInput implements Serializable {
                 scanner.nextLine();
             }
         }
+        return a;
+    }
 
-        /*
-        public static int getInt(int lower, int upper) {
-		int rtn = 0;
-		boolean num = false;
-		Scanner scan = new Scanner(System.in);
+    public static int getMultipleAnswers(int start, int end) {
+        int a = 0;
+        boolean i = true;
 
-		while (!num) {
-			try {
-				rtn = scan.nextInt();
-				if (rtn > lower || rtn < upper) {
-					num = true;
-				} else {
-					Display.display("Please enter number above " + lower);
-					scan.nextLine();
-				}
-			} catch (InputMismatchException e) {
-				Display.display("Please enter an integer");
-				scan.nextLine();
-			}
-		}
-		scan.nextLine();
-		return rtn;
-	}
-         */
+        Scanner scanner = new Scanner(System.in);
+        while (i) {
+
+            a = scanner.nextInt();
+            if (a < end && a > start) {
+                break;
+            } else {
+                Display.displayString("Enter a number from " + (start + 1) + " to " + (end - 1));
+                scanner.nextLine();
+            }
+
+        }
         return a;
     }
 }

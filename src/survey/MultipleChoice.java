@@ -1,6 +1,7 @@
 package survey;
 
 import java.io.Serializable;
+import java.util.InputMismatchException;
 
 public class MultipleChoice extends Question implements Serializable {
     private static final long serialVersionUID = 493583457744295169L;
@@ -8,6 +9,7 @@ public class MultipleChoice extends Question implements Serializable {
     protected int[] answersForMultChoiceQuestionsWithMultipleAnswers;
     protected boolean hasMultipleAnswers;
     protected String userAnswer;
+    int mult;
 
     MultipleChoice() {
 
@@ -76,11 +78,13 @@ public class MultipleChoice extends Question implements Serializable {
 
             setSingleUserAnswer(UserInput.getOption(0, multipleChoiceQuestionChoices.length + 1));
         } else {
-            Display.displayString("This question has multiple answers so press enter after each choice you type and enter a 0 when you're finished ");
+            Display.displayString("This question has multiple answers so press enter after each choice you type and enter 'done' when you're finished ");
             for (int y = 0; y < answersForMultChoiceQuestionsWithMultipleAnswers.length; y++) {
                 Display.displayString("Please enter your choice #: ");
-                answersForMultChoiceQuestionsWithMultipleAnswers[y] = UserInput.getOption(0, answersForMultChoiceQuestionsWithMultipleAnswers.length);
-                if (answersForMultChoiceQuestionsWithMultipleAnswers[y] == 0) {
+                try {
+                    mult = UserInput.getMultipleAnswers(0, answersForMultChoiceQuestionsWithMultipleAnswers.length + 1);
+                    answersForMultChoiceQuestionsWithMultipleAnswers[y] = mult;
+                } catch (InputMismatchException e) {
                     break;
                 }
             }

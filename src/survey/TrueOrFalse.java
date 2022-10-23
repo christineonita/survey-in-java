@@ -33,7 +33,7 @@ public class TrueOrFalse extends MultipleChoice {
     protected void setSingleUserAnswer(int anInt) { // stored as either "True" or "False"
         //trueOrFalseChoice = Integer.toString(anInt) + ") " + this.trueOrFalseQuestionChoices[anInt - 1];
         trueOrFalseChoice = this.trueOrFalseQuestionChoices[anInt - 1];
-        System.out.println(trueOrFalseChoice);
+        //System.out.println(trueOrFalseChoice); // - debugger
     }
 
     @Override
