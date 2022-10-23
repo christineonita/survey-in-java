@@ -62,7 +62,7 @@ public class Survey implements Serializable {
         System.out.println("code needed to add valid date question to survey");
     }
 
-    protected void modify() {
+    protected void addMatching() {
         System.out.println("code needed to add matching question to survey");
     }
 
@@ -115,5 +115,9 @@ public class Survey implements Serializable {
         ser.saveAnswers(answers, filePath);
     }
          */
+    }
+
+    public void modify() {
+        System.out.println("code needed to modify survey");
     }
 }
