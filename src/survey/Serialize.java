@@ -45,6 +45,7 @@ public class Serialize implements Serializable {
         if (files.length == 0) {
             System.out.println("\nThere are no surveys to load.\n");
         } else {
+            System.out.println("Select a survey to load: ");
             for (int j = 0; j < files.length; j++) {
                 //surveyNumber = j + 1;
                 Display.displayString((j + 1) + ") " + files[j].getName());
