@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class Menus implements Serializable {
     private static final long serialVersionUID = 5292926198099734510L;
     private final String[] surveyMenu = {"Create a new survey", "Display an existing Survey", "Load an existing Survey", "Save the current Survey",
-            "Take the current Survey", "Modify the current Survey", "Quit"};
+            "Take an existing Survey", "Modify an existing Survey", "Quit"};
     private final String[] questionTypes = {"Add a new T/F question", "Add a new multiple-choice question", "Add a new short answer question", "Add a new essay question",
             "Add a new date question", "Add a new matching question", "Return to previous menu"};
 
