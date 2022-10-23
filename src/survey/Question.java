@@ -26,4 +26,6 @@ public abstract class Question implements Serializable {
     public abstract void take();
 
     public abstract String getQuestionType();
+
+    protected abstract void modifyQuestionChoice(int choiceNum, String choice);
 }

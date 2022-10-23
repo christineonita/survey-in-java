@@ -12,6 +12,10 @@ public class Survey implements Serializable {
     //public static ArrayList<Question> questions = new ArrayList<Question>();
     ArrayList<Question> questions = null;
     String[] userAnswers;
+    String newPrompt;
+    String modifyPrompt;
+    String modifyChoicesYesOrNo;
+    int questionToModify;
 
     Survey() {
         questions = new ArrayList<Question>();
@@ -103,20 +107,53 @@ public class Survey implements Serializable {
     }
 
     public void modify() {
-        int questionToModify;
         Serialize serialize = new Serialize();
-        //System.out.println("code needed to modify survey");
+
+
         Display.displayString("What question do you wish to modify?");
         questionToModify = UserInput.getOption(0, this.questions.size() + 1);
-        Display.displayString("Question " + questionToModify + ". " + this.questions.get(questionToModify - 1).getPrompt() + "\n");
-        Display.displayString("Do you wish to modify the prompt?");
-        if (UserInput.getString().equalsIgnoreCase("yes")) {
-            Display.displayString("Enter a new prompt:");
-            this.questions.get(questionToModify - 1).setPrompt(UserInput.getString());
+        modifyQuestionPrompt(questionToModify);
+        Display.displayString("Do you wish to modify the choices?");
+        modifyChoicesYesOrNo = UserInput.getString();
+        if (modifyChoicesYesOrNo.equalsIgnoreCase("yes")) {
+            modifyQuestionChoices(questionToModify);
         }
 
         serialize.modifySurvey(this, this.nameOfSurvey);
-        //System.out.println(this.nameOfSurvey);
+    }
 
+    public void modifyQuestionPrompt(int toModify) {
+
+        Display.displayString("Question " + toModify + ". " + this.questions.get(toModify - 1).getPrompt() + "\n");
+        Display.displayString("Do you wish to modify the prompt?");
+        modifyPrompt = UserInput.getString();
+        if (modifyPrompt.equalsIgnoreCase("yes")) {
+            Display.displayString("Enter a new prompt:");
+            newPrompt = UserInput.getString();
+            this.questions.get(toModify - 1).setPrompt(newPrompt);
+        } else if (modifyPrompt.equalsIgnoreCase("no")) {
+        } else {
+            Display.displayString("Please enter yes or no.");
+        }
+
+
+    }
+
+    public void modifyQuestionChoices(int questionBeingModified) {
+        int choiceToModify;
+        String newChoice, modifyAnotherQuestionYesOrNo;
+        Display.displayString("Which choice do you want to modify?");
+        Display.displayStringArray(this.questions.get(questionBeingModified - 1).getQuestionChoices());
+        choiceToModify = UserInput.getInt();
+        Display.displayString("Enter new choice #" + choiceToModify);
+        newChoice = UserInput.getString();
+        this.questions.get(questionBeingModified - 1).modifyQuestionChoice(choiceToModify - 1, newChoice);
+        Display.displayString("Do you wish to modify another question?");
+        modifyAnotherQuestionYesOrNo = UserInput.getString();
+        if (modifyAnotherQuestionYesOrNo.equalsIgnoreCase("yes")) {
+            modify();
+        }
+
+        //ask if we want to modify another question
     }
 }

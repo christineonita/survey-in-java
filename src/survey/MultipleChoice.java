@@ -54,6 +54,11 @@ public class MultipleChoice extends Question implements Serializable {
     }
 
     @Override
+    public void modifyQuestionChoice(int choiceIndex, String newChoice) {
+        questionChoices[choiceIndex] = newChoice;
+    }
+
+    @Override
     public void take() {
         Display.displayString(getPrompt());
         Display.displayStringArray(questionChoices);
