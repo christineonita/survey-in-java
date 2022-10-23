@@ -123,11 +123,16 @@ public class Survey implements Serializable {
         Display.displayString("What question do you wish to modify?");
         questionToModify = UserInput.getOption(0, this.questions.size() + 1);
         modifyQuestionPrompt(questionToModify);
-        Display.displayString("Do you wish to modify the choices?");
-        modifyChoicesYesOrNo = UserInput.getString();
-        if (modifyChoicesYesOrNo.equalsIgnoreCase("yes")) {
-            modifyQuestionChoices(questionToModify);
+
+        //if (this.questions.get(questionToModify - 1) instanceof MultipleChoice) {
+        if (this.questions.get(questionToModify - 1).getClass().equals(MultipleChoice.class)) {
+            Display.displayString("Do you wish to modify the choices?");
+            modifyChoicesYesOrNo = UserInput.getString();
+            if (modifyChoicesYesOrNo.equalsIgnoreCase("yes")) {
+                modifyQuestionChoices(questionToModify);
+            }
         }
+
 
         serialize.modifySurvey(this, this.nameOfSurvey);
     }
