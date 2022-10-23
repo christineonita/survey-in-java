@@ -13,8 +13,8 @@ public class Serialize implements Serializable {
         Display.displayString("Enter the name you want to save this file as --> ");
         surveyName = UserInput.getString();
 
-        new File("./" + surveyFolderName).mkdirs();
-        surveyPath = surveyFolderName + "/" + surveyName + ".ser";
+        new File("." + File.separator + surveyFolderName).mkdirs();
+        surveyPath = surveyFolderName + File.separator + surveyName + ".ser";
 
         try {
             FileOutputStream fileOut = new FileOutputStream(surveyPath);
@@ -23,6 +23,7 @@ public class Serialize implements Serializable {
             out.close();
             fileOut.close();
             Display.displayString("Saved in " + surveyFolderName + " as " + surveyName + ".ser");
+            Display.displayString("Saved in " + surveyPath);
         } catch (IOException i) {
             i.printStackTrace();
         }
@@ -50,7 +51,7 @@ public class Serialize implements Serializable {
             }
 
             surveyNumber = UserInput.getOption(0, files.length + 1);
-            surveyPath = surveyFolderName + "/" + files[surveyNumber - 1].getName();
+            surveyPath = surveyFolderName + File.separator + files[surveyNumber - 1].getName();
 
             try {
                 FileInputStream fileIn = new FileInputStream(surveyPath);
@@ -87,7 +88,7 @@ public class Serialize implements Serializable {
         System.out.println("\n" + f);*/
 
 
-        pth = "./" + surveyResponseFolder + "/" + name + "_responses" + (f + 1) + ".ser";
+        pth = "." + File.separator + surveyResponseFolder + File.separator + name + "_responses" + (f + 1) + ".ser";
 
         try {
             FileOutputStream fileOut = new FileOutputStream(pth);

@@ -47,10 +47,12 @@ public class UserInput implements Serializable {
         while (true) {
             try {
                 a = scanner.nextInt();
-                if (a < end || a > start) {
+                //if (a < end || a > start) {
+                if (a < end && a > start) {
                     break;
                 } else {
-                    Display.displayString("Enter a number between " + (start + 1) + "and" + (end - 1));
+                    Display.displayString("Enter a number from " + (start + 1) + " to " + (end - 1));
+                    //Display.displayString("Enter a number between " + (start + 1) + " and " + (end - 1));
                     scanner.nextLine();
                 }
                 /*if(!(a < end || a > start)){

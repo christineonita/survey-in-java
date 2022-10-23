@@ -10,7 +10,7 @@ public class Display implements Serializable {
         int option;
         for (int i = 0; i < stringArray.length; i++) {
             option = i + 1;
-            System.out.println((" " + option + "." + stringArray[i]));
+            System.out.println(("    " + option + "." + stringArray[i]));
         }
 
     }

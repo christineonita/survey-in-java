@@ -93,6 +93,7 @@ public class Survey implements Serializable {
         userAnswers = new String[this.questions.size()];
 
         for (Question question : questions) {
+            System.out.print("Question " + (x + 1) + ". "); //not using println here so a new line doesnt print
             question.take();
             this.userAnswers[x] = question.userResponse;
             x++;
