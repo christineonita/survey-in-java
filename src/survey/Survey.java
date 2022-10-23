@@ -99,25 +99,24 @@ public class Survey implements Serializable {
             x++;
         }
 
-
         serialize.saveUserAnswers(userAnswers, surveyResponseFolder, nameOfSurvey);
-        
-
-
-        /*
-        public void take() {
-        Serialize ser = new Serialize();
-        answers = new String[this.questions.size()];
-        for (int i = 0; i < this.questions.size(); i++) {
-            this.questions.get(i).take();
-            this.answers[i] = this.questions.get(i).userAnswer;
-        }
-        ser.saveAnswers(answers, filePath);
-    }
-         */
     }
 
     public void modify() {
-        System.out.println("code needed to modify survey");
+        int questionToModify;
+        Serialize serialize = new Serialize();
+        //System.out.println("code needed to modify survey");
+        Display.displayString("What question do you wish to modify?");
+        questionToModify = UserInput.getOption(0, this.questions.size() + 1);
+        Display.displayString("Question " + questionToModify + ". " + this.questions.get(questionToModify - 1).getPrompt() + "\n");
+        Display.displayString("Do you wish to modify the prompt?");
+        if (UserInput.getString().equalsIgnoreCase("yes")) {
+            Display.displayString("Enter a new prompt:");
+            this.questions.get(questionToModify - 1).setPrompt(UserInput.getString());
+        }
+
+        serialize.modifySurvey(this, this.nameOfSurvey);
+        //System.out.println(this.nameOfSurvey);
+
     }
 }

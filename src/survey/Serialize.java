@@ -29,6 +29,27 @@ public class Serialize implements Serializable {
         }
     }
 
+    protected void modifySurvey(Survey survey, String nameOfSurvey) {
+        String surveyPath;//, surveyName;
+        //Display.displayString("Enter the name you want to save this file as --> ");
+        //surveyName = UserInput.getString();
+
+        new File("." + File.separator + surveyFolderName).mkdirs();
+        surveyPath = surveyFolderName + File.separator + nameOfSurvey + ".ser";
+
+        try {
+            FileOutputStream fileOut = new FileOutputStream(surveyPath);
+            ObjectOutputStream out = new ObjectOutputStream(fileOut);
+            out.writeObject(survey);
+            out.close();
+            fileOut.close();
+            System.out.println("Survey " + nameOfSurvey + ".ser updated successfully and saved in " + surveyPath);
+            //Display.displayString("Saved in " + surveyPath);
+        } catch (IOException i) {
+            i.printStackTrace();
+        }
+    }
+
     protected Survey loadSurvey() {
         Survey survey = null;
         String surveyPath;
@@ -104,4 +125,6 @@ public class Serialize implements Serializable {
             i.printStackTrace();
         }
     }
+
+
 }
