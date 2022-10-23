@@ -50,7 +50,12 @@ public class Survey implements Serializable {
 
 
     protected void addTrueOrFalse() {
-        System.out.println("code needed to add t/f question to survey");
+        //System.out.println("code needed to add t/f question to survey");
+
+        Question question = new TrueOrFalse();
+        setQuestionPrompt(question);
+        question.setQuestionChoices();
+        questions.add(question);
     }
 
     protected void addEssay() {
@@ -83,6 +88,11 @@ public class Survey implements Serializable {
         for (int x = 0; x < this.questions.size(); x++) {
             Display.displayString(" Question " + (x + 1) + ". " + this.questions.get(x).getPrompt());
             if (this.questions.get(x) instanceof MultipleChoice) {
+                for (String s : this.questions.get(x).getQuestionChoices()) {
+                    Display.displayString("   " + choicesLoop + ".) " + s);
+                    choicesLoop++;
+                }
+            } else if (this.questions.get(x) instanceof TrueOrFalse) {
                 for (String s : this.questions.get(x).getQuestionChoices()) {
                     Display.displayString("   " + choicesLoop + ".) " + s);
                     choicesLoop++;

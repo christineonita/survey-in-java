@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class MultipleChoice extends Question implements Serializable {
     private static final long serialVersionUID = 493583457744295169L;
-    protected String[] questionChoices;
+    protected String[] multipleChoiceQuestionChoices;
     protected int[] answersForMultChoiceQuestionsWithMultipleAnswers;
     protected boolean hasMultipleAnswers;
     protected String userAnswer;
@@ -22,7 +22,7 @@ public class MultipleChoice extends Question implements Serializable {
 
         numberOfChoices = UserInput.getInt();
 
-        questionChoices = new String[numberOfChoices];
+        multipleChoiceQuestionChoices = new String[numberOfChoices];
 
         Display.displayString("Does this question allow multiple answers? (Type yes or no)");
 
@@ -44,24 +44,24 @@ public class MultipleChoice extends Question implements Serializable {
         for (int i = 0; i < numberOfChoices; i++) {
             choiceNumber = i + 1;
             Display.displayString("Please enter choice #" + choiceNumber);
-            questionChoices[i] = UserInput.getString();
+            multipleChoiceQuestionChoices[i] = UserInput.getString();
         }
     }
 
     @Override
     public String[] getQuestionChoices() {
-        return questionChoices;
+        return multipleChoiceQuestionChoices;
     }
 
     @Override
     public void modifyQuestionChoice(int choiceIndex, String newChoice) {
-        questionChoices[choiceIndex] = newChoice;
+        multipleChoiceQuestionChoices[choiceIndex] = newChoice;
     }
 
     @Override
     public void take() {
         Display.displayString(getPrompt());
-        Display.displayStringArray(questionChoices);
+        Display.displayStringArray(multipleChoiceQuestionChoices);
         askUserForChoices();
     }
 
@@ -74,7 +74,7 @@ public class MultipleChoice extends Question implements Serializable {
         if (hasMultipleAnswers == false) {
             Display.displayString("Please enter your choice #: ");
 
-            setSingleUserAnswer(UserInput.getOption(0, questionChoices.length + 1));
+            setSingleUserAnswer(UserInput.getOption(0, multipleChoiceQuestionChoices.length + 1));
         } else {
             Display.displayString("This question has multiple answers so press enter after each choice you type and enter a 0 when you're finished ");
             for (int y = 0; y < answersForMultChoiceQuestionsWithMultipleAnswers.length; y++) {
@@ -95,11 +95,11 @@ public class MultipleChoice extends Question implements Serializable {
             if (multipleAnswersArray[g] == 0) {
                 break;
             }
-            userAnswer = userAnswer + Integer.toString(multipleAnswersArray[g]) + ") " + questionChoices[multipleAnswersArray[g] - 1] + "\n";
+            userAnswer = userAnswer + Integer.toString(multipleAnswersArray[g]) + ") " + multipleChoiceQuestionChoices[multipleAnswersArray[g] - 1] + "\n";
         }
     }
 
     protected void setSingleUserAnswer(int anInt) {
-        userAnswer = Integer.toString(anInt) + ") " + this.questionChoices[anInt - 1];
+        userAnswer = Integer.toString(anInt) + ") " + this.multipleChoiceQuestionChoices[anInt - 1];
     }
 }

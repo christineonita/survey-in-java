@@ -22,7 +22,7 @@ public class Serialize implements Serializable {
             out.writeObject(survey);
             out.close();
             fileOut.close();
-            Display.displayString("Saved in " + surveyFolderName + " as " + surveyName + ".ser");
+            //Display.displayString("Saved in " + surveyFolderName + " as " + surveyName + ".ser");
             Display.displayString("Saved in " + surveyPath);
         } catch (IOException i) {
             i.printStackTrace();
