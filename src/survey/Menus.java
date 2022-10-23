@@ -127,7 +127,7 @@ public class Menus implements Serializable {
                     survey.addValidDate();
                     break;
                 case 6:
-                    survey.modify();
+                    survey.addMatching();
                     break;
                 case 7:
                     //mainMenu();
