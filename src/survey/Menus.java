@@ -34,22 +34,39 @@ public class Menus implements Serializable {
                     survey = questionTypesMenu(survey);
                     break;
                 case 2:
-                    survey = loadSurvey();
-                    survey.displaySurvey();
+                    try {
+                        survey = loadSurvey();
+                        survey.displaySurvey();
+                    } catch (NullPointerException e) {
+                        System.out.println("No survey has been made yet.\n");
+                    }
                     break;
                 case 3:
-                    survey = loadSurvey();
+                    try {
+                        survey = loadSurvey();
+                    } catch (NullPointerException e) {
+                        System.out.println("No survey has been made yet.\n");
+                    }
                     break;
                 case 4:
                     saveSurvey(survey);
                     break;
                 case 5:
-                    survey = loadSurvey();
-                    survey.take();
+                    try {
+                        survey = loadSurvey();
+                        survey.take();
+                    } catch (NullPointerException e) {
+                        System.out.println("No survey has been made yet.\n");
+                    }
                     break;
                 case 6:
+                    //load survey first - put try/catch similar to case 5
                     //survey.modify();
-                    System.out.println("Code needed for: " + surveyMenu[selectedSurveyMenuItem - 1]);
+                    try {
+                        System.out.println("Code needed for: " + surveyMenu[selectedSurveyMenuItem - 1]);
+                    } catch (NullPointerException e) {
+                        System.out.println("No survey has been made yet.\n");
+                    }
                     break;
                 case 7:
                     System.exit(0);

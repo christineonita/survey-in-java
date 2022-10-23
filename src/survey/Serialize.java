@@ -41,33 +41,36 @@ public class Serialize implements Serializable {
         //System.out.println(files.length); // - debugger
 
 
-        for (int j = 0; j < files.length; j++) {
-            //surveyNumber = j + 1;
-            Display.displayString((j + 1) + ") " + files[j].getName());
+        if (files.length == 0) {
+            System.out.println("\nThere are no surveys to load.\n");
+        } else {
+            for (int j = 0; j < files.length; j++) {
+                //surveyNumber = j + 1;
+                Display.displayString((j + 1) + ") " + files[j].getName());
+            }
+
+            surveyNumber = UserInput.getOption(0, files.length + 1);
+            surveyPath = surveyFolderName + "/" + files[surveyNumber - 1].getName();
+
+            try {
+                FileInputStream fileIn = new FileInputStream(surveyPath);
+                ObjectInputStream in = new ObjectInputStream(fileIn);
+                survey = (Survey) in.readObject();
+                in.close();
+                fileIn.close();
+                Display.displayString("Survey file " + surveyPath + " has been loaded.\n");
+            } catch (IOException i) {
+                i.printStackTrace();
+            } catch (ClassNotFoundException c) {
+                System.out.println("Survey class not found");
+                c.printStackTrace();
+            }
+
+            //survey.path = surveyFolderName;
+            survey.nameOfSurvey = files[surveyNumber - 1].getName().replace(".ser", "");
+            this.survName = files[surveyNumber - 1].getName().replace(".ser", "");
+            survey.surveyResponseFolder = responsesFolderName;
         }
-
-        surveyNumber = UserInput.getOption(0, files.length + 1);
-        surveyPath = surveyFolderName + "/" + files[surveyNumber - 1].getName();
-
-        try {
-            FileInputStream fileIn = new FileInputStream(surveyPath);
-            ObjectInputStream in = new ObjectInputStream(fileIn);
-            survey = (Survey) in.readObject();
-            in.close();
-            fileIn.close();
-            Display.displayString("Survey file " + surveyPath + " has been loaded.\n");
-        } catch (IOException i) {
-            i.printStackTrace();
-        } catch (ClassNotFoundException c) {
-            System.out.println("Survey class not found");
-            c.printStackTrace();
-        }
-
-        //survey.path = surveyFolderName;
-        survey.nameOfSurvey = files[surveyNumber - 1].getName().replace(".ser", "");
-        this.survName = files[surveyNumber - 1].getName().replace(".ser", "");
-        survey.surveyResponseFolder = responsesFolderName;
-
 
         return survey;
     }

@@ -18,7 +18,7 @@ public class MultipleChoice extends Question implements Serializable {
         int choiceNumber, numberOfChoices;
         //boolean repeat = true;
         String yesOrNo;
-        Display.displayString("Enter the number of choices for your question: ");
+        Display.displayString("Enter the number of choices for your multiple-choice question: ");
 
         numberOfChoices = UserInput.getInt();
 
@@ -58,6 +58,11 @@ public class MultipleChoice extends Question implements Serializable {
         Display.displayString(getPrompt());
         Display.displayStringArray(questionChoices);
         askUserForChoices();
+    }
+
+    @Override
+    public String getQuestionType() {
+        return "multiple-choice";
     }
 
     protected void askUserForChoices() {

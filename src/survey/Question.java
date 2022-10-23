@@ -24,4 +24,6 @@ public abstract class Question implements Serializable {
     }
 
     public abstract void take();
+
+    public abstract String getQuestionType();
 }

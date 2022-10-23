@@ -29,7 +29,7 @@ public class Survey implements Serializable {
     }*/
 
     protected void setQuestionPrompt(Question question) {
-        Display.displayString("Enter the question prompt --> ");
+        Display.displayString("Enter the prompt for your " + question.getQuestionType() + " question: ");
         Scanner scan = new Scanner(System.in);
 
         String prompt = scan.nextLine();
