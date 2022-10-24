@@ -100,10 +100,12 @@ public class MultipleChoice extends Question implements Serializable {
                 break;
             }
             userAnswer = userAnswer + Integer.toString(multipleAnswersArray[g]) + ") " + multipleChoiceQuestionChoices[multipleAnswersArray[g] - 1] + "\n";
+            userResponse = userAnswer;
         }
     }
 
     protected void setSingleUserAnswer(int anInt) {
         userAnswer = Integer.toString(anInt) + ") " + this.multipleChoiceQuestionChoices[anInt - 1];
+        userResponse = userAnswer;
     }
 }

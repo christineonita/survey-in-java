@@ -36,6 +36,7 @@ public class TrueOrFalse extends MultipleChoice implements Serializable {
         //trueOrFalseChoice = Integer.toString(anInt) + ") " + this.trueOrFalseQuestionChoices[anInt - 1];
         trueOrFalseChoice = this.trueOrFalseQuestionChoices[anInt - 1];
         //System.out.println(trueOrFalseChoice); // - debugger
+        userResponse = trueOrFalseChoice;
     }
 
     @Override

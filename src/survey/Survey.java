@@ -59,7 +59,13 @@ public class Survey implements Serializable {
     }
 
     protected void addEssay() {
-        System.out.println("code needed to add essay question to survey");
+        //System.out.println("code needed to add essay question to survey");
+        Question question = new Essay();
+        setQuestionPrompt(question);
+
+        //question.setQuestionChoices();
+        questions.add(question);
+
     }
 
     protected void addShortAnswer() {
@@ -87,17 +93,18 @@ public class Survey implements Serializable {
         int choicesLoop = 1;
         for (int x = 0; x < this.questions.size(); x++) {
             Display.displayString(" Question " + (x + 1) + ". " + this.questions.get(x).getPrompt());
-            if (this.questions.get(x) instanceof MultipleChoice) {
+            if (this.questions.get(x) instanceof MultipleChoice || this.questions.get(x) instanceof TrueOrFalse) {
                 for (String s : this.questions.get(x).getQuestionChoices()) {
                     Display.displayString("   " + choicesLoop + ".) " + s);
                     choicesLoop++;
                 }
-            } else if (this.questions.get(x) instanceof TrueOrFalse) {
+            } /*else if (this.questions.get(x) instanceof TrueOrFalse) {
                 for (String s : this.questions.get(x).getQuestionChoices()) {
                     Display.displayString("   " + choicesLoop + ".) " + s);
                     choicesLoop++;
                 }
-            }
+            }*/
+            choicesLoop = 1;
         }
     }
 
@@ -112,6 +119,11 @@ public class Survey implements Serializable {
             this.userAnswers[x] = question.userResponse;
             x++;
         }
+
+        /// -------- remove this, just a debugger to check that my answers are actually saved - they are =D
+        /*for (String b : this.userAnswers) {
+            System.out.println("These are the saved answers\n" + b);
+        }*/
 
         serialize.saveUserAnswers(userAnswers, surveyResponseFolder, nameOfSurvey);
     }
@@ -149,6 +161,7 @@ public class Survey implements Serializable {
         } else if (modifyPrompt.equalsIgnoreCase("no")) {
         } else {
             Display.displayString("Please enter yes or no.");
+            modifyQuestionPrompt(toModify);
         }
 
 
