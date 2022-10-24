@@ -1,6 +1,8 @@
 package survey;
 
-public class TrueOrFalse extends MultipleChoice {
+import java.io.Serializable;
+
+public class TrueOrFalse extends MultipleChoice implements Serializable {
 
     private static final long serialVersionUID = 2106840000528017311L;
     protected String[] trueOrFalseQuestionChoices;
