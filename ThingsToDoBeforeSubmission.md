@@ -3,6 +3,9 @@
 ## HW2 part B notes ##
 
 - [ ] Remember to implement Serializable for every class except main and include their serialVersionUID
+- [ ] Edit to make user press enter key twice instead of typing 'done' ----> also edit printed user instruction
+  accordingly
+- [ ] Allow essay to allow multiple responses (short answer should allow multiple responses as well)
 - [ ] Surveys don’t have correct answers
 - [ ] Do not hard code file separators
 - [ ] Take care of user input being alphabetical (or not an integer) when I require an integer
