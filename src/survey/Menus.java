@@ -95,6 +95,7 @@ public class Menus implements Serializable {
         int selectedQuestionType;
         survey.clearAllQuestions();
         boolean n = true;
+        String saveBeforeLeaving;
 
         while (n) {
             // prints survey menu
@@ -132,7 +133,21 @@ public class Menus implements Serializable {
                 case 7:
                     //mainMenu();
                     //break;
-                    return survey;
+                    System.out.println("Save before leaving?");
+                    Scanner s = new Scanner(System.in);
+
+                    while (true) {
+                        saveBeforeLeaving = s.nextLine();
+                        if (saveBeforeLeaving.equalsIgnoreCase("yes")) {
+                            saveSurvey(survey);
+                            return survey;
+                        } else if (saveBeforeLeaving.equalsIgnoreCase("no")) {
+                            return survey;
+                        } else {
+                            System.out.println("Please enter yes or no.");
+                        }
+                    }
+                    //return survey;
                 default:
                     //System.out.println("Please enter an integer value between 1 and " + questionTypes.length);
                     //break;
