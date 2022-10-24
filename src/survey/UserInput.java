@@ -9,6 +9,8 @@ import java.util.Scanner;
 
 public class UserInput implements Serializable {
 
+    private static final long serialVersionUID = 4590960300204883310L;
+
     protected static int getInt() {
         int input;
         while (true) {
