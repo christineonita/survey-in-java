@@ -2,6 +2,7 @@
 
 ## HW2 part B notes ##
 
+- [ ] Remember to implement Serializable for every class except main and include their serialVersionUid
 - [ ] Surveys don’t have correct answers
 - [ ] Do not hard code file separators
 - [ ] Take care of user input being alphabetical (or not an integer) when I require an integer
