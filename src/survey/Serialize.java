@@ -27,6 +27,7 @@ public class Serialize implements Serializable {
         } catch (IOException i) {
             i.printStackTrace();
         }
+        survey.displaySurvey();
     }
 
     protected void modifySurvey(Survey survey, String nameOfSurvey) {
@@ -48,6 +49,8 @@ public class Serialize implements Serializable {
         } catch (IOException i) {
             i.printStackTrace();
         }
+
+        survey.displaySurvey();
     }
 
     protected Survey loadSurvey() {
