@@ -99,13 +99,15 @@ public class MultipleChoice extends Question implements Serializable {
             if (multipleAnswersArray[g] == 0) {
                 break;
             }
-            userAnswer = userAnswer + Integer.toString(multipleAnswersArray[g]) + ") " + multipleChoiceQuestionChoices[multipleAnswersArray[g] - 1] + "\n";
+            //userAnswer = userAnswer + Integer.toString(multipleAnswersArray[g]) + ") " + multipleChoiceQuestionChoices[multipleAnswersArray[g] - 1] + "\n";
+            userAnswer = userAnswer + multipleChoiceQuestionChoices[multipleAnswersArray[g] - 1] + "\n"; // so that the question choice numbers are not saved in the responses
             userResponse = userAnswer;
         }
     }
 
     protected void setSingleUserAnswer(int anInt) {
-        userAnswer = Integer.toString(anInt) + ") " + this.multipleChoiceQuestionChoices[anInt - 1];
+        //userAnswer = Integer.toString(anInt) + ") " + this.multipleChoiceQuestionChoices[anInt - 1];
+        userAnswer = userAnswer + this.multipleChoiceQuestionChoices[anInt - 1]; // so that the question choice numbers are not saved in the responses
         userResponse = userAnswer;
     }
 }

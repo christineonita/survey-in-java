@@ -21,17 +21,6 @@ public class Survey implements Serializable {
         questions = new ArrayList<Question>();
     }
 
-    /*public void setPrompt(Question question) {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        String prompt;
-        try {
-            prompt = reader.readLine();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        question.setQuestionPrompt(prompt);
-    }*/
-
     protected void setQuestionPrompt(Question question) {
         Display.displayString("Enter the prompt for your " + question.getQuestionType() + " question: ");
         Scanner scan = new Scanner(System.in);
@@ -62,7 +51,6 @@ public class Survey implements Serializable {
         //System.out.println("code needed to add essay question to survey");
         Question question = new Essay();
         setQuestionPrompt(question);
-
         //question.setQuestionChoices();
         questions.add(question);
 
@@ -79,6 +67,7 @@ public class Survey implements Serializable {
 
     protected void addMatching() {
         System.out.println("code needed to add matching question to survey");
+        // for matching questions mark the options like option A, B, C --> mak it so that the creator cannot choose above 26 for num of items in a column
     }
 
     /*protected ArrayList<Question> getQuestions() {
@@ -182,6 +171,6 @@ public class Survey implements Serializable {
             modify();
         }
 
-        //ask if we want to modify another question
+        //ask if we want to modify another question - done in above methods
     }
 }
