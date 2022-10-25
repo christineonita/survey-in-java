@@ -15,6 +15,9 @@
   if it does) for:
     - number of choices for multiple choice
     - short answer question length
+- [ ] Do this before the stuff below this: remove methods like 'set question choices from' Question class since only
+  mult choice and t/f need
+  it and t/f inherits from mult choice so only override the method in t/f
 - [ ] Run intelliJ code quality before i submit
 - [ ] Do after copying completed files to folder i will be submitting:
     - create one question surveys for each question type then,
