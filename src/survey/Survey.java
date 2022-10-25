@@ -52,6 +52,7 @@ public class Survey implements Serializable {
         Question question = new Essay();
         setQuestionPrompt(question);
         //question.setQuestionChoices();
+        question.setRequiredNumberOfResponses();
         questions.add(question);
 
     }

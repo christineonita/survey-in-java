@@ -61,6 +61,11 @@ public class MultipleChoice extends Question implements Serializable {
     }
 
     @Override
+    public void setRequiredNumberOfResponses() {
+        // todo - not needed
+    }
+
+    @Override
     public void take() {
         Display.displayString(getPrompt());
         Display.displayStringArray(multipleChoiceQuestionChoices);
