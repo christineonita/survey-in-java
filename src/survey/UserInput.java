@@ -70,7 +70,7 @@ public class UserInput implements Serializable {
         return a;
     }
 
-    public static int getMultipleAnswers(int start, int end) {
+    public static int getMultipleOptions(int start, int end) {
         int a = 0;
         boolean i = true;
 

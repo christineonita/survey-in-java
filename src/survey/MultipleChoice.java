@@ -82,7 +82,7 @@ public class MultipleChoice extends Question implements Serializable {
             for (int y = 0; y < answersForMultChoiceQuestionsWithMultipleAnswers.length; y++) {
                 Display.displayString("Please enter your choice #: ");
                 try {
-                    mult = UserInput.getMultipleAnswers(0, answersForMultChoiceQuestionsWithMultipleAnswers.length + 1);
+                    mult = UserInput.getMultipleOptions(0, answersForMultChoiceQuestionsWithMultipleAnswers.length + 1);
                     answersForMultChoiceQuestionsWithMultipleAnswers[y] = mult;
                 } catch (InputMismatchException e) {
                     break;
