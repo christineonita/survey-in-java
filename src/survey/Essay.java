@@ -17,7 +17,7 @@ public class Essay extends Question implements Serializable { // - short answer 
     public void take() {
         // TODO
         Display.displayString(getPrompt());
-        Display.displayString("\nPlease enter your responses\n");
+        Display.displayString("\nPlease enter your response(s)\n");
         getEssayResponse(this.numberOfResponsesRequired);
     }
 
