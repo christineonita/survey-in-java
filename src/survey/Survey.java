@@ -86,7 +86,7 @@ public class Survey implements Serializable {
     public void displaySurvey() {
         int choicesLoop = 1;
         for (int x = 0; x < this.questions.size(); x++) {
-            Display.displayString(" Question " + (x + 1) + ". " + this.questions.get(x).getPrompt());
+            Display.displayString("\n Question " + (x + 1) + ". " + this.questions.get(x).getPrompt());
             if (this.questions.get(x) instanceof MultipleChoice || this.questions.get(x) instanceof TrueOrFalse) {
                 for (String s : this.questions.get(x).getQuestionChoices()) {
                     Display.displayString("   " + choicesLoop + ".) " + s);
@@ -94,7 +94,7 @@ public class Survey implements Serializable {
                 }
             } else if (this.questions.get(x) instanceof Matching) {
                 for (int h = 0; h < (this.questions.get(x)).getNumOfRows(); h++) {
-                    System.out.println((h + 1) + ". " + this.questions.get(x).getFirstColumn()[h] + "    " + (h + 1) + ". " + this.questions.get(x).getSecondColumn()[h]);
+                    System.out.println("   " + (h + 1) + ". " + this.questions.get(x).getFirstColumn()[h] + "    " + (h + 1) + ". " + this.questions.get(x).getSecondColumn()[h]);
                 }
             }
             choicesLoop = 1;
