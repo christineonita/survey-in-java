@@ -31,4 +31,6 @@ public abstract class Question implements Serializable {
     public abstract void setRequiredNumberOfResponses();
 
     public abstract void setShortAnswerLimit();
+
+    public abstract void setNumberOfRows();
 }
