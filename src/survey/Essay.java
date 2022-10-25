@@ -56,4 +56,9 @@ public class Essay extends Question implements Serializable { // - short answer 
     public void setShortAnswerLimit() {
         // TODO - not needed
     }
+
+    @Override
+    public void setNumberOfRows() {
+        // TODO - not needed
+    }
 }

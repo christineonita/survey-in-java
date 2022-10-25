@@ -59,4 +59,9 @@ public class ValidDate extends Question implements Serializable {
     public void setShortAnswerLimit() {
         // TODO - not needed
     }
+
+    @Override
+    public void setNumberOfRows() {
+        // TODO - not needed
+    }
 }

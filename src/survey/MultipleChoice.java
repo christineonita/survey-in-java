@@ -125,4 +125,9 @@ public class MultipleChoice extends Question implements Serializable {
         userAnswer = this.multipleChoiceQuestionChoices[anInt - 1]; // so that the question choice numbers are not saved in the responses
         userResponse = userAnswer;
     }
+
+    @Override
+    public void setNumberOfRows() {
+        // TODO - not needed
+    }
 }
