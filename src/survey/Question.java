@@ -33,4 +33,14 @@ public abstract class Question implements Serializable {
     public abstract void setShortAnswerLimit();
 
     public abstract void setNumberOfRows();
+
+    public abstract void setFirstColumn();
+
+    public abstract void setSecondColumn();
+
+    public abstract String[] getFirstColumn();
+
+    public abstract Object[] getSecondColumn();
+
+    public abstract int getNumOfRows();
 }

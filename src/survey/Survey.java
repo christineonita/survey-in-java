@@ -2,14 +2,12 @@ package survey;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Survey implements Serializable {
 
     private static final long serialVersionUID = 4925296878791173007L;
     public String nameOfSurvey;
     String surveyResponseFolder;// = "SurveyResponses";
-    //public static ArrayList<Question> questions = new ArrayList<Question>();
     ArrayList<Question> questions = null;
     String[] userAnswers;
     String newPrompt;
@@ -23,9 +21,8 @@ public class Survey implements Serializable {
 
     protected void setQuestionPrompt(Question question) {
         Display.displayString("Enter the prompt for your " + question.getQuestionType() + " question: ");
-        Scanner scan = new Scanner(System.in);
 
-        String prompt = scan.nextLine();
+        String prompt = UserInput.getString();
         question.setPrompt(prompt);
     }
 
@@ -68,8 +65,18 @@ public class Survey implements Serializable {
     }
 
     protected void addMatching() {
-        System.out.println("code needed to add matching question to survey");
+        //System.out.println("code needed to add matching question to survey");
         // for matching questions mark the options like option A, B, C --> mak it so that the creator cannot choose above 26 for num of items in a column
+
+        Question question = new Matching();
+        setQuestionPrompt(question);
+
+        question.setNumberOfRows();
+        question.setFirstColumn();
+        question.setSecondColumn();
+
+
+        questions.add(question);
     }
 
     protected void clearAllQuestions() {
@@ -84,6 +91,10 @@ public class Survey implements Serializable {
                 for (String s : this.questions.get(x).getQuestionChoices()) {
                     Display.displayString("   " + choicesLoop + ".) " + s);
                     choicesLoop++;
+                }
+            } else if (this.questions.get(x) instanceof Matching) {
+                for (int h = 0; h < (this.questions.get(x)).getNumOfRows(); h++) {
+                    System.out.println((h + 1) + ". " + this.questions.get(x).getFirstColumn()[h] + "    " + (h + 1) + ". " + this.questions.get(x).getSecondColumn()[h]);
                 }
             }
             choicesLoop = 1;

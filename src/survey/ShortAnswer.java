@@ -57,8 +57,10 @@ public class ShortAnswer extends Essay implements Serializable {
         if (enteredRequiredNumberOfResponses > 100) {
             Display.displayString("The number of responses should be less than or equal to 100.");
             setRequiredNumberOfResponses();
+        } else {
+            this.numberOfShortAnswerResponsesRequired = enteredRequiredNumberOfResponses;
         }
-        this.numberOfShortAnswerResponsesRequired = enteredRequiredNumberOfResponses;
+
     }
 
     @Override
@@ -68,7 +70,8 @@ public class ShortAnswer extends Essay implements Serializable {
         if (enteredLimit > 80) {
             Display.displayString("The character limit should be less than or equal to " + 80);
             setShortAnswerLimit();
+        } else {
+            this.shortAnswerLimit = enteredLimit;
         }
-        this.shortAnswerLimit = enteredLimit;
     }
 }

@@ -130,4 +130,32 @@ public class MultipleChoice extends Question implements Serializable {
     public void setNumberOfRows() {
         // TODO - not needed
     }
+
+    @Override
+    public void setFirstColumn() {
+        // TODO - not needed
+    }
+
+    @Override
+    public void setSecondColumn() {
+        // TODO - not needed
+    }
+
+    @Override
+    public String[] getFirstColumn() {
+        // TODO - not needed
+        return new String[0];
+    }
+
+    @Override
+    public Object[] getSecondColumn() {
+        // TODO - not needed
+        return new Object[0];
+    }
+
+    @Override
+    public int getNumOfRows() {
+        // TODO - not needed
+        return 0;
+    }
 }

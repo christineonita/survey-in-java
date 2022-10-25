@@ -47,9 +47,10 @@ public class Essay extends Question implements Serializable { // - short answer 
         if (enteredNumOfEssayRequiredResponses > 100) {
             Display.displayString("The number of responses should be less than or equal to 100.");
             setRequiredNumberOfResponses();
+        } else {
+            this.numberOfResponsesRequired = enteredNumOfEssayRequiredResponses;
         }
 
-        this.numberOfResponsesRequired = enteredNumOfEssayRequiredResponses;
     }
 
     @Override
@@ -60,5 +61,33 @@ public class Essay extends Question implements Serializable { // - short answer 
     @Override
     public void setNumberOfRows() {
         // TODO - not needed
+    }
+
+    @Override
+    public void setFirstColumn() {
+        // TODO - not needed
+    }
+
+    @Override
+    public void setSecondColumn() {
+        // TODO - not needed
+    }
+
+    @Override
+    public String[] getFirstColumn() {
+        // TODO - not needed
+        return new String[0];
+    }
+
+    @Override
+    public Object[] getSecondColumn() {
+        // TODO - not needed
+        return new Object[0];
+    }
+
+    @Override
+    public int getNumOfRows() {
+        // TODO - not needed
+        return 0;
     }
 }
