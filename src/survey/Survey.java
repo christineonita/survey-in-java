@@ -51,14 +51,20 @@ public class Survey implements Serializable {
         //System.out.println("code needed to add essay question to survey");
         Question question = new Essay();
         setQuestionPrompt(question);
-        //question.setQuestionChoices();
         question.setRequiredNumberOfResponses();
         questions.add(question);
 
     }
 
     protected void addShortAnswer() {
-        System.out.println("code needed to add short answer question to survey");
+        //System.out.println("code needed to add short answer question to survey");
+
+
+        Question question = new ShortAnswer();
+        setQuestionPrompt(question);
+        question.setRequiredNumberOfResponses();
+        question.setShortAnswerLimit();
+        questions.add(question);
     }
 
 
@@ -96,6 +102,7 @@ public class Survey implements Serializable {
             }*/
             choicesLoop = 1;
         }
+        System.out.println();
     }
 
     public void take() {
@@ -112,7 +119,7 @@ public class Survey implements Serializable {
 
         /// -------- remove this, just a debugger to check that my answers are actually saved - they are =D
         /*for (String b : this.userAnswers) {
-            System.out.println("These are the saved answers\n" + b);
+            System.out.println("These are the saved answers\n" + b + "\n");
         }*/
 
         serialize.saveUserAnswers(userAnswers, surveyResponseFolder, nameOfSurvey);
@@ -145,6 +152,9 @@ public class Survey implements Serializable {
         Display.displayString("Do you wish to modify the prompt?");
         modifyPrompt = UserInput.getString();
         if (modifyPrompt.equalsIgnoreCase("yes")) {
+            if ((this.questions.get(toModify - 1) instanceof ShortAnswer) || (this.questions.get(toModify - 1) instanceof ShortAnswer)) {
+                Display.displayString("Note that you cannot change the number of requested responses for this question");
+            }
             Display.displayString("Enter a new prompt:");
             newPrompt = UserInput.getString();
             this.questions.get(toModify - 1).setPrompt(newPrompt);

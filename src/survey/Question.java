@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public abstract class Question implements Serializable {
     private static final long serialVersionUID = 1399189310822722123L;
-    protected String userResponse;
+    protected String userResponse = "";
 
     protected String prompt;
     protected String[] choices;
@@ -30,4 +30,6 @@ public abstract class Question implements Serializable {
     protected abstract void modifyQuestionChoice(int choiceNum, String choice);
 
     public abstract void setRequiredNumberOfResponses();
+
+    public abstract void setShortAnswerLimit();
 }

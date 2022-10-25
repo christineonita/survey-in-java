@@ -25,6 +25,7 @@ public class Serialize implements Serializable {
             fileOut.close();
             //Display.displayString("Saved in " + surveyFolderName + " as " + surveyName + ".ser");
             Display.displayString("Saved in " + surveyPath);
+            System.out.println(); // just for neatness
         } catch (IOException i) {
             i.printStackTrace();
         }

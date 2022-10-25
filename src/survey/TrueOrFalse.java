@@ -58,4 +58,9 @@ public class TrueOrFalse extends MultipleChoice implements Serializable {
     public void setRequiredNumberOfResponses() {
         // todo - not needed
     }
+
+    @Override
+    public void setShortAnswerLimit() {
+        // todo - not needed
+    }
 }

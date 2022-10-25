@@ -9,7 +9,8 @@ public class MultipleChoice extends Question implements Serializable {
     protected int[] answersForMultChoiceQuestionsWithMultipleAnswers;
     protected boolean hasMultipleAnswers;
     protected String userAnswer;
-    int mult;
+    private int mult;
+    private int numberOfChoices, choiceNumber;
 
     MultipleChoice() {
 
@@ -17,36 +18,40 @@ public class MultipleChoice extends Question implements Serializable {
 
     @Override
     protected void setQuestionChoices() {
-        int choiceNumber, numberOfChoices;
+        //int choiceNumber;//, numberOfChoices;
         //boolean repeat = true;
         String yesOrNo;
         Display.displayString("Enter the number of choices for your multiple-choice question: ");
 
         numberOfChoices = UserInput.getInt();
+        if (numberOfChoices > 26) {
+            Display.displayString("The number of choices should be less than or equal to 26.");
+            setQuestionChoices();
+        } else {
+            multipleChoiceQuestionChoices = new String[numberOfChoices];
 
-        multipleChoiceQuestionChoices = new String[numberOfChoices];
+            Display.displayString("Does this question allow multiple answers? (Type yes or no)");
 
-        Display.displayString("Does this question allow multiple answers? (Type yes or no)");
-
-        //check if question can have more than one answer
-        while (true) {
-            yesOrNo = UserInput.getString();
-            if (yesOrNo.equalsIgnoreCase("yes")) {
-                hasMultipleAnswers = true;
-                answersForMultChoiceQuestionsWithMultipleAnswers = new int[numberOfChoices];
-                break;
-            } else if (yesOrNo.equalsIgnoreCase("no")) {
-                hasMultipleAnswers = false;
-                break;
-            } else {
-                Display.displayString("Please enter yes or no");
+            //check if question can have more than one answer
+            while (true) {
+                yesOrNo = UserInput.getString();
+                if (yesOrNo.equalsIgnoreCase("yes")) {
+                    hasMultipleAnswers = true;
+                    answersForMultChoiceQuestionsWithMultipleAnswers = new int[numberOfChoices];
+                    break;
+                } else if (yesOrNo.equalsIgnoreCase("no")) {
+                    hasMultipleAnswers = false;
+                    break;
+                } else {
+                    Display.displayString("Please enter yes or no");
+                }
             }
-        }
 
-        for (int i = 0; i < numberOfChoices; i++) {
-            choiceNumber = i + 1;
-            Display.displayString("Please enter choice #" + choiceNumber);
-            multipleChoiceQuestionChoices[i] = UserInput.getString();
+            for (int i = 0; i < numberOfChoices; i++) {
+                choiceNumber = i + 1;
+                Display.displayString("Please enter choice #" + choiceNumber);
+                multipleChoiceQuestionChoices[i] = UserInput.getString();
+            }
         }
     }
 
@@ -62,6 +67,11 @@ public class MultipleChoice extends Question implements Serializable {
 
     @Override
     public void setRequiredNumberOfResponses() {
+        // todo - not needed
+    }
+
+    @Override
+    public void setShortAnswerLimit() {
         // todo - not needed
     }
 
@@ -110,14 +120,17 @@ public class MultipleChoice extends Question implements Serializable {
                 break;
             }
             //userAnswer = userAnswer + Integer.toString(multipleAnswersArray[g]) + ") " + multipleChoiceQuestionChoices[multipleAnswersArray[g] - 1] + "\n";
-            userAnswer = userAnswer + multipleChoiceQuestionChoices[multipleAnswersArray[g] - 1] + "\n"; // so that the question choice numbers are not saved in the responses
-            userResponse = userAnswer;
+            userAnswer = multipleChoiceQuestionChoices[multipleAnswersArray[g] - 1] + "\n"; // so that the question choice numbers are not saved in the responses
+            //System.out.println("testing before response---->" + userResponse + "<");
+            userResponse = userResponse + userAnswer;
+            //System.out.println("testing response---->" + userResponse + "<");
         }
     }
 
     protected void setSingleUserAnswer(int anInt) {
         //userAnswer = Integer.toString(anInt) + ") " + this.multipleChoiceQuestionChoices[anInt - 1];
-        userAnswer = userAnswer + this.multipleChoiceQuestionChoices[anInt - 1]; // so that the question choice numbers are not saved in the responses
+        userAnswer = this.multipleChoiceQuestionChoices[anInt - 1]; // so that the question choice numbers are not saved in the responses
+        //userResponse = userResponse + userAnswer;
         userResponse = userAnswer;
     }
 }

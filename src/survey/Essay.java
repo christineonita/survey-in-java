@@ -4,9 +4,9 @@ import java.io.Serializable;
 
 public class Essay extends Question implements Serializable { // - short answer will hava character limit set by the creator
     private static final long serialVersionUID = -1175125181899751223L;
-    protected String userAnswer;
     protected String[] essayResponses;
-    private int numberOfResponsesRequired;
+    private String userAnswer;
+    private int numberOfResponsesRequired, enteredNumOfEssayRequiredResponses;
 
     @Override
     protected void setQuestionChoices() {
@@ -29,8 +29,8 @@ public class Essay extends Question implements Serializable { // - short answer 
         for (int p = 0; p < numOfResponses; p++) {
             Display.displayString("Response #" + (p + 1));
             String ans = UserInput.getString();
-            userAnswer = userAnswer + ans + "\n";
-            userResponse = userAnswer;
+            userAnswer = ans + "\n";
+            userResponse = userResponse + userAnswer;
             //essayResponses[p] = ans;
         }
     }
@@ -48,6 +48,17 @@ public class Essay extends Question implements Serializable { // - short answer 
     @Override
     public void setRequiredNumberOfResponses() {
         Display.displayString("How many responses are required for this essay question?");
+        enteredNumOfEssayRequiredResponses = UserInput.getInt();
+        if (enteredNumOfEssayRequiredResponses > 100) {
+            Display.displayString("The number of responses should be less than or equal to 100.");
+            setRequiredNumberOfResponses();
+        }
+
         this.numberOfResponsesRequired = UserInput.getInt();
+    }
+
+    @Override
+    public void setShortAnswerLimit() {
+        // todo - not needed
     }
 }
