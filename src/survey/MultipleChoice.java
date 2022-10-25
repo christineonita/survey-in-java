@@ -78,12 +78,17 @@ public class MultipleChoice extends Question implements Serializable {
 
             setSingleUserAnswer(UserInput.getOption(0, multipleChoiceQuestionChoices.length + 1));
         } else {
-            Display.displayString("This question has multiple answers so press enter after each choice you type and enter 'done' when you're finished ");
+            Display.displayString("This question has multiple answers so press enter after each choice you type and enter again when you're finished "); // i might edit this prompt to be more clear
             for (int y = 0; y < answersForMultChoiceQuestionsWithMultipleAnswers.length; y++) {
                 Display.displayString("Please enter your choice #: ");
                 try {
                     mult = UserInput.getMultipleOptions(0, answersForMultChoiceQuestionsWithMultipleAnswers.length + 1);
-                    answersForMultChoiceQuestionsWithMultipleAnswers[y] = mult;
+                    //System.out.println(">" + String.valueOf(mult) + "<"); // - debugger
+                    if (mult == 0) {
+                        break;
+                    } else {
+                        answersForMultChoiceQuestionsWithMultipleAnswers[y] = mult;
+                    }
                 } catch (InputMismatchException e) {
                     break;
                 }
