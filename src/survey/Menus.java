@@ -1,7 +1,6 @@
 package survey;
 
 import java.io.Serializable;
-import java.util.Scanner;
 
 public class Menus implements Serializable {
     private static final long serialVersionUID = 5292926198099734510L;
@@ -20,14 +19,7 @@ public class Menus implements Serializable {
             Display.displayStringArray(surveyMenu);
 
             // accepts user input to choose option
-            Scanner scanner = new Scanner(System.in);
-
-            try {
-                selectedSurveyMenuItem = scanner.nextInt();
-            } catch (Exception e) {
-                System.out.println("Please enter an integer value");
-                continue;
-            }
+            selectedSurveyMenuItem = UserInput.getInt();
 
             switch (selectedSurveyMenuItem) {
                 case 1:
@@ -72,7 +64,6 @@ public class Menus implements Serializable {
                     System.out.println("Quitting program.... Bye!");
                     break;
                 default:
-                    //mainMenu();
                     System.out.println("Please enter an integer value between 1 and " + surveyMenu.length);
                     break;
 
@@ -101,14 +92,7 @@ public class Menus implements Serializable {
             Display.displayStringArray(questionTypes);
 
             // accepts user input to choose option
-            Scanner scanner = new Scanner(System.in);
-
-            try {
-                selectedQuestionType = scanner.nextInt();
-            } catch (Exception e) {
-                System.out.println("Please enter an integer value between 1 and " + questionTypes.length);
-                continue;
-            }
+            selectedQuestionType = UserInput.getOption(0, questionTypes.length + 1);
 
             switch (selectedQuestionType) {
                 case 1:
@@ -131,10 +115,9 @@ public class Menus implements Serializable {
                     break;
                 case 7:
                     System.out.println("Save before leaving?");
-                    Scanner s = new Scanner(System.in);
 
                     while (true) {
-                        saveBeforeLeaving = s.nextLine();
+                        saveBeforeLeaving = UserInput.getString();
                         if (saveBeforeLeaving.equalsIgnoreCase("yes")) {
                             saveSurvey(survey);
                             return survey;
