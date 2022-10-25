@@ -5,8 +5,6 @@
 - [ ] Remember to implement Serializable for every class except main and include their serialVersionUID
 - [ ] They said yes to this: can we set a max length on the options for matching questions, something
   like 30-40 characters so formatting isn't as much of a problem?
-- [ ] use SimpleDateFormatter to validate our dates
-- [ ] also, validate stuff like leap years have 29 days in Feb and certain months have 31 days while others have 30
 - [ ] Surveys don’t have correct answers
 - [ ] Do not hard code file separators
 - [ ] Take care of user input being alphabetical (or not an integer) when I require an integer
