@@ -1,3 +1,3 @@
-# HW 2 PART B #
+# Survey-In-Java #
 
 Sample survey is located in./MySurveys
