@@ -17,7 +17,7 @@ public class ValidDate extends Question implements Serializable {
     @Override
     public void take() {
         Display.displayString(getPrompt());
-        Display.displayString("\nPlease enter your response(s)\n");
+        Display.displayString("\nPlease enter your response(s) in the format MM/DD/YYYY\n");
         getValidDateResponse();
 
     }
