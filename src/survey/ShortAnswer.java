@@ -8,12 +8,10 @@ public class ShortAnswer extends Essay implements Serializable {
     protected String userShortAnswer;
     private int numberOfShortAnswerResponsesRequired;
     private int shortAnswerLimit;
-    private int enteredLimit;
-    private int enteredRequiredNumberOfResponses;
 
     @Override
     protected void setQuestionChoices() {
-        // todo - not needed
+        // TODO - not needed
     }
 
     @Override
@@ -27,19 +25,16 @@ public class ShortAnswer extends Essay implements Serializable {
         System.out.println("The limit for your response(s) is " + limit + " characters");
         int p = 0;
         while (p < numOfResponses) {
-            //for (int p = 0; p < numOfResponses; p++) {
-
             Display.displayString("Response #" + (p + 1));
             String ans = UserInput.getString();
 
             if (ans.length() > limit) {
                 System.out.println("Your response is over the " + limit + " character limit. Try again");
                 continue;
-            } //code here to ask for reentry
+            } //code here to ask for reentry if response is over short answer response limit
             userShortAnswer = ans + "\n";
             userResponse = userResponse + userShortAnswer;
             //shortAnswerResponses[p] = ans;
-            //}
             p++;
         }
 
@@ -52,13 +47,13 @@ public class ShortAnswer extends Essay implements Serializable {
 
     @Override
     protected void modifyQuestionChoice(int choiceNum, String choice) {
-        // todo
+        // TODO - not needed
     }
 
     @Override
     public void setRequiredNumberOfResponses() {
         Display.displayString("How many responses are required for this short answer question?");
-        enteredRequiredNumberOfResponses = UserInput.getInt();
+        int enteredRequiredNumberOfResponses = UserInput.getInt();
         if (enteredRequiredNumberOfResponses > 100) {
             Display.displayString("The number of responses should be less than or equal to 100.");
             setRequiredNumberOfResponses();
@@ -69,7 +64,7 @@ public class ShortAnswer extends Essay implements Serializable {
     @Override
     public void setShortAnswerLimit() {
         Display.displayString("Enter the short answer character limit you want");
-        enteredLimit = UserInput.getInt();
+        int enteredLimit = UserInput.getInt();
         if (enteredLimit > 80) {
             Display.displayString("The character limit should be less than or equal to " + 80);
             setShortAnswerLimit();

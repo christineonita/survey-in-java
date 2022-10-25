@@ -9,8 +9,7 @@ public class MultipleChoice extends Question implements Serializable {
     protected int[] answersForMultChoiceQuestionsWithMultipleAnswers;
     protected boolean hasMultipleAnswers;
     protected String userAnswer;
-    private int mult;
-    private int numberOfChoices, choiceNumber;
+    private int mult, numberOfChoices, choiceNumber;
 
     MultipleChoice() {
 
@@ -18,8 +17,6 @@ public class MultipleChoice extends Question implements Serializable {
 
     @Override
     protected void setQuestionChoices() {
-        //int choiceNumber;//, numberOfChoices;
-        //boolean repeat = true;
         String yesOrNo;
         Display.displayString("Enter the number of choices for your multiple-choice question: ");
 
@@ -67,12 +64,12 @@ public class MultipleChoice extends Question implements Serializable {
 
     @Override
     public void setRequiredNumberOfResponses() {
-        // todo - not needed
+        // TODO - not needed
     }
 
     @Override
     public void setShortAnswerLimit() {
-        // todo - not needed
+        // TODO - not needed
     }
 
     @Override
@@ -98,8 +95,7 @@ public class MultipleChoice extends Question implements Serializable {
                 Display.displayString("Please enter your choice #: ");
                 try {
                     mult = UserInput.getMultipleOptions(0, answersForMultChoiceQuestionsWithMultipleAnswers.length + 1);
-                    //System.out.println(">" + String.valueOf(mult) + "<"); // - debugger
-                    if (mult == 0) {
+                    if (mult == 0) { // when the user presses just the enter key after a prompt the recorded integer value is 0 so this saves the responses previous to that
                         break;
                     } else {
                         answersForMultChoiceQuestionsWithMultipleAnswers[y] = mult;
@@ -114,23 +110,19 @@ public class MultipleChoice extends Question implements Serializable {
 
     protected void setMultipleUserAnswer(int[] multipleAnswersArray) {
         userAnswer = "";
-        //change this to a while loop
-        for (int g = 0; g < multipleAnswersArray.length; g++) {
-            if (multipleAnswersArray[g] == 0) {
+        for (int i : multipleAnswersArray) {
+            if (i == 0) {
                 break;
             }
             //userAnswer = userAnswer + Integer.toString(multipleAnswersArray[g]) + ") " + multipleChoiceQuestionChoices[multipleAnswersArray[g] - 1] + "\n";
-            userAnswer = multipleChoiceQuestionChoices[multipleAnswersArray[g] - 1] + "\n"; // so that the question choice numbers are not saved in the responses
-            //System.out.println("testing before response---->" + userResponse + "<");
+            userAnswer = multipleChoiceQuestionChoices[i - 1] + "\n"; // so that the question choice numbers are not saved in the responses
             userResponse = userResponse + userAnswer;
-            //System.out.println("testing response---->" + userResponse + "<");
         }
     }
 
     protected void setSingleUserAnswer(int anInt) {
         //userAnswer = Integer.toString(anInt) + ") " + this.multipleChoiceQuestionChoices[anInt - 1];
         userAnswer = this.multipleChoiceQuestionChoices[anInt - 1]; // so that the question choice numbers are not saved in the responses
-        //userResponse = userResponse + userAnswer;
         userResponse = userAnswer;
     }
 }

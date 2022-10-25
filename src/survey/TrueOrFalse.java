@@ -8,7 +8,6 @@ public class TrueOrFalse extends MultipleChoice implements Serializable {
     protected String[] trueOrFalseQuestionChoices;
     protected String trueOrFalseChoice;
 
-    //private final String[] surveyMenu
     @Override
     protected void setQuestionChoices() {
         hasMultipleAnswers = false;
@@ -32,10 +31,8 @@ public class TrueOrFalse extends MultipleChoice implements Serializable {
     }
 
     @Override
-    protected void setSingleUserAnswer(int anInt) { // stored as either "True" or "False"
-        //trueOrFalseChoice = Integer.toString(anInt) + ") " + this.trueOrFalseQuestionChoices[anInt - 1];
+    protected void setSingleUserAnswer(int anInt) { // stored as either "True" or "False" not the choice number
         trueOrFalseChoice = this.trueOrFalseQuestionChoices[anInt - 1];
-        //System.out.println(trueOrFalseChoice); // - debugger
         userResponse = trueOrFalseChoice;
     }
 
@@ -51,16 +48,16 @@ public class TrueOrFalse extends MultipleChoice implements Serializable {
 
     @Override
     public void modifyQuestionChoice(int choiceNum, String choice) {
-        // TODO
+        // TODO - not needed
     }
 
     @Override
     public void setRequiredNumberOfResponses() {
-        // todo - not needed
+        // TODO - not needed
     }
 
     @Override
     public void setShortAnswerLimit() {
-        // todo - not needed
+        // TODO - not needed
     }
 }

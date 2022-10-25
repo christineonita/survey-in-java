@@ -15,17 +15,12 @@ public class Essay extends Question implements Serializable { // - short answer 
 
     @Override
     public void take() {
-        // TODO
         Display.displayString(getPrompt());
         Display.displayString("\nPlease enter your response(s)\n");
         getEssayResponse(this.numberOfResponsesRequired);
     }
 
     public void getEssayResponse(int numOfResponses) {
-        //String ans = UserInput.getString();
-        //userResponse = ans;
-        //System.out.println(ans);
-        //essayResponses = new int[numOfResponses];
         for (int p = 0; p < numOfResponses; p++) {
             Display.displayString("Response #" + (p + 1));
             String ans = UserInput.getString();
@@ -59,6 +54,6 @@ public class Essay extends Question implements Serializable { // - short answer 
 
     @Override
     public void setShortAnswerLimit() {
-        // todo - not needed
+        // TODO - not needed
     }
 }

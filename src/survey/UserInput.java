@@ -17,12 +17,9 @@ public class UserInput implements Serializable {
             Scanner scanner = new Scanner(System.in);
             try {
                 input = scanner.nextInt();
-                //repeat = false;
                 break;
             } catch (InputMismatchException e) {
                 Display.displayString("Please enter an integer value");
-                //repeat = true;
-                //continue;
             }
         }
         return input;
@@ -49,20 +46,13 @@ public class UserInput implements Serializable {
         while (true) {
             try {
                 a = scanner.nextInt();
-                //if (a < end || a > start) {
                 if (a < end && a > start) {
                     break;
                 } else {
                     Display.displayString("Enter a number from " + (start + 1) + " to " + (end - 1));
-                    //Display.displayString("Enter a number between " + (start + 1) + " and " + (end - 1));
                     scanner.nextLine();
                 }
-                /*if(!(a < end || a > start)){
-                    Display.displayString("Enter a number between " + (start + 1) + "and"+ (end - 1));
-                    scanner.nextLine();
-                }*/
             } catch (InputMismatchException e) {
-                //throw new RuntimeException(e);
                 Display.displayString("Please enter an integer ");
                 scanner.nextLine();
             }
@@ -72,7 +62,6 @@ public class UserInput implements Serializable {
 
     public static int getMultipleOptions(int start, int end) {
         int a = 0;
-        boolean i = true;
         String x = "";
 
         Scanner scanner = new Scanner(System.in);
@@ -80,7 +69,6 @@ public class UserInput implements Serializable {
         while (!x.equalsIgnoreCase("")) {
 
             try {
-                //a = scanner.nextInt();
                 a = Integer.valueOf(x);
                 if (a < end && a > start) {
                     break;

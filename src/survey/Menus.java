@@ -60,7 +60,6 @@ public class Menus implements Serializable {
                     }
                     break;
                 case 6:
-                    //load survey first - put try/catch similar to case 5
                     try {
                         survey = loadSurvey();
                         survey.modify();
@@ -131,8 +130,6 @@ public class Menus implements Serializable {
                     survey.addMatching();
                     break;
                 case 7:
-                    //mainMenu();
-                    //break;
                     System.out.println("Save before leaving?");
                     Scanner s = new Scanner(System.in);
 
@@ -147,10 +144,7 @@ public class Menus implements Serializable {
                             System.out.println("Please enter yes or no.");
                         }
                     }
-                    //return survey;
                 default:
-                    //System.out.println("Please enter an integer value between 1 and " + questionTypes.length);
-                    //break;
                     return survey;
             }
         }

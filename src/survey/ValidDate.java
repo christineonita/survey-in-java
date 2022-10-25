@@ -11,7 +11,7 @@ public class ValidDate extends Question implements Serializable {
 
     @Override
     protected void setQuestionChoices() {
-        // todo - not needed
+        // TODO - not needed
     }
 
     @Override
@@ -47,16 +47,16 @@ public class ValidDate extends Question implements Serializable {
 
     @Override
     protected void modifyQuestionChoice(int choiceNum, String choice) {
-        // todo - not needed
+        // TODO - not needed
     }
 
     @Override
     public void setRequiredNumberOfResponses() {
-        // todo - not needed
+        // TODO - not needed
     }
 
     @Override
     public void setShortAnswerLimit() {
-        // todo - not needed
+        // TODO - not needed
     }
 }

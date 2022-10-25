@@ -4,8 +4,7 @@ import java.io.*;
 
 public class Serialize implements Serializable {
     private static final long serialVersionUID = 6435622019401604877L;
-    protected String surveyFolderName = "MySurveys";
-    protected String responsesFolderName = "SurveyResponses";
+    protected String surveyFolderName = "MySurveys", responsesFolderName = "SurveyResponses";
     String survName;
 
     protected void saveSurvey(Survey survey) {

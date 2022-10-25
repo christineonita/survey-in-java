@@ -30,7 +30,6 @@ public class Survey implements Serializable {
     }
 
     protected void addMultipleChoice() {
-        //System.out.println("code needed to add multiple-choice question to survey");
         Question question = new MultipleChoice();
         setQuestionPrompt(question);
         question.setQuestionChoices();
@@ -39,8 +38,6 @@ public class Survey implements Serializable {
 
 
     protected void addTrueOrFalse() {
-        //System.out.println("code needed to add t/f question to survey");
-
         Question question = new TrueOrFalse();
         setQuestionPrompt(question);
         question.setQuestionChoices();
@@ -48,7 +45,6 @@ public class Survey implements Serializable {
     }
 
     protected void addEssay() {
-        //System.out.println("code needed to add essay question to survey");
         Question question = new Essay();
         setQuestionPrompt(question);
         question.setRequiredNumberOfResponses();
@@ -57,9 +53,6 @@ public class Survey implements Serializable {
     }
 
     protected void addShortAnswer() {
-        //System.out.println("code needed to add short answer question to survey");
-
-
         Question question = new ShortAnswer();
         setQuestionPrompt(question);
         question.setRequiredNumberOfResponses();
@@ -69,8 +62,6 @@ public class Survey implements Serializable {
 
 
     protected void addValidDate() {
-        //System.out.println("code needed to add valid date question to survey");
-
         Question question = new ValidDate();
         setQuestionPrompt(question);
         questions.add(question);
@@ -80,10 +71,6 @@ public class Survey implements Serializable {
         System.out.println("code needed to add matching question to survey");
         // for matching questions mark the options like option A, B, C --> mak it so that the creator cannot choose above 26 for num of items in a column
     }
-
-    /*protected ArrayList<Question> getQuestions() {
-        return this.questions;
-    }*/
 
     protected void clearAllQuestions() {
         questions.clear();
@@ -98,12 +85,7 @@ public class Survey implements Serializable {
                     Display.displayString("   " + choicesLoop + ".) " + s);
                     choicesLoop++;
                 }
-            } /*else if (this.questions.get(x) instanceof TrueOrFalse) {
-                for (String s : this.questions.get(x).getQuestionChoices()) {
-                    Display.displayString("   " + choicesLoop + ".) " + s);
-                    choicesLoop++;
-                }
-            }*/
+            }
             choicesLoop = 1;
         }
         System.out.println();
@@ -115,7 +97,7 @@ public class Survey implements Serializable {
         userAnswers = new String[this.questions.size()];
 
         for (Question question : questions) {
-            System.out.print("Question " + (x + 1) + ". "); //not using println here so a new line doesnt print
+            System.out.print("Question " + (x + 1) + ". "); //not using println here so a new line doesn't print
             question.take();
             this.userAnswers[x] = question.userResponse;
             x++;
@@ -145,7 +127,12 @@ public class Survey implements Serializable {
                 modifyQuestionChoices(questionToModify);
             }
         }
-
+        String modifyAnotherQuestionYesOrNo;
+        Display.displayString("Do you wish to modify another question?");
+        modifyAnotherQuestionYesOrNo = UserInput.getString();
+        if (modifyAnotherQuestionYesOrNo.equalsIgnoreCase("yes")) {
+            modify();
+        }
 
         serialize.modifySurvey(this, this.nameOfSurvey);
     }
@@ -156,7 +143,7 @@ public class Survey implements Serializable {
         Display.displayString("Do you wish to modify the prompt?");
         modifyPrompt = UserInput.getString();
         if (modifyPrompt.equalsIgnoreCase("yes")) {
-            if ((this.questions.get(toModify - 1) instanceof ShortAnswer) || (this.questions.get(toModify - 1) instanceof ShortAnswer)) {
+            if ((this.questions.get(toModify - 1) instanceof Essay) || (this.questions.get(toModify - 1) instanceof ShortAnswer)) {
                 Display.displayString("Note that you cannot change the number of requested responses for this question");
             }
             Display.displayString("Enter a new prompt:");
@@ -167,23 +154,17 @@ public class Survey implements Serializable {
             Display.displayString("Please enter yes or no.");
             modifyQuestionPrompt(toModify);
         }
-
-
     }
 
     public void modifyQuestionChoices(int questionBeingModified) {
         int choiceToModify;
-        String newChoice, modifyAnotherQuestionYesOrNo;
+        String newChoice;
         Display.displayString("Which choice do you want to modify?");
         Display.displayStringArray(this.questions.get(questionBeingModified - 1).getQuestionChoices());
         choiceToModify = UserInput.getInt();
         Display.displayString("Enter new choice #" + choiceToModify);
         newChoice = UserInput.getString();
         this.questions.get(questionBeingModified - 1).modifyQuestionChoice(choiceToModify - 1, newChoice);
-        Display.displayString("Do you wish to modify another question?");
-        modifyAnotherQuestionYesOrNo = UserInput.getString();
-        if (modifyAnotherQuestionYesOrNo.equalsIgnoreCase("yes")) {
-            modify();
-        }
+
     }
 }
