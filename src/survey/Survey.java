@@ -69,7 +69,11 @@ public class Survey implements Serializable {
 
 
     protected void addValidDate() {
-        System.out.println("code needed to add valid date question to survey");
+        //System.out.println("code needed to add valid date question to survey");
+
+        Question question = new ValidDate();
+        setQuestionPrompt(question);
+        questions.add(question);
     }
 
     protected void addMatching() {
@@ -181,7 +185,5 @@ public class Survey implements Serializable {
         if (modifyAnotherQuestionYesOrNo.equalsIgnoreCase("yes")) {
             modify();
         }
-
-        //ask if we want to modify another question - done in above methods
     }
 }
