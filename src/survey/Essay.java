@@ -54,7 +54,7 @@ public class Essay extends Question implements Serializable { // - short answer 
             setRequiredNumberOfResponses();
         }
 
-        this.numberOfResponsesRequired = UserInput.getInt();
+        this.numberOfResponsesRequired = enteredNumOfEssayRequiredResponses;
     }
 
     @Override
