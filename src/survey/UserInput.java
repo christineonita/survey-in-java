@@ -1,8 +1,5 @@
 package survey;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.Serializable;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -28,13 +25,8 @@ public class UserInput implements Serializable {
     protected static String getString() {
         String input;
 
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        try {
-            input = reader.readLine();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
+        Scanner scanner = new Scanner(System.in);
+        input = scanner.nextLine();
 
         return input;
     }
