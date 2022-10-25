@@ -73,24 +73,17 @@ public class UserInput implements Serializable {
     public static int getMultipleOptions(int start, int end) {
         int a = 0;
         boolean i = true;
-        String x = "";
 
         Scanner scanner = new Scanner(System.in);
         while (i) {
 
-            try {
-                a = scanner.nextInt();
-                if (a < end && a > start) {
-                    break;
-                } else {
-                    Display.displayString("Enter a number from " + (start + 1) + " to " + (end - 1));
-                    scanner.nextLine();
-                }
-            } catch (InputMismatchException e) {
-                Display.displayString("Please enter an integer");
+            a = scanner.nextInt();
+            if (a < end && a > start) {
+                break;
+            } else {
+                Display.displayString("Enter a number from " + (start + 1) + " to " + (end - 1));
                 scanner.nextLine();
             }
-
 
         }
         return a;
