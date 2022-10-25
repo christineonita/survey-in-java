@@ -22,7 +22,6 @@ public class Serialize implements Serializable {
             out.writeObject(survey);
             out.close();
             fileOut.close();
-            //Display.displayString("Saved in " + surveyFolderName + " as " + surveyName + ".ser");
             Display.displayString("Saved in " + surveyPath);
             System.out.println(); // just for neatness
         } catch (IOException i) {
@@ -32,9 +31,7 @@ public class Serialize implements Serializable {
     }
 
     protected void modifySurvey(Survey survey, String nameOfSurvey) {
-        String surveyPath;//, surveyName;
-        //Display.displayString("Enter the name you want to save this file as --> ");
-        //surveyName = UserInput.getString();
+        String surveyPath;
 
         new File("." + File.separator + surveyFolderName).mkdirs();
         surveyPath = surveyFolderName + File.separator + nameOfSurvey + ".ser";
@@ -46,7 +43,6 @@ public class Serialize implements Serializable {
             out.close();
             fileOut.close();
             System.out.println("Survey " + nameOfSurvey + ".ser updated successfully and saved in " + surveyPath);
-            //Display.displayString("Saved in " + surveyPath);
         } catch (IOException i) {
             i.printStackTrace();
         }
@@ -60,19 +56,14 @@ public class Serialize implements Serializable {
         int surveyNumber;
 
         File f = new File(surveyFolderName);
-        //File[] files = f.listFiles(File::isDirectory);
+
         File[] files = f.listFiles();
-
-        //System.out.println("starting printing file names"); // - debugger
-        //System.out.println(files.length); // - debugger
-
 
         if (files.length == 0) {
             System.out.println("\nThere are no surveys to load.\n");
         } else {
             System.out.println("Select a survey to load: ");
             for (int j = 0; j < files.length; j++) {
-                //surveyNumber = j + 1;
                 Display.displayString((j + 1) + ") " + files[j].getName());
             }
 
@@ -93,7 +84,6 @@ public class Serialize implements Serializable {
                 c.printStackTrace();
             }
 
-            //survey.path = surveyFolderName;
             survey.nameOfSurvey = files[surveyNumber - 1].getName().replace(".ser", "");
             this.survName = files[surveyNumber - 1].getName().replace(".ser", "");
             survey.surveyResponseFolder = responsesFolderName;
@@ -104,17 +94,10 @@ public class Serialize implements Serializable {
 
     protected void saveUserAnswers(String[] userAnswers, String surveyResponseFolder, String name) {
         String pth;
-        //System.out.println(surveyResponseFolder);
         String responsesFolderPerSurvey = surveyResponseFolder + File.separator + name + "_responses";
 
         new File(responsesFolderPerSurvey).mkdirs();
         int f = new File(responsesFolderPerSurvey).list().length;
-
-        /*File fi = new File("./" + responsesFolderName);
-        File[] files = fi.listFiles();
-        int f = files.length;
-        System.out.println("\n" + f);*/
-
 
         pth = "." + File.separator + responsesFolderPerSurvey + File.separator + name + "_response" + (f + 1) + ".ser";
 
