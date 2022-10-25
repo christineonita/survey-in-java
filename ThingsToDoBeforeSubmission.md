@@ -7,8 +7,6 @@
   like 30-40 characters so formatting isn't as much of a problem?
 - [ ] use SimpleDateFormatter to validate our dates
 - [ ] also, validate stuff like leap years have 29 days in Feb and certain months have 31 days while others have 30
-- [ ] Edit to make user press enter key twice instead of typing 'done' ----> also edit printed user instruction
-  accordingly
 - [ ] Allow essay to allow multiple responses (short answer should allow multiple responses as well)
 - [ ] Surveys don’t have correct answers
 - [ ] Do not hard code file separators
