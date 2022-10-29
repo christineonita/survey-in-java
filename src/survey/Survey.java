@@ -19,6 +19,7 @@ public class Survey implements Serializable {
         questions = new ArrayList<Question>();
     }
 
+
     protected void setQuestionPrompt(Question question) {
         Display.displayString("Enter the prompt for your " + question.getQuestionType() + " question: ");
 
@@ -32,7 +33,6 @@ public class Survey implements Serializable {
         question.setQuestionChoices();
         questions.add(question);
     }
-
 
     protected void addTrueOrFalse() {
         Question question = new TrueOrFalse();
@@ -56,7 +56,6 @@ public class Survey implements Serializable {
         question.setShortAnswerLimit();
         questions.add(question);
     }
-
 
     protected void addValidDate() {
         Question question = new ValidDate();
@@ -94,7 +93,8 @@ public class Survey implements Serializable {
                 }
             } else if (this.questions.get(x) instanceof Matching) {
                 for (int h = 0; h < (this.questions.get(x)).getNumOfRows(); h++) {
-                    System.out.println("   " + (h + 1) + ". " + this.questions.get(x).getFirstColumn()[h] + "    " + (h + 1) + ". " + this.questions.get(x).getSecondColumn()[h]);
+                    ((Matching) this.questions.get(x)).printTwoColumns("   " + (h + 1) + ". " + this.questions.get(x).getFirstColumn()[h], (h + 1) + ". " + this.questions.get(x).getSecondColumn()[h]);
+                    //System.out.printf("   " + (h + 1) + ". " + this.questions.get(x).getFirstColumn()[h] + "\t" + (h + 1) + ". " + this.questions.get(x).getSecondColumn()[h]);
                 }
             }
             choicesLoop = 1;

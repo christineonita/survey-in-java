@@ -19,9 +19,9 @@ public class Matching extends Question implements Serializable {
         // TODO
 
         matchingAnswers = new String[this.numOfRows];
-        Display.displayString(getPrompt());
+        Display.displayString(getPrompt() + " (each item on the left has only one answer on the right - and vice versa)");
         for (int h = 0; h < this.numOfRows; h++) {
-            System.out.println((h + 1) + ". " + this.firstColumnOptions[h] + "    " + (h + 1) + ". " + this.secondColumnOptions[h]);
+            printTwoColumns("   " + (h + 1) + ". " + this.firstColumnOptions[h], (h + 1) + ". " + this.secondColumnOptions[h]);
         }
         Display.displayString("\nPlease enter your response(s) in a valid format e.g. '1 3' will match 1 to 3\n");
         askUserForMatchingResponse();
@@ -31,8 +31,8 @@ public class Matching extends Question implements Serializable {
         for (int l = 0; l < numOfRows; l++) {
             String d = UserInput.getString();
             String arr[] = d.split(" ", 2);
-            int one = Integer.valueOf(arr[0]);
-            int two = Integer.valueOf(arr[1]);
+            int one = Integer.parseInt(arr[0]);
+            int two = Integer.parseInt(arr[1]);
 
             matchingAnswers[l] = firstColumnOptions[one - 1] + secondColumnOptions[two - 1];
             matchAns = firstColumnOptions[one - 1] + " " + secondColumnOptions[two - 1] + "\n";
@@ -59,6 +59,12 @@ public class Matching extends Question implements Serializable {
     @Override
     public void setShortAnswerLimit() {
         // TODO - not needed
+    }
+
+    protected void printTwoColumns(String left, String right) {
+        System.out.printf("%-30s", left); // using printf to format the display of both columns
+        //System.out.printf("%-25s\n", right);
+        System.out.printf(right + "\n");
     }
 
     @Override
