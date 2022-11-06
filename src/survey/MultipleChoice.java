@@ -126,10 +126,10 @@ public class MultipleChoice extends Question implements Serializable {
         userResponse = userAnswer;
     }
 
-    @Override
+    /*@Override
     public void setNumberOfRows() {
         // TODO - not needed
-    }
+    }*/
 
     @Override
     public void setFirstColumn() {

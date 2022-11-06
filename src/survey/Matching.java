@@ -18,13 +18,25 @@ public class Matching extends Question implements Serializable {
     @Override
     public void take() {
         // TODO
-
+        int h = 0;
         // matchingAnswers = new String[this.numOfRows];
         this.takerFirstChoice = new String[firstColumnOptions.length];
         this.takerSecondchoice = new String[secondColumnOptions.length];
         Display.displayString(getPrompt() + " (each item on the left has only one answer on the right - and vice versa)");
-        for (int h = 0; h < Math.min(this.numOfFirstColumnItems, this.numOfSecondColumnItems); h++) {
-            printTwoColumns("   " + (h + 1) + ". " + this.firstColumnOptions[h], (h + 1) + ". " + this.secondColumnOptions[h]);
+        for (h = 0; h < Math.max(numOfFirstColumnItems, numOfSecondColumnItems); h++) {
+            if (h + 1 > numOfFirstColumnItems) {
+                for (int f = h; f < numOfSecondColumnItems; f++) {
+                    Display.displayString("                              " + (f + 1) + ". " + getSecondColumn()[f]);
+                }
+                break;
+            } else if (h + 1 > numOfSecondColumnItems) {
+                for (int g = h; g < numOfFirstColumnItems; g++) {
+                    Display.displayString("   " + (g + 1) + ". " + getFirstColumn()[g]);
+                }
+                break;
+            } else {
+                printTwoColumns("   " + (h + 1) + ". " + getFirstColumn()[h], (h + 1) + ". " + getSecondColumn()[h]);
+            }
         }
         Display.displayString("\nPlease enter your response(s) in a valid format e.g. '1 3' will match 1 to 3\n");
         askUserForMatchingResponse();
@@ -32,11 +44,30 @@ public class Matching extends Question implements Serializable {
 
     public void askUserForMatchingResponse() {
         for (int l = 0; l < numOfFirstColumnItems; l++) {
+            String d;
+            int one;
+            int two;
 
-            String d = UserInput.getString();
-            String[] arr = d.split(" ", 2);
-            int one = Integer.parseInt(arr[0]);
-            int two = Integer.parseInt(arr[1]);
+            while (true) {
+                try {
+                    d = UserInput.getString();
+                    String[] arr = d.split(" ", 2);
+                    one = Integer.parseInt(arr[0]);
+                    two = Integer.parseInt(arr[1]);
+                    if (one > numOfFirstColumnItems || one < 0) {
+                        Display.displayString("Please re-enter your response.");
+                        //Display.displayString("Please re-enter your response for item " + two + " on the second column");
+                    } else if (two > numOfSecondColumnItems || two < 0) {
+                        Display.displayString("Please re-enter your response.");
+                        //Display.displayString("Please re-enter your response for item " + one + " on the first column");
+                    } else {
+                        break;
+                    }
+                } catch (NumberFormatException e) {
+                    Display.displayString("Please enter your response(s) in a valid format e.g. '1 3' will match 1 to 3.");
+                    continue;
+                }
+            }
 
             this.takerFirstChoice[l] = firstColumnOptions[one - 1];
             this.takerSecondchoice[l] = secondColumnOptions[two - 1];
@@ -74,7 +105,7 @@ public class Matching extends Question implements Serializable {
         Display.displayTwoColumns(left, right);
     }
 
-    @Override
+    /*@Override
     public void setNumberOfRows() { // no longer need this
         Display.displayString("How many pairs do you want in this question?");
         int enteredNumOfRows = UserInput.getInt();
@@ -84,7 +115,7 @@ public class Matching extends Question implements Serializable {
         } else {
             this.numOfRows = enteredNumOfRows;
         }
-    }
+    }*/
 
     @Override
     public void setNumberOfFirstColumnItems() {
@@ -93,7 +124,7 @@ public class Matching extends Question implements Serializable {
         int first = UserInput.getInt();
         if (first > 26) {
             Display.displayString("The number of items should be less than or equal to 26.");
-            setNumberOfRows();
+            setNumberOfFirstColumnItems();
         } else {
             this.numOfFirstColumnItems = first;
         }
@@ -102,11 +133,14 @@ public class Matching extends Question implements Serializable {
     @Override
     public void setNumberOfSecondColumnItems() {
         // TODO
-        Display.displayString("How many items do you want in the first column?");
+        Display.displayString("How many items do you want in the second column?");
         int second = UserInput.getInt();
         if (second > 26) {
             Display.displayString("The number of items should be less than or equal to 26.");
-            setNumberOfRows();
+            setNumberOfSecondColumnItems();
+        } else if (second < this.numOfFirstColumnItems) {
+            Display.displayString("The number of items on the second column cannot be less than the first.");
+            setNumberOfSecondColumnItems();
         } else {
             this.numOfSecondColumnItems = second;
         }

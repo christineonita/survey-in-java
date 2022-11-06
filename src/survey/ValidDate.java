@@ -60,10 +60,10 @@ public class ValidDate extends Question implements Serializable {
         // TODO - not needed
     }
 
-    @Override
+    /*@Override
     public void setNumberOfRows() {
         // TODO - not needed
-    }
+    }*/
 
     @Override
     public void setFirstColumn() {

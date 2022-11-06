@@ -32,7 +32,7 @@ public abstract class Question implements Serializable {
 
     public abstract void setShortAnswerLimit();
 
-    public abstract void setNumberOfRows();
+    //public abstract void setNumberOfRows();
 
     public abstract void setFirstColumn();
 

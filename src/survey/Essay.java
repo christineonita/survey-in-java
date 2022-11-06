@@ -58,10 +58,10 @@ public class Essay extends Question implements Serializable { // - short answer 
         // TODO - not needed
     }
 
-    @Override
+    /*@Override
     public void setNumberOfRows() {
         // TODO - not needed
-    }
+    }*/
 
     @Override
     public void setFirstColumn() {

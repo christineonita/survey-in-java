@@ -25,7 +25,7 @@ public class Display implements Serializable {
         for (String answer : userAnswers) {
             int responseCnt = 0;
             //System.out.print((questionCnt + 1) + ". "); - prints just question number
-            System.out.println((questionCnt + 1) + ". " + questions.get(questionCnt).getPrompt()); // prints question number and prompt
+            System.out.println("Question " + (questionCnt + 1) + ". " + questions.get(questionCnt).getPrompt()); // prints question number and prompt
             if (questions.get(questionCnt) instanceof Matching) {
                 for (int k = 0; k < ((Matching) questions.get(questionCnt)).takerFirstChoice.length; k++) {
                     //System.out.printf("%-30s", ((Matching) questions.get(questionCnt)).takerFirstChoice[k]);
