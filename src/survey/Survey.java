@@ -102,17 +102,17 @@ public class Survey implements Serializable {
                     if (h + 1 > ((Matching) this.questions.get(x)).numOfFirstColumnItems) {
                         for (int f = h; f < ((Matching) this.questions.get(x)).numOfSecondColumnItems; f++) {
                             //System.out.println("extra 2nd --- " + this.questions.get(x).getSecondColumn()[f]);
-                            Display.displayString("                              " + (f + 1) + ". " + this.questions.get(x).getSecondColumn()[f]);
+                            Display.displayString("                              " + (f + 1) + ".) " + this.questions.get(x).getSecondColumn()[f]);
                         }
                         break;
                     } else if (h + 1 > ((Matching) this.questions.get(x)).numOfSecondColumnItems) {
                         for (int g = h; g < ((Matching) this.questions.get(x)).numOfFirstColumnItems; g++) {
                             //System.out.println("extra 1st --- " + this.questions.get(x).getFirstColumn()[g]);
-                            Display.displayString("   " + (g + 1) + ". " + this.questions.get(x).getFirstColumn()[g]);
+                            Display.displayString("   " + (g + 1) + ".) " + this.questions.get(x).getFirstColumn()[g]);
                         }
                         break;
                     } else {
-                        ((Matching) this.questions.get(x)).printTwoColumns("   " + (h + 1) + ". " + this.questions.get(x).getFirstColumn()[h], (h + 1) + ". " + this.questions.get(x).getSecondColumn()[h]);
+                        ((Matching) this.questions.get(x)).printTwoColumns("   " + (h + 1) + ".) " + this.questions.get(x).getFirstColumn()[h], (h + 1) + ".) " + this.questions.get(x).getSecondColumn()[h]);
                     }
                     //System.out.printf("   " + (h + 1) + ". " + this.questions.get(x).getFirstColumn()[h] + "\t" + (h + 1) + ". " + this.questions.get(x).getSecondColumn()[h]);
                 }
