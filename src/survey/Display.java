@@ -30,7 +30,7 @@ public class Display implements Serializable {
                 for (int k = 0; k < ((Matching) questions.get(questionCnt)).takerFirstChoice.length; k++) {
                     //System.out.printf("%-30s", ((Matching) questions.get(questionCnt)).takerFirstChoice[k]);
                     //System.out.printf(((Matching) questions.get(questionCnt)).takerSecondchoice[k] + "\n");
-                    displayTwoColumns("  " + ((Matching) questions.get(questionCnt)).takerFirstChoice[k], ((Matching) questions.get(questionCnt)).takerSecondchoice[k]);
+                    displayTwoColumns("  " + ((Matching) questions.get(questionCnt)).takerFirstChoice[k], ((Matching) questions.get(questionCnt)).takerSecondChoice[k]);
                 }
             } else {
                 String lines[] = answer.split("\\r?\\n");
