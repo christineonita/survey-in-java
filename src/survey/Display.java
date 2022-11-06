@@ -52,4 +52,26 @@ public class Display implements Serializable {
         System.out.printf("%-30s", left); // using printf to format the display of both columns
         System.out.printf(right + "\n");
     }
+
+    public static void displayMatchingColumns(int h, Question question) {
+        for (h = 0; h < Math.max(question.getNumOfFirstColumnItems(), question.getNumOfSecondColumnItems()); h++) {
+
+            if (h + 1 > question.getNumOfFirstColumnItems()) {
+                for (int f = h; f < question.getNumOfSecondColumnItems(); f++) {
+                    //System.out.println("extra 2nd --- " + this.questions.get(x).getSecondColumn()[f]);
+                    Display.displayString("                              " + (f + 1) + ".) " + question.getSecondColumn()[f]);
+                }
+                break;
+            } else if (h + 1 > question.getNumOfSecondColumnItems()) {
+                for (int g = h; g < question.getNumOfFirstColumnItems(); g++) {
+                    //System.out.println("extra 1st --- " + this.questions.get(x).getFirstColumn()[g]);
+                    Display.displayString("   " + (g + 1) + ".) " + question.getFirstColumn()[g]);
+                }
+                break;
+            } else {
+                question.printTwoColumns("   " + (h + 1) + ".) " + question.getFirstColumn()[h], (h + 1) + ".) " + question.getSecondColumn()[h]);
+            }
+            //System.out.printf("   " + (h + 1) + ". " + this.questions.get(x).getFirstColumn()[h] + "\t" + (h + 1) + ". " + this.questions.get(x).getSecondColumn()[h]);
+        }
+    }
 }

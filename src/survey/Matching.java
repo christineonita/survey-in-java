@@ -99,7 +99,8 @@ public class Matching extends Question implements Serializable {
         // TODO - not needed
     }
 
-    protected void printTwoColumns(String left, String right) {
+    @Override
+    public void printTwoColumns(String left, String right) {
         //System.out.printf("%-30s", left); // using printf to format the display of both columns
         //System.out.printf(right + "\n");
         Display.displayTwoColumns(left, right);
@@ -176,5 +177,13 @@ public class Matching extends Question implements Serializable {
         return this.secondColumnOptions;
     }
 
+    @Override
+    public int getNumOfFirstColumnItems() {
+        return this.numOfFirstColumnItems;
+    }
 
+    @Override
+    public int getNumOfSecondColumnItems() {
+        return this.numOfSecondColumnItems;
+    }
 }

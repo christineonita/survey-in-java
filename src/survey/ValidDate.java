@@ -97,4 +97,21 @@ public class ValidDate extends Question implements Serializable {
     public void setNumberOfSecondColumnItems() {
         // TODO - not needed
     }
+
+    @Override
+    public int getNumOfFirstColumnItems() {
+        // TODO - not needed
+        return 0;
+    }
+
+    @Override
+    public int getNumOfSecondColumnItems() {
+        // TODO - not needed
+        return 0;
+    }
+
+    @Override
+    public void printTwoColumns(String s, String s1) {
+        // TODO - not needed
+    }
 }

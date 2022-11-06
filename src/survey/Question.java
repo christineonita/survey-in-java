@@ -46,4 +46,10 @@ public abstract class Question implements Serializable {
     public abstract void setNumberOfFirstColumnItems();
 
     public abstract void setNumberOfSecondColumnItems();
+
+    public abstract int getNumOfFirstColumnItems();
+
+    public abstract int getNumOfSecondColumnItems();
+
+    public abstract void printTwoColumns(String s, String s1);
 }
