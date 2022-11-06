@@ -53,8 +53,8 @@ public class Display implements Serializable {
         System.out.printf(right + "\n");
     }
 
-    public static void displayMatchingColumns(int h, Question question) {
-        for (h = 0; h < Math.max(question.getNumOfFirstColumnItems(), question.getNumOfSecondColumnItems()); h++) {
+    public static void displayMatchingColumns(Question question) {
+        for (int h = 0; h < Math.max(question.getNumOfFirstColumnItems(), question.getNumOfSecondColumnItems()); h++) {
 
             if (h + 1 > question.getNumOfFirstColumnItems()) {
                 for (int f = h; f < question.getNumOfSecondColumnItems(); f++) {

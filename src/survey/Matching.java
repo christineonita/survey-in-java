@@ -106,6 +106,16 @@ public class Matching extends Question implements Serializable {
         Display.displayTwoColumns(left, right);
     }
 
+    @Override
+    public void modifyFirstColumnItem(int i, String newItem) {
+        firstColumnOptions[i] = newItem;
+    }
+
+    @Override
+    public void modifySecondColumnItem(int i, String newItem) {
+        secondColumnOptions[i] = newItem;
+    }
+
     /*@Override
     public void setNumberOfRows() { // no longer need this
         Display.displayString("How many pairs do you want in this question?");

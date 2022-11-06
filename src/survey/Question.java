@@ -40,7 +40,7 @@ public abstract class Question implements Serializable {
 
     public abstract String[] getFirstColumn();
 
-    public abstract Object[] getSecondColumn();
+    public abstract String[] getSecondColumn();
 
 
     public abstract void setNumberOfFirstColumnItems();
@@ -52,4 +52,8 @@ public abstract class Question implements Serializable {
     public abstract int getNumOfSecondColumnItems();
 
     public abstract void printTwoColumns(String s, String s1);
+
+    public abstract void modifyFirstColumnItem(int i, String newItem);
+
+    public abstract void modifySecondColumnItem(int i, String newItem);
 }

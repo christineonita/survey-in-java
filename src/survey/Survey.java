@@ -12,7 +12,7 @@ public class Survey implements Serializable {
     String[] userAnswers;
     String newPrompt;
     String modifyPrompt;
-    String modifyChoicesYesOrNo;
+    String modifyChoicesYesOrNo, modifyColumnChoicesYesOrNo;
     int questionToModify;
 
     Survey() {
@@ -97,7 +97,7 @@ public class Survey implements Serializable {
                     choicesLoop++;
                 }
             } else if (this.questions.get(x) instanceof Matching) {
-                Display.displayMatchingColumns(h, this.questions.get(x));
+                Display.displayMatchingColumns(this.questions.get(x));
             }
             choicesLoop = 1;
         }
@@ -144,6 +144,15 @@ public class Survey implements Serializable {
                 modifyQuestionChoices(questionToModify);
             }
         }
+
+        if (this.questions.get(questionToModify - 1).getClass().equals(Matching.class)) {
+            Display.displayString("Do you wish to modify the columns?");
+            modifyColumnChoicesYesOrNo = UserInput.getString();
+            if (modifyColumnChoicesYesOrNo.equalsIgnoreCase("yes")) {
+                modifyColumnChoices(questionToModify);
+            }
+        }
+
         String modifyAnotherQuestionYesOrNo;
         Display.displayString("Do you wish to modify another question?");
         modifyAnotherQuestionYesOrNo = UserInput.getString();
@@ -178,10 +187,47 @@ public class Survey implements Serializable {
         String newChoice;
         Display.displayString("Which choice do you want to modify?");
         Display.displayStringArray(this.questions.get(questionBeingModified - 1).getQuestionChoices());
-        choiceToModify = UserInput.getInt();
+        choiceToModify = UserInput.getOption(0, this.questions.get(questionBeingModified - 1).getQuestionChoices().length + 1);
         Display.displayString("Enter new choice #" + choiceToModify);
         newChoice = UserInput.getString();
         this.questions.get(questionBeingModified - 1).modifyQuestionChoice(choiceToModify - 1, newChoice);
 
+    }
+
+    public void modifyColumnChoices(int questionToModify) {
+        int columnToModify;
+        Display.displayString("Do you wish to modify column 1 or two? (enter either 1 for the left or 2 for the right)");
+        Display.displayMatchingColumns(this.questions.get(questionToModify - 1));
+        //columnToModify = UserInput.getInt();
+        columnToModify = UserInput.getOption(0, 3);
+        if (columnToModify == 1) {
+            modifyFirstColumn(questionToModify);
+        } else {
+            modifySecondColumn(questionToModify);
+        }
+    }
+
+    public void modifySecondColumn(int questionToModify) {
+        int itemToModify;
+        String newItem;
+        Display.displayString("Which item do you want to modify?");
+        Display.displayStringArray(this.questions.get(questionToModify - 1).getSecondColumn());
+        itemToModify = UserInput.getOption(0, this.questions.get(questionToModify - 1).getSecondColumn().length + 1);
+        Display.displayString("Enter a new item #" + itemToModify);
+        newItem = UserInput.getString();
+
+        this.questions.get(questionToModify - 1).modifySecondColumnItem(itemToModify - 1, newItem);
+    }
+
+    public void modifyFirstColumn(int questionToModify) {
+        int itemToModify;
+        String newItem;
+        Display.displayString("Which item do you want to modify?");
+        Display.displayStringArray(this.questions.get(questionToModify - 1).getFirstColumn());
+        itemToModify = UserInput.getOption(0, this.questions.get(questionToModify - 1).getFirstColumn().length + 1);
+        Display.displayString("Enter a new item #" + itemToModify);
+        newItem = UserInput.getString();
+
+        this.questions.get(questionToModify - 1).modifyFirstColumnItem(itemToModify - 1, newItem);
     }
 }

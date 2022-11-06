@@ -148,9 +148,9 @@ public class MultipleChoice extends Question implements Serializable {
     }
 
     @Override
-    public Object[] getSecondColumn() {
+    public String[] getSecondColumn() {
         // TODO - not needed
-        return new Object[0];
+        return new String[0];
     }
 
 
@@ -178,6 +178,16 @@ public class MultipleChoice extends Question implements Serializable {
 
     @Override
     public void printTwoColumns(String s, String s1) {
+        // TODO - not needed
+    }
+
+    @Override
+    public void modifyFirstColumnItem(int i, String newItem) {
+        // TODO - not needed
+    }
+
+    @Override
+    public void modifySecondColumnItem(int i, String newItem) {
         // TODO - not needed
     }
 }
