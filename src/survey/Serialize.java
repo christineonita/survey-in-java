@@ -1,6 +1,7 @@
 package survey;
 
 import java.io.*;
+import java.util.ArrayList;
 
 public class Serialize implements Serializable {
     private static final long serialVersionUID = 6435622019401604877L;
@@ -114,7 +115,7 @@ public class Serialize implements Serializable {
     }
 
 
-    protected void displayUserResponses(String[] userAnswers) {
-        Display.displayResponses(userAnswers);
+    protected void displayUserResponses(ArrayList<Question> questions, String[] userAnswers) {
+        Display.displayResponses(questions, userAnswers);
     }
 }

@@ -119,8 +119,9 @@ public class Survey implements Serializable {
             Display.displayString("These are the saved answers\n" + b + "\n");
         }*/
 
-        serialize.displayUserResponses(userAnswers);
+        //serialize.displayUserResponses(userAnswers);
 
+        serialize.displayUserResponses(this.questions, userAnswers);
 
         serialize.saveUserAnswers(userAnswers, surveyResponseFolder, nameOfSurvey);
     }
