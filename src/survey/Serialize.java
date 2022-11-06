@@ -114,4 +114,7 @@ public class Serialize implements Serializable {
     }
 
 
+    protected void displayUserResponses(String[] userAnswers) {
+        Display.displayResponses(userAnswers);
+    }
 }
