@@ -69,9 +69,9 @@ public class Matching extends Question implements Serializable {
     }
 
     protected void printTwoColumns(String left, String right) {
-        System.out.printf("%-30s", left); // using printf to format the display of both columns
-        //System.out.printf("%-25s\n", right);
-        System.out.printf(right + "\n");
+        //System.out.printf("%-30s", left); // using printf to format the display of both columns
+        //System.out.printf(right + "\n");
+        Display.displayTwoColumns(left, right);
     }
 
     @Override

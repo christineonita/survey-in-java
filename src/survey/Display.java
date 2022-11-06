@@ -28,16 +28,10 @@ public class Display implements Serializable {
             System.out.println((questionCnt + 1) + ". " + questions.get(questionCnt).getPrompt()); // prints question number and prompt
             if (questions.get(questionCnt) instanceof Matching) {
                 for (int k = 0; k < ((Matching) questions.get(questionCnt)).takerFirstChoice.length; k++) {
-                    System.out.printf("%-30s", ((Matching) questions.get(questionCnt)).takerFirstChoice[k]);
-                    System.out.printf(((Matching) questions.get(questionCnt)).takerSecondchoice[k] + "\n");
+                    //System.out.printf("%-30s", ((Matching) questions.get(questionCnt)).takerFirstChoice[k]);
+                    //System.out.printf(((Matching) questions.get(questionCnt)).takerSecondchoice[k] + "\n");
+                    displayTwoColumns("  " + ((Matching) questions.get(questionCnt)).takerFirstChoice[k], ((Matching) questions.get(questionCnt)).takerSecondchoice[k]);
                 }
-
-                /*
-
-                System.out.printf("%-30s", left); // using printf to format the display of both columns
-        //System.out.printf("%-25s\n", right);
-        System.out.printf(right + "\n");
-                 */
             } else {
                 String lines[] = answer.split("\\r?\\n");
                 for (String line : lines) {
@@ -52,5 +46,10 @@ public class Display implements Serializable {
             System.out.println();
             questionCnt++;
         }
+    }
+
+    public static void displayTwoColumns(String left, String right) {
+        System.out.printf("%-30s", left); // using printf to format the display of both columns
+        System.out.printf(right + "\n");
     }
 }
