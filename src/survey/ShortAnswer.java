@@ -12,10 +12,6 @@ public class ShortAnswer extends Essay implements Serializable {
     ShortAnswer() {
     }
 
-    @Override
-    protected void setQuestionChoices() {
-        // TODO - not needed
-    }
 
     @Override
     public void take() {
@@ -48,10 +44,6 @@ public class ShortAnswer extends Essay implements Serializable {
         return "short answer";
     }
 
-    @Override
-    protected void modifyQuestionChoice(int choiceNum, String choice) {
-        // TODO - not needed
-    }
 
     @Override
     public void setRequiredNumberOfResponses() {

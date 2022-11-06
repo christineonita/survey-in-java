@@ -11,7 +11,10 @@ public abstract class Question implements Serializable {
     Question() {
     }
 
-    protected abstract void setQuestionChoices();
+    public abstract void take();
+
+    public abstract String getQuestionType();
+
 
     protected String getPrompt() {
         return prompt;
@@ -25,38 +28,66 @@ public abstract class Question implements Serializable {
         return choices;
     }
 
-    public abstract void take();
+    protected void setQuestionChoices() {
 
-    public abstract String getQuestionType();
+    }
 
-    protected abstract void modifyQuestionChoice(int choiceNum, String choice);
+    protected void modifyQuestionChoice(int choiceNum, String choice) {
 
-    public abstract void setRequiredNumberOfResponses();
+    }
 
-    public abstract void setShortAnswerLimit();
+    public void setRequiredNumberOfResponses() {
+
+    }
+
+    public void setShortAnswerLimit() {
+
+    }
 
     //public abstract void setNumberOfRows();
 
-    public abstract void setFirstColumn();
+    public void setFirstColumn() {
 
-    public abstract void setSecondColumn();
+    }
 
-    public abstract String[] getFirstColumn();
+    public void setSecondColumn() {
 
-    public abstract String[] getSecondColumn();
+    }
+
+    public String[] getFirstColumn() {
+        return new String[0];
+    }
+
+    public String[] getSecondColumn() {
+        return new String[0];
+    }
 
 
-    public abstract void setNumberOfFirstColumnItems();
+    public void setNumberOfFirstColumnItems() {
 
-    public abstract void setNumberOfSecondColumnItems();
+    }
 
-    public abstract int getNumOfFirstColumnItems();
+    public void setNumberOfSecondColumnItems() {
 
-    public abstract int getNumOfSecondColumnItems();
+    }
 
-    public abstract void printTwoColumns(String s, String s1);
+    public int getNumOfFirstColumnItems() {
+        return 0;
+    }
 
-    public abstract void modifyFirstColumnItem(int i, String newItem);
+    public int getNumOfSecondColumnItems() {
+        return 0;
+    }
 
-    public abstract void modifySecondColumnItem(int i, String newItem);
+    public void printTwoColumns(String s, String s1) {
+
+    }
+
+    public void modifyFirstColumnItem(int i, String newItem) {
+
+    }
+
+    public void modifySecondColumnItem(int i, String newItem) {
+
+    }
 }

@@ -61,15 +61,6 @@ public class MultipleChoice extends Question implements Serializable {
         multipleChoiceQuestionChoices[choiceIndex] = newChoice;
     }
 
-    @Override
-    public void setRequiredNumberOfResponses() {
-        // TODO - not needed
-    }
-
-    @Override
-    public void setShortAnswerLimit() {
-        // TODO - not needed
-    }
 
     @Override
     public void take() {
@@ -125,68 +116,5 @@ public class MultipleChoice extends Question implements Serializable {
         userResponse = userAnswer;
     }
 
-    /*@Override
-    public void setNumberOfRows() {
-        // TODO - not needed
-    }*/
 
-    @Override
-    public void setFirstColumn() {
-        // TODO - not needed
-    }
-
-    @Override
-    public void setSecondColumn() {
-        // TODO - not needed
-    }
-
-    @Override
-    public String[] getFirstColumn() {
-        // TODO - not needed
-        return new String[0];
-    }
-
-    @Override
-    public String[] getSecondColumn() {
-        // TODO - not needed
-        return new String[0];
-    }
-
-
-    @Override
-    public void setNumberOfFirstColumnItems() {
-        // TODO - not needed
-    }
-
-    @Override
-    public void setNumberOfSecondColumnItems() {
-        // TODO - not needed
-    }
-
-    @Override
-    public int getNumOfFirstColumnItems() {
-        // TODO - not needed
-        return 0;
-    }
-
-    @Override
-    public int getNumOfSecondColumnItems() {
-        // TODO - not needed
-        return 0;
-    }
-
-    @Override
-    public void printTwoColumns(String s, String s1) {
-        // TODO - not needed
-    }
-
-    @Override
-    public void modifyFirstColumnItem(int i, String newItem) {
-        // TODO - not needed
-    }
-
-    @Override
-    public void modifySecondColumnItem(int i, String newItem) {
-        // TODO - not needed
-    }
 }

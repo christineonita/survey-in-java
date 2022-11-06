@@ -49,18 +49,5 @@ public class TrueOrFalse extends MultipleChoice implements Serializable {
         return trueOrFalseQuestionChoices;
     }
 
-    @Override
-    public void modifyQuestionChoice(int choiceNum, String choice) {
-        // TODO - not needed
-    }
 
-    @Override
-    public void setRequiredNumberOfResponses() {
-        // TODO - not needed
-    }
-
-    @Override
-    public void setShortAnswerLimit() {
-        // TODO - not needed
-    }
 }

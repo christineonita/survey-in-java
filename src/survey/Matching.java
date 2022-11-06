@@ -13,14 +13,9 @@ public class Matching extends Question implements Serializable {
 
     }
 
-    @Override
-    protected void setQuestionChoices() {
-        // TODO - maybe needed
-    }
 
     @Override
     public void take() {
-        // TODO
         int h = 0;
         // matchingAnswers = new String[this.numOfRows];
         this.takerFirstChoice = new String[firstColumnOptions.length];
@@ -87,20 +82,6 @@ public class Matching extends Question implements Serializable {
         return "matching";
     }
 
-    @Override
-    protected void modifyQuestionChoice(int choiceNum, String choice) {
-        // TODO - maybe needed
-    }
-
-    @Override
-    public void setRequiredNumberOfResponses() {
-        // TODO - not needed
-    }
-
-    @Override
-    public void setShortAnswerLimit() {
-        // TODO - not needed
-    }
 
     @Override
     public void printTwoColumns(String left, String right) {
@@ -133,7 +114,6 @@ public class Matching extends Question implements Serializable {
 
     @Override
     public void setNumberOfFirstColumnItems() {
-        // TODO
         Display.displayString("How many items do you want in the first column?");
         int first = UserInput.getInt();
         if (first > 26) {
@@ -146,7 +126,6 @@ public class Matching extends Question implements Serializable {
 
     @Override
     public void setNumberOfSecondColumnItems() {
-        // TODO
         Display.displayString("How many items do you want in the second column?");
         int second = UserInput.getInt();
         if (second > 26) {
