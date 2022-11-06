@@ -116,7 +116,7 @@ public class Survey implements Serializable {
 
         /// -------- remove this, just a debugger to check that my answers are actually saved - they are =D
         /*for (String b : this.userAnswers) {
-            System.out.println("These are the saved answers\n" + b + "\n");
+            Display.displayString("These are the saved answers\n" + b + "\n");
         }*/
 
         serialize.saveUserAnswers(userAnswers, surveyResponseFolder, nameOfSurvey);

@@ -22,14 +22,14 @@ public class ShortAnswer extends Essay implements Serializable {
     }
 
     public void getShortAnswerResponse(int numOfResponses, int limit) {
-        System.out.println("The limit for your response(s) is " + limit + " characters");
+        Display.displayString("The limit for your response(s) is " + limit + " characters");
         int p = 0;
         while (p < numOfResponses) {
             Display.displayString("Response #" + (p + 1));
             String ans = UserInput.getString();
 
             if (ans.length() > limit) {
-                System.out.println("Your response is over the " + limit + " character limit. Try again");
+                Display.displayString("Your response is over the " + limit + " character limit. Try again");
                 continue;
             } //code here to ask for reentry if response is over short answer response limit
             userShortAnswer = ans + "\n";

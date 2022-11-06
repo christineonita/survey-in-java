@@ -69,7 +69,7 @@ public class Matching extends Question implements Serializable {
 
     @Override
     public void setNumberOfRows() {
-        System.out.println("How many pairs do you want in this question?");
+        Display.displayString("How many pairs do you want in this question?");
         int enteredNumOfRows = UserInput.getInt();
         if (enteredNumOfRows > 26) {
             Display.displayString("The number of pairs should be less than or equal to 26.");

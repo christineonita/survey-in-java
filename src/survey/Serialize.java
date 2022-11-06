@@ -42,7 +42,7 @@ public class Serialize implements Serializable {
             out.writeObject(survey);
             out.close();
             fileOut.close();
-            System.out.println("Survey " + nameOfSurvey + ".ser updated successfully and saved in " + surveyPath);
+            Display.displayString("Survey " + nameOfSurvey + ".ser updated successfully and saved in " + surveyPath);
         } catch (IOException i) {
             i.printStackTrace();
         }
@@ -60,9 +60,9 @@ public class Serialize implements Serializable {
         File[] files = f.listFiles();
 
         if (files.length == 0) {
-            System.out.println("\nThere are no surveys to load.\n");
+            Display.displayString("\nThere are no surveys to load.\n");
         } else {
-            System.out.println("Select a survey to load: ");
+            Display.displayString("Select a survey to load: ");
             for (int j = 0; j < files.length; j++) {
                 Display.displayString((j + 1) + ") " + files[j].getName());
             }
@@ -80,7 +80,7 @@ public class Serialize implements Serializable {
             } catch (IOException i) {
                 i.printStackTrace();
             } catch (ClassNotFoundException c) {
-                System.out.println("Survey class not found");
+                Display.displayString("Survey class not found");
                 c.printStackTrace();
             }
 

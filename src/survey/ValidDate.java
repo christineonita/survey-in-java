@@ -34,7 +34,7 @@ public class ValidDate extends Question implements Serializable {
                 userResponse = userSavedDateResponse;
                 break;
             } catch (ParseException e) {
-                System.out.println("Please enter a valid date in the format MM/DD/YYYY");
+                Display.displayString("Please enter a valid date in the format MM/DD/YYYY");
                 userInputDate = UserInput.getString();
             }
         }

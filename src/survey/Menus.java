@@ -30,14 +30,14 @@ public class Menus implements Serializable {
                         survey = loadSurvey();
                         survey.displaySurvey();
                     } catch (NullPointerException e) {
-                        System.out.println("No survey has been made yet.\n");
+                        Display.displayString("No survey has been made yet.\n");
                     }
                     break;
                 case 3:
                     try {
                         survey = loadSurvey();
                     } catch (NullPointerException e) {
-                        System.out.println("No survey has been made yet.\n");
+                        Display.displayString("No survey has been made yet.\n");
                     }
                     break;
                 case 4:
@@ -48,7 +48,7 @@ public class Menus implements Serializable {
                         survey = loadSurvey();
                         survey.take();
                     } catch (NullPointerException e) {
-                        System.out.println("No survey has been made yet.\n");
+                        Display.displayString("No survey has been made yet.\n");
                     }
                     break;
                 case 6:
@@ -56,15 +56,15 @@ public class Menus implements Serializable {
                         survey = loadSurvey();
                         survey.modify();
                     } catch (NullPointerException e) {
-                        System.out.println("No survey has been made yet.\n");
+                        Display.displayString("No survey has been made yet.\n");
                     }
                     break;
                 case 7:
                     System.exit(0);
-                    System.out.println("Quitting program.... Bye!");
+                    Display.displayString("Quitting program.... Bye!");
                     break;
                 default:
-                    System.out.println("Please enter an integer value between 1 and " + surveyMenu.length);
+                    Display.displayString("Please enter an integer value between 1 and " + surveyMenu.length);
                     break;
 
             }
@@ -114,7 +114,7 @@ public class Menus implements Serializable {
                     survey.addMatching();
                     break;
                 case 7:
-                    System.out.println("Save before leaving?");
+                    Display.displayString("Save before leaving?");
 
                     while (true) {
                         saveBeforeLeaving = UserInput.getString();
@@ -124,7 +124,7 @@ public class Menus implements Serializable {
                         } else if (saveBeforeLeaving.equalsIgnoreCase("no")) {
                             return survey;
                         } else {
-                            System.out.println("Please enter yes or no.");
+                            Display.displayString("Please enter yes or no.");
                         }
                     }
                 default:
