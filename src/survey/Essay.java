@@ -85,9 +85,14 @@ public class Essay extends Question implements Serializable { // - short answer 
         return new Object[0];
     }
 
+
     @Override
-    public int getNumOfRows() {
+    public void setNumberOfFirstColumnItems() {
         // TODO - not needed
-        return 0;
+    }
+
+    @Override
+    public void setNumberOfSecondColumnItems() {
+        // TODO - not needed
     }
 }

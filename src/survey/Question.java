@@ -42,5 +42,8 @@ public abstract class Question implements Serializable {
 
     public abstract Object[] getSecondColumn();
 
-    public abstract int getNumOfRows();
+
+    public abstract void setNumberOfFirstColumnItems();
+
+    public abstract void setNumberOfSecondColumnItems();
 }

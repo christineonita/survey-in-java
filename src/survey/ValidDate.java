@@ -87,9 +87,14 @@ public class ValidDate extends Question implements Serializable {
         return new Object[0];
     }
 
+
     @Override
-    public int getNumOfRows() {
+    public void setNumberOfFirstColumnItems() {
         // TODO - not needed
-        return 0;
+    }
+
+    @Override
+    public void setNumberOfSecondColumnItems() {
+        // TODO - not needed
     }
 }

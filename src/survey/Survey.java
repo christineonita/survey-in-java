@@ -70,7 +70,11 @@ public class Survey implements Serializable {
         Question question = new Matching();
         setQuestionPrompt(question);
 
-        question.setNumberOfRows();
+        //question.setNumberOfRows();
+
+        question.setNumberOfFirstColumnItems();
+        question.setNumberOfSecondColumnItems();
+
         question.setFirstColumn();
         question.setSecondColumn();
 
@@ -83,6 +87,7 @@ public class Survey implements Serializable {
     }
 
     public void displaySurvey() {
+        int h;
         int choicesLoop = 1;
         for (int x = 0; x < this.questions.size(); x++) {
             Display.displayString("\n Question " + (x + 1) + ". " + this.questions.get(x).getPrompt());
@@ -92,8 +97,23 @@ public class Survey implements Serializable {
                     choicesLoop++;
                 }
             } else if (this.questions.get(x) instanceof Matching) {
-                for (int h = 0; h < (this.questions.get(x)).getNumOfRows(); h++) {
-                    ((Matching) this.questions.get(x)).printTwoColumns("   " + (h + 1) + ". " + this.questions.get(x).getFirstColumn()[h], (h + 1) + ". " + this.questions.get(x).getSecondColumn()[h]);
+                for (h = 0; h < Math.max(((Matching) this.questions.get(x)).numOfFirstColumnItems, ((Matching) this.questions.get(x)).numOfSecondColumnItems); h++) {
+
+                    if (h + 1 > ((Matching) this.questions.get(x)).numOfFirstColumnItems) {
+                        for (int f = h; f < ((Matching) this.questions.get(x)).numOfSecondColumnItems; f++) {
+                            //System.out.println("extra 2nd --- " + this.questions.get(x).getSecondColumn()[f]);
+                            Display.displayString("                              " + (f + 1) + ". " + this.questions.get(x).getSecondColumn()[f]);
+                        }
+                        break;
+                    } else if (h + 1 > ((Matching) this.questions.get(x)).numOfSecondColumnItems) {
+                        for (int g = h; g < ((Matching) this.questions.get(x)).numOfFirstColumnItems; g++) {
+                            //System.out.println("extra 1st --- " + this.questions.get(x).getFirstColumn()[g]);
+                            Display.displayString("   " + (g + 1) + ". " + this.questions.get(x).getFirstColumn()[g]);
+                        }
+                        break;
+                    } else {
+                        ((Matching) this.questions.get(x)).printTwoColumns("   " + (h + 1) + ". " + this.questions.get(x).getFirstColumn()[h], (h + 1) + ". " + this.questions.get(x).getSecondColumn()[h]);
+                    }
                     //System.out.printf("   " + (h + 1) + ". " + this.questions.get(x).getFirstColumn()[h] + "\t" + (h + 1) + ". " + this.questions.get(x).getSecondColumn()[h]);
                 }
             }
