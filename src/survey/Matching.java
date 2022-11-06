@@ -30,7 +30,7 @@ public class Matching extends Question implements Serializable {
     public void askUserForMatchingResponse() {
         for (int l = 0; l < numOfRows; l++) {
             String d = UserInput.getString();
-            String arr[] = d.split(" ", 2);
+            String[] arr = d.split(" ", 2);
             int one = Integer.parseInt(arr[0]);
             int two = Integer.parseInt(arr[1]);
 
