@@ -5,7 +5,7 @@ import java.io.Serializable;
 public class Matching extends Question implements Serializable {
     private static final long serialVersionUID = -8176926467152362392L;
     public int numOfRows, numOfFirstColumnItems, numOfSecondColumnItems;
-    protected String[] firstColumnOptions, secondColumnOptions, takerFirstChoice, takerSecondchoice;
+    protected String[] firstColumnOptions, secondColumnOptions, takerFirstChoice, takerSecondChoice;
     //protected String[] matchingAnswers;
     protected String matchAns;
 
@@ -21,7 +21,7 @@ public class Matching extends Question implements Serializable {
         int h = 0;
         // matchingAnswers = new String[this.numOfRows];
         this.takerFirstChoice = new String[firstColumnOptions.length];
-        this.takerSecondchoice = new String[secondColumnOptions.length];
+        this.takerSecondChoice = new String[secondColumnOptions.length];
         Display.displayString(getPrompt() + " (each item on the left has only one answer on the right - and vice versa)");
         for (h = 0; h < Math.max(numOfFirstColumnItems, numOfSecondColumnItems); h++) {
             if (h + 1 > numOfFirstColumnItems) {
@@ -70,7 +70,7 @@ public class Matching extends Question implements Serializable {
             }
 
             this.takerFirstChoice[l] = firstColumnOptions[one - 1];
-            this.takerSecondchoice[l] = secondColumnOptions[two - 1];
+            this.takerSecondChoice[l] = secondColumnOptions[two - 1];
 
             // matchingAnswers[l] = firstColumnOptions[one - 1] + secondColumnOptions[two - 1];
             matchAns = firstColumnOptions[one - 1] + " " + secondColumnOptions[two - 1] + "\n";
