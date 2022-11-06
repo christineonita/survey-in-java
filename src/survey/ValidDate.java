@@ -9,6 +9,9 @@ public class ValidDate extends Question implements Serializable {
     private static final long serialVersionUID = 1471791369487669173L;
     private String userInputDate, userSavedDateResponse;
 
+    ValidDate() {
+    }
+
     @Override
     protected void setQuestionChoices() {
         // TODO - not needed

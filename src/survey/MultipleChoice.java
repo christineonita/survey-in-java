@@ -12,7 +12,6 @@ public class MultipleChoice extends Question implements Serializable {
     private int mult, numberOfChoices, choiceNumber;
 
     MultipleChoice() {
-
     }
 
     @Override

@@ -8,6 +8,9 @@ public class Serialize implements Serializable {
     protected String surveyFolderName = "MySurveys", responsesFolderName = "SurveyResponses";
     String survName;
 
+    Serialize() {
+    }
+
     protected void saveSurvey(Survey survey) {
 
         String surveyPath, surveyName;

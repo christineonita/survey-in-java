@@ -8,6 +8,9 @@ public class TrueOrFalse extends MultipleChoice implements Serializable {
     protected String[] trueOrFalseQuestionChoices;
     protected String trueOrFalseChoice;
 
+    TrueOrFalse() {
+    }
+
     @Override
     protected void setQuestionChoices() {
         hasMultipleAnswers = false;

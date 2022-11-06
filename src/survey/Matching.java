@@ -9,6 +9,9 @@ public class Matching extends Question implements Serializable {
     //protected String[] matchingAnswers;
     protected String matchAns;
 
+    Matching() {
+
+    }
 
     @Override
     protected void setQuestionChoices() {

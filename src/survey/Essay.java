@@ -8,6 +8,10 @@ public class Essay extends Question implements Serializable { // - short answer 
     private String userAnswer;
     private int numberOfResponsesRequired, enteredNumOfEssayRequiredResponses;
 
+    Essay() {
+
+    }
+
     @Override
     protected void setQuestionChoices() {
         // TODO - not needed

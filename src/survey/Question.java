@@ -8,6 +8,9 @@ public abstract class Question implements Serializable {
     protected String prompt, userResponse = "";
     protected String[] choices;
 
+    Question() {
+    }
+
     protected abstract void setQuestionChoices();
 
     protected String getPrompt() {

@@ -6,6 +6,10 @@ import java.util.ArrayList;
 public class Display implements Serializable {
     private static final long serialVersionUID = -2210274800574981255L;
 
+    Display() {
+
+    }
+
     public static void displayStringArray(String[] stringArray) {
 
         int option;

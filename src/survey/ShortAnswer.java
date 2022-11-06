@@ -9,6 +9,9 @@ public class ShortAnswer extends Essay implements Serializable {
     private int numberOfShortAnswerResponsesRequired;
     private int shortAnswerLimit;
 
+    ShortAnswer() {
+    }
+
     @Override
     protected void setQuestionChoices() {
         // TODO - not needed
