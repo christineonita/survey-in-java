@@ -4,12 +4,32 @@ import java.io.Serializable;
 
 public class Menus implements Serializable {
     private static final long serialVersionUID = 5292926198099734510L;
+
+    private final String[] surveyOrTestMenu = {"Survey", "Test"};
     private final String[] surveyMenu = {"Create a new survey", "Display an existing Survey", "Load an existing Survey", "Save the current Survey",
             "Take an existing Survey", "Modify an existing Survey", "Quit"};
     private final String[] questionTypes = {"Add a new T/F question", "Add a new multiple-choice question", "Add a new short answer question", "Add a new essay question",
             "Add a new date question", "Add a new matching question", "Return to previous menu"};
 
     public void mainMenu() {
+        int surveyOrTest;
+        Display.displayStringArray(surveyOrTestMenu);
+
+        surveyOrTest = UserInput.getOption(0, surveyOrTestMenu.length + 1);
+
+        switch (surveyOrTest) {
+            case 1:
+                mainSurveyMenu();
+            case 2:
+                Display.displayString("no code for test at all yet");
+                break; // remove this after adding test menu
+            default:
+                Display.displayString("Please enter an integer value heyyyy 1 and " + surveyOrTestMenu.length);
+                break;
+        }
+    }
+
+    public void mainSurveyMenu() {
         Survey survey = new Survey();
         int selectedSurveyMenuItem;
 
@@ -19,7 +39,7 @@ public class Menus implements Serializable {
             Display.displayStringArray(surveyMenu);
 
             // accepts user input to choose option
-            selectedSurveyMenuItem = UserInput.getInt();
+            selectedSurveyMenuItem = UserInput.getOption(0, surveyMenu.length + 1);
 
             switch (selectedSurveyMenuItem) {
                 case 1:
