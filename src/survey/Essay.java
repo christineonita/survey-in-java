@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class Essay extends Question implements Serializable { // - short answer will hava character limit set by the creator
     private static final long serialVersionUID = -1175125181899751223L;
-    protected String[] essayResponses;
+    //protected String[] essayResponses;
     private String userAnswer;
     private int numberOfResponsesRequired, enteredNumOfEssayRequiredResponses;
 
