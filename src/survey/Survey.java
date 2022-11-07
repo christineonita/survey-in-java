@@ -64,13 +64,8 @@ public class Survey implements Serializable {
     }
 
     protected void addMatching() {
-        //System.out.println("code needed to add matching question to survey");
-        // for matching questions mark the options like option A, B, C --> mak it so that the creator cannot choose above 26 for num of items in a column
-
         Question question = new Matching();
         setQuestionPrompt(question);
-
-        //question.setNumberOfRows();
 
         question.setNumberOfFirstColumnItems();
         question.setNumberOfSecondColumnItems();
@@ -113,15 +108,19 @@ public class Survey implements Serializable {
             System.out.print("Question " + (x + 1) + ". "); //not using println here so a new line doesn't print
             question.take();
             this.userAnswers[x] = question.userResponse;
+
+            // ----------  this commented out part is the foundation for how i will get responses to compare for tests --------  DO NOT DELETE UNTIL I AM DONE!!!!!!
+            /*System.out.println(">" + question.userResponse.split("\\r?\\n")[0] + "<");
+            if (question.userResponse.equals("Barbara\nAyato Kamisato\n")) {
+                System.out.println("Jean's sister and Ayaka's brother");
+            }
+            if (question.userResponse.split("\\r?\\n")[0].equals("Barbara")) {
+                System.out.println("Jean's sister");
+            }*/
+
+
             x++;
         }
-
-        /// -------- remove this, just a debugger to check that my answers are actually saved - they are =D
-        /*for (String b : this.userAnswers) {
-            Display.displayString("These are the saved answers\n" + b + "\n");
-        }*/
-
-        //serialize.displayUserResponses(userAnswers);
 
         serialize.displayUserResponses(this.questions, userAnswers);
 
@@ -198,7 +197,6 @@ public class Survey implements Serializable {
         int columnToModify;
         Display.displayString("Do you wish to modify column 1 or two? (enter either 1 for the left or 2 for the right)");
         Display.displayMatchingColumns(this.questions.get(questionToModify - 1));
-        //columnToModify = UserInput.getInt();
         columnToModify = UserInput.getOption(0, 3);
         if (columnToModify == 1) {
             modifyFirstColumn(questionToModify);
