@@ -2,6 +2,8 @@ package survey;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 
 public class Serialize implements Serializable {
     private static final long serialVersionUID = 6435622019401604877L;
@@ -124,8 +126,25 @@ public class Serialize implements Serializable {
 
     public String[][] loadSurveyResponses(Survey survey, ArrayList<Question> questions) { // todo - finish making this
         String[][] surveyResponse = new String[0][];
+        int numOfQuestions = questions.size();
+        HashMap<String, Integer> questionResponsesCounter = new HashMap<String, Integer>();
+        //int[][] questionResponsesCounter = new int[numOfQuestions][];
         //String responsePath;
         //int surveyNumber;
+        /*for (Question q : questions) {
+            if (q instanceof TrueOrFalse) {
+                System.out.println(Arrays.toString(q.getQuestionChoices()));
+            }
+        }*/
+        for (int i = 0; i < questions.size(); i++) {
+            System.out.println(questions.get(i).getPrompt());
+            if (questions.get(i) instanceof TrueOrFalse) {
+                System.out.println(Arrays.toString(questions.get(i).getQuestionChoices()));
+                questionResponsesCounter.put("True", 0);
+                questionResponsesCounter.put("False", 0);
+            }
+        }
+
 
         //new File("." + File.separator + this.responsesFolderName + File.separator + survey.nameOfSurvey + "_responses").mkdirs(); - i just used 'if (!f.exists() || files.length == 0)' instead of this
 
@@ -136,26 +155,34 @@ public class Serialize implements Serializable {
         if (!f.exists() || files.length == 0) {
             Display.displayString("There are no responses to the chosen survey yet.\n");
         } else {
-            int responseCount = 0;
+            int responseFileCount = 0;
             for (File file : files) {
                 System.out.println(file.getName()); // debugger
-
                 try {
-                    FileInputStream fileIn = new FileInputStream("." + File.separator + this.responsesFolderName + File.separator + survey.nameOfSurvey + "_responses" + File.separator + survey.nameOfSurvey + "_response" + (responseCount + 1) + ".ser");
+                    FileInputStream fileIn = new FileInputStream("." + File.separator + this.responsesFolderName + File.separator + survey.nameOfSurvey + "_responses" + File.separator + survey.nameOfSurvey + "_response" + (responseFileCount + 1) + ".ser");
                     ObjectInputStream in = new ObjectInputStream(fileIn);
                     surveyResponse = (String[][]) in.readObject();
                     in.close();
                     fileIn.close();
-                    Display.displayString("Response file " + "." + File.separator + this.responsesFolderName + File.separator + survey.nameOfSurvey + "_responses" + File.separator + survey.nameOfSurvey + "_response" + (responseCount + 1) + ".ser has been loaded.\n");
+                    Display.displayString("Response file " + "." + File.separator + this.responsesFolderName + File.separator + survey.nameOfSurvey + "_responses" + File.separator + survey.nameOfSurvey + "_response" + (responseFileCount + 1) + ".ser has been loaded.\n");
                 } catch (IOException i) {
                     i.printStackTrace();
                 } catch (ClassNotFoundException c) {
                     Display.displayString("Survey class not found");
                     c.printStackTrace();
                 }
-                responseCount++;
+
+                System.out.println("seeing array of arrays" + Arrays.deepToString(surveyResponse)); // debugger
+                for (String[] a : surveyResponse) {
+                    for (String r : a) {
+                        questionResponsesCounter.put(r, questionResponsesCounter.get(r) + 1);
+                    }
+                }
+
+                responseFileCount++;
             }
         }
+        System.out.println(questionResponsesCounter);
 
         return surveyResponse;
     }
