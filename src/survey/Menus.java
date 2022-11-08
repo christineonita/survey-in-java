@@ -5,9 +5,9 @@ import java.io.Serializable;
 public class Menus implements Serializable {
     private static final long serialVersionUID = 5292926198099734510L;
 
-    private final String[] surveyOrTestMenu = {"Survey", "Test"};
+    private final String[] surveyOrTestMenu = {"Survey", "Test", "Quit"};
     private final String[] surveyMenu = {"Create a new survey", "Display an existing Survey", "Load an existing Survey", "Save the current Survey",
-            "Take an existing Survey", "Modify an existing Survey", "Quit"};
+            "Take an existing Survey", "Modify an existing Survey", "Tabulate a survey", "Return to previous menu"};
     private final String[] questionTypes = {"Add a new T/F question", "Add a new multiple-choice question", "Add a new short answer question", "Add a new essay question",
             "Add a new date question", "Add a new matching question", "Return to previous menu"};
 
@@ -23,8 +23,12 @@ public class Menus implements Serializable {
             case 2:
                 Display.displayString("no code for test at all yet");
                 break; // remove this after adding test menu
+            case 3:
+                System.exit(0);
+                Display.displayString("Quitting program.... Bye!");
+                break;
             default:
-                Display.displayString("Please enter an integer value heyyyy 1 and " + surveyOrTestMenu.length);
+                Display.displayString("Please enter an integer value between 1 and " + surveyOrTestMenu.length);
                 break;
         }
     }
@@ -80,9 +84,10 @@ public class Menus implements Serializable {
                     }
                     break;
                 case 7:
-                    System.exit(0);
-                    Display.displayString("Quitting program.... Bye!");
+                    System.out.println("need code to tabulate survey");
                     break;
+                case 8:
+                    mainMenu();
                 default:
                     Display.displayString("Please enter an integer value between 1 and " + surveyMenu.length);
                     break;
