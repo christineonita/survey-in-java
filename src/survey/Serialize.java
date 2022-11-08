@@ -96,7 +96,7 @@ public class Serialize implements Serializable {
         return survey;
     }
 
-    protected void saveUserAnswers(String[] userAnswers, String surveyResponseFolder, String name) {
+    protected void saveUserAnswers(String[][] userAnswers, String surveyResponseFolder, String name) {
         String pth;
         String responsesFolderPerSurvey = surveyResponseFolder + File.separator + name + "_responses";
 
@@ -118,7 +118,45 @@ public class Serialize implements Serializable {
     }
 
 
-    protected void displayUserResponses(ArrayList<Question> questions, String[] userAnswers) {
+    protected void displayUserResponses(ArrayList<Question> questions, String[][] userAnswers) {
         Display.displayResponses(questions, userAnswers);
+    }
+
+    public String[][] loadSurveyResponses(Survey survey, ArrayList<Question> questions) { // todo - finish making this
+        String[][] surveyResponse = new String[0][];
+        //String responsePath;
+        //int surveyNumber;
+
+        //new File("." + File.separator + this.responsesFolderName + File.separator + survey.nameOfSurvey + "_responses").mkdirs(); - i just used 'if (!f.exists() || files.length == 0)' instead of this
+
+        File f = new File("." + File.separator + this.responsesFolderName + File.separator + survey.nameOfSurvey + "_responses");
+
+        File[] files = f.listFiles();
+
+        if (!f.exists() || files.length == 0) {
+            Display.displayString("There are no responses to the chosen survey yet.\n");
+        } else {
+            int responseCount = 0;
+            for (File file : files) {
+                System.out.println(file.getName()); // debugger
+
+                try {
+                    FileInputStream fileIn = new FileInputStream("." + File.separator + this.responsesFolderName + File.separator + survey.nameOfSurvey + "_responses" + File.separator + survey.nameOfSurvey + "_response" + (responseCount + 1) + ".ser");
+                    ObjectInputStream in = new ObjectInputStream(fileIn);
+                    surveyResponse = (String[][]) in.readObject();
+                    in.close();
+                    fileIn.close();
+                    Display.displayString("Response file " + "." + File.separator + this.responsesFolderName + File.separator + survey.nameOfSurvey + "_responses" + File.separator + survey.nameOfSurvey + "_response" + (responseCount + 1) + ".ser has been loaded.\n");
+                } catch (IOException i) {
+                    i.printStackTrace();
+                } catch (ClassNotFoundException c) {
+                    Display.displayString("Survey class not found");
+                    c.printStackTrace();
+                }
+                responseCount++;
+            }
+        }
+
+        return surveyResponse;
     }
 }

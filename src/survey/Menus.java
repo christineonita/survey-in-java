@@ -1,6 +1,7 @@
 package survey;
 
 import java.io.Serializable;
+import java.util.Arrays;
 
 public class Menus implements Serializable {
     private static final long serialVersionUID = 5292926198099734510L;
@@ -35,6 +36,7 @@ public class Menus implements Serializable {
 
     public void mainSurveyMenu() {
         Survey survey = new Survey();
+        String[][] survResponse;// = new Response();
         int selectedSurveyMenuItem;
 
         while (true) {
@@ -84,7 +86,10 @@ public class Menus implements Serializable {
                     }
                     break;
                 case 7:
-                    System.out.println("need code to tabulate survey");
+                    System.out.println("need to finish code code for tabulating survey");
+                    survey = loadSurvey();
+                    survResponse = loadSurveyResponses(survey);
+                    System.out.println("seeing array of arrays" + Arrays.deepToString(survResponse)); // debugger
                     break;
                 case 8:
                     mainMenu();
@@ -94,6 +99,11 @@ public class Menus implements Serializable {
 
             }
         }
+    }
+
+    public String[][] loadSurveyResponses(Survey survey) {
+        Serialize serialize = new Serialize();
+        return serialize.loadSurveyResponses(survey, survey.questions);
     }
 
     public Survey loadSurvey() {

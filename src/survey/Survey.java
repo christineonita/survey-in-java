@@ -2,6 +2,7 @@ package survey;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Survey implements Serializable {
 
@@ -9,7 +10,7 @@ public class Survey implements Serializable {
     public String nameOfSurvey;
     String surveyResponseFolder;// = "SurveyResponses";
     ArrayList<Question> questions = null;
-    String[] userAnswers;
+    String[][] userAnswers;
     String newPrompt;
     String modifyPrompt;
     String modifyChoicesYesOrNo, modifyColumnChoicesYesOrNo;
@@ -102,12 +103,18 @@ public class Survey implements Serializable {
     public void take() {
         int x = 0;
         Serialize serialize = new Serialize();
-        userAnswers = new String[this.questions.size()];
+        System.out.println("num of questions    =     " + this.questions.size());// debugger
+        userAnswers = new String[this.questions.size()][];
+
 
         for (Question question : questions) {
             System.out.print("Question " + (x + 1) + ". "); //not using println here so a new line doesn't print
             question.take();
-            this.userAnswers[x] = question.userResponse;
+
+            question.questionResponses = new String[1]; //because each question array is always of size one but responses seprated by newline
+            question.questionResponses[0] = question.userResponse;
+
+            this.userAnswers[x] = question.questionResponses;
 
             // ----------  this commented out part is the foundation for how i will get responses to compare for tests --------  DO NOT DELETE UNTIL I AM DONE!!!!!!
             /*System.out.println(">" + question.userResponse.split("\\r?\\n")[0] + "<");
@@ -121,8 +128,9 @@ public class Survey implements Serializable {
 
             x++;
         }
+        System.out.println("seeing array of arrays" + Arrays.deepToString(this.userAnswers)); // debugger
 
-        serialize.displayUserResponses(this.questions, userAnswers);
+        serialize.displayUserResponses(this.questions, this.userAnswers);
 
         serialize.saveUserAnswers(userAnswers, surveyResponseFolder, nameOfSurvey);
     }
