@@ -123,7 +123,7 @@ public class Serialize implements Serializable {
         Display.displayResponses(questions, userAnswers);
     }
 
-    public String[][] loadSurveyResponses(Survey survey, ArrayList<Question> questions) { // todo - finish making this
+    public /*String[][]*/ void loadSurveyResponses(Survey survey, ArrayList<Question> questions) { // todo - finish making this
         String[][] surveyResponse = new String[0][];
         int numOfQuestions = questions.size();
         HashMap<String, Integer> questionResponsesCounter = null;
@@ -188,22 +188,21 @@ public class Serialize implements Serializable {
                     responseFileCount++;
                 }
             }
-            System.out.println(questions.get(i).getPrompt() + "\n" + questionResponsesCounter);
+            //System.out.println(questions.get(i).getPrompt() + "\n" + questionResponsesCounter);
+            printPromptAndResponseCount(questions.get(i).getPrompt(), questionResponsesCounter);
             questionResponsesCounter.clear();// this clears the hashmap after each question
         }
 
+        //return surveyResponse;
+    }
 
-        /*for (int i = 0; i < questions.size(); i++) {
-            questionResponsesCounter = new HashMap<String, Integer>();
-            System.out.println(questions.get(i).getPrompt());
-            if (questions.get(i) instanceof TrueOrFalse) {
-                //System.out.println(Arrays.toString(questions.get(i).getQuestionChoices()));
-                questionResponsesCounter.put("True", 0);
-                questionResponsesCounter.put("False", 0);
-            }
-        }*/
+    private void printPromptAndResponseCount(String prompt, HashMap<String, Integer> questionResponsesCounter) {
+        System.out.println(prompt);
 
+        questionResponsesCounter.entrySet().forEach(entry -> {
+            System.out.println(entry.getKey() + ": " + entry.getValue());
+        });
 
-        return surveyResponse;
+        System.out.println();
     }
 }
