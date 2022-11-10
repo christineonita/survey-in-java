@@ -92,8 +92,8 @@ public abstract class Question implements Serializable {
 
     }
 
-    public void populate(HashMap<String, Integer> responsesCounter) {
-    }
+    /*public void populate(HashMap<String, Integer> responsesCounter) {
+    }*/
 
 
     public void tabulate(HashMap<String, Integer> questionResponsesCounter) {

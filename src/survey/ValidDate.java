@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 
 public class ValidDate extends Question implements Serializable {
     private static final long serialVersionUID = 1471791369487669173L;
@@ -45,4 +46,15 @@ public class ValidDate extends Question implements Serializable {
     }
 
 
+    @Override
+    public void tabulate(HashMap<String, Integer> questionResponsesCounter) {
+        System.out.println(this.getPrompt());
+
+        questionResponsesCounter.entrySet().forEach(entry -> {
+            System.out.println(entry.getKey()/* + ": " + entry.getValue()*/);
+            System.out.println(entry.getValue() + "\n");
+        });
+
+        System.out.println();
+    }
 }

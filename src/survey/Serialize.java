@@ -130,32 +130,18 @@ public class Serialize implements Serializable {
         String[][] questionResponse = new String[0][];
 
         HashMap<String, Integer> questionResponsesCounter = null;
-        for (int i = 0; i < questions.size(); i++) {
-            questionResponsesCounter = new HashMap<String, Integer>();
 
-            if (!f.exists() || files.length == 0) {
-                Display.displayString("There are no responses to the chosen survey yet.\n");
-            } else { // todo - fix this since the things done for each question type is similar
-                if (questions.get(i) instanceof TrueOrFalse || questions.get(i) instanceof MultipleChoice) {
-                    questions.get(i).populate(questionResponsesCounter);
+        if (!f.exists() || files.length == 0) {
+            Display.displayString("There are no responses to the chosen survey yet.\n");
+        } else {
+            for (int i = 0; i < questions.size(); i++) {
+                questionResponsesCounter = new HashMap<String, Integer>();
 
-                    countResponses(survey.nameOfSurvey, files, questionResponse, i, questionResponsesCounter);
-                    questions.get(i).tabulate(questionResponsesCounter);
-                    //questionResponsesCounter.clear();// this clears the hashmap after each question
-
-                } else if (questions.get(i) instanceof ShortAnswer || questions.get(i) instanceof Essay) {
-
-
-                    countResponses(survey.nameOfSurvey, files, questionResponse, i, questionResponsesCounter);
-                    questions.get(i).tabulate(questionResponsesCounter);
-                    //questionResponsesCounter.clear();
-
-                }
-
+                countResponses(survey.nameOfSurvey, files, questionResponse, i, questionResponsesCounter);
+                questions.get(i).tabulate(questionResponsesCounter);
+                questionResponsesCounter.clear(); // this clears the hashmap after each question
             }
-            questionResponsesCounter.clear();
         }
-
     }
 
     protected void countResponses(String nameOfSurvey, File[] files, String[][] questionResponse, int loop, HashMap<String, Integer> questionResponsesCounter) {
