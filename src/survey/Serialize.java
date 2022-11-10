@@ -124,55 +124,58 @@ public class Serialize implements Serializable {
     }
 
     public /*String[][]*/ void tabulateSurvey(Survey survey, ArrayList<Question> questions) { // todo - finish making this
-        String[][] surveyResponse = new String[0][];
-        int numOfQuestions = questions.size();
+        File f = new File("." + File.separator + this.responsesFolderName + File.separator + survey.nameOfSurvey + "_responses");
+
+        File[] files = f.listFiles();
+        String[][] questionResponse = new String[0][];
+
         HashMap<String, Integer> questionResponsesCounter = null;
         for (int i = 0; i < questions.size(); i++) {
             questionResponsesCounter = new HashMap<String, Integer>();
-            //System.out.println(questions.get(i).getPrompt());
-            if (questions.get(i) instanceof TrueOrFalse) {
-                //System.out.println(Arrays.toString(questions.get(i).getQuestionChoices()));
-                questionResponsesCounter.put("True", 0);
-                questionResponsesCounter.put("False", 0);
-            } else if (questions.get(i) instanceof MultipleChoice) {
-                for (String choice : questions.get(i).getQuestionChoices()) {
-                    questionResponsesCounter.put(choice, 0);
-                }
-            }
-
-
-            //new File("." + File.separator + this.responsesFolderName + File.separator + survey.nameOfSurvey + "_responses").mkdirs(); - i just used 'if (!f.exists() || files.length == 0)' instead of this
-
-            File f = new File("." + File.separator + this.responsesFolderName + File.separator + survey.nameOfSurvey + "_responses");
-
-            File[] files = f.listFiles();
 
             if (!f.exists() || files.length == 0) {
                 Display.displayString("There are no responses to the chosen survey yet.\n");
-            } else {
-                countResponses(survey.nameOfSurvey, files, surveyResponse, i, questionResponsesCounter);
+            } else { // todo - fix this since the things done for each question type is similar
+                if (questions.get(i) instanceof TrueOrFalse || questions.get(i) instanceof MultipleChoice) {
+                    questions.get(i).populate(questionResponsesCounter);
+
+                    countResponses(survey.nameOfSurvey, files, questionResponse, i, questionResponsesCounter);
+                    questions.get(i).tabulate(questionResponsesCounter);
+                    //questionResponsesCounter.clear();// this clears the hashmap after each question
+
+                } else if (questions.get(i) instanceof ShortAnswer || questions.get(i) instanceof Essay) {
+
+
+                    countResponses(survey.nameOfSurvey, files, questionResponse, i, questionResponsesCounter);
+                    questions.get(i).tabulate(questionResponsesCounter);
+                    //questionResponsesCounter.clear();
+
+                }
 
             }
-            //System.out.println(questions.get(i).getPrompt() + "\n" + questionResponsesCounter);
-            printPromptAndResponseCount(questions.get(i).getPrompt(), questionResponsesCounter);
-            questionResponsesCounter.clear();// this clears the hashmap after each question
+            questionResponsesCounter.clear();
         }
 
-        //return surveyResponse;
     }
 
-    private void countResponses(String nameOfSurvey, File[] files, String[][] surveyResponse, int loop, HashMap<String, Integer> questionResponsesCounter) {
+    protected void countResponses(String nameOfSurvey, File[] files, String[][] questionResponse, int loop, HashMap<String, Integer> questionResponsesCounter) {
         int responseFileCount = 0;
         for (File file : files) {
             //System.out.println(file.getName()); // debugger
             try {
                 FileInputStream fileIn = new FileInputStream("." + File.separator + this.responsesFolderName + File.separator + nameOfSurvey + "_responses" + File.separator + nameOfSurvey + "_response" + (responseFileCount + 1) + ".ser");
                 ObjectInputStream in = new ObjectInputStream(fileIn);
-                surveyResponse = (String[][]) in.readObject();
+                questionResponse = (String[][]) in.readObject();
                 //System.out.println("seeing array of arrays" + Arrays.deepToString(surveyResponse)); // debugger
-                String lines[] = surveyResponse[loop][0].split("\\r?\\n");
+                String lines[] = questionResponse[loop][0].split("\\r?\\n");
                 for (int x = 0; x < lines.length; x++) {
-                    questionResponsesCounter.put(lines[x], questionResponsesCounter.get(lines[x]) + 1);
+
+                    if (!questionResponsesCounter.containsKey(lines[x])) {
+                        //System.out.println(">" + lines[x] + "<"); // debugger
+                        questionResponsesCounter.put(lines[x], 1);
+                    } else {
+                        questionResponsesCounter.put(lines[x], questionResponsesCounter.get(lines[x]) + 1);
+                    }
                 }
                 in.close();
                 fileIn.close();
@@ -187,13 +190,5 @@ public class Serialize implements Serializable {
         }
     }
 
-    private void printPromptAndResponseCount(String prompt, HashMap<String, Integer> questionResponsesCounter) {
-        System.out.println(prompt);
 
-        questionResponsesCounter.entrySet().forEach(entry -> {
-            System.out.println(entry.getKey() + ": " + entry.getValue());
-        });
-
-        System.out.println();
-    }
 }

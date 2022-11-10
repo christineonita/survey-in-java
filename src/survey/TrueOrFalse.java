@@ -1,6 +1,7 @@
 package survey;
 
 import java.io.Serializable;
+import java.util.HashMap;
 
 public class TrueOrFalse extends MultipleChoice implements Serializable {
 
@@ -49,5 +50,21 @@ public class TrueOrFalse extends MultipleChoice implements Serializable {
         return trueOrFalseQuestionChoices;
     }
 
+    @Override
+    public void populate(HashMap<String, Integer> responsesCounter) {
+        for (String choice : getQuestionChoices()) {
+            responsesCounter.put(choice, 0);
+        }
+    }
 
+    @Override
+    public void tabulate(HashMap<String, Integer> questionResponsesCounter) {
+        System.out.println(this.getPrompt());
+
+        questionResponsesCounter.entrySet().forEach(entry -> {
+            System.out.println(entry.getKey() + ": " + entry.getValue());
+        });
+
+        System.out.println();
+    }
 }

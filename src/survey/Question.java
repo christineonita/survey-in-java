@@ -1,6 +1,7 @@
 package survey;
 
 import java.io.Serializable;
+import java.util.HashMap;
 
 public abstract class Question implements Serializable {
     private static final long serialVersionUID = 1399189310822722123L;
@@ -89,5 +90,12 @@ public abstract class Question implements Serializable {
 
     public void modifySecondColumnItem(int i, String newItem) {
 
+    }
+
+    public void populate(HashMap<String, Integer> responsesCounter) {
+    }
+
+
+    public void tabulate(HashMap<String, Integer> questionResponsesCounter) {
     }
 }

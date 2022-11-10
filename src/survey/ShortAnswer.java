@@ -1,6 +1,7 @@
 package survey;
 
 import java.io.Serializable;
+import java.util.HashMap;
 
 public class ShortAnswer extends Essay implements Serializable {
     private static final long serialVersionUID = -3786764219358424837L;
@@ -68,5 +69,17 @@ public class ShortAnswer extends Essay implements Serializable {
         } else {
             this.shortAnswerLimit = enteredLimit;
         }
+    }
+
+
+    @Override
+    public void tabulate(HashMap<String, Integer> questionResponsesCounter) {
+        System.out.println(this.getPrompt());
+
+        questionResponsesCounter.entrySet().forEach(entry -> {
+            System.out.println(entry.getKey() + ": " + entry.getValue());
+        });
+
+        System.out.println();
     }
 }
