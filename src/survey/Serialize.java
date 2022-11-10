@@ -123,7 +123,7 @@ public class Serialize implements Serializable {
         Display.displayResponses(questions, userAnswers);
     }
 
-    public /*String[][]*/ void loadSurveyResponses(Survey survey, ArrayList<Question> questions) { // todo - finish making this
+    public /*String[][]*/ void tabulateSurvey(Survey survey, ArrayList<Question> questions) { // todo - finish making this
         String[][] surveyResponse = new String[0][];
         int numOfQuestions = questions.size();
         HashMap<String, Integer> questionResponsesCounter = null;

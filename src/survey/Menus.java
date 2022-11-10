@@ -88,7 +88,7 @@ public class Menus implements Serializable {
                     System.out.println("need to finish code code for tabulating survey");
                     survey = loadSurvey();
                     /*survResponse = */
-                    loadSurveyResponses(survey);
+                    tabulateSurvey(survey);
                     //System.out.println("seeing array of arrays" + Arrays.deepToString(survResponse)); // debugger
                     break;
                 case 8:
@@ -101,10 +101,10 @@ public class Menus implements Serializable {
         }
     }
 
-    public /*String[][]*/ void loadSurveyResponses(Survey survey) {
+    public /*String[][]*/ void tabulateSurvey(Survey survey) {
         Serialize serialize = new Serialize();
-        //return serialize.loadSurveyResponses(survey, survey.questions);
-        serialize.loadSurveyResponses(survey, survey.questions);
+        //return serialize.tabulateSurvey(survey, survey.questions);
+        serialize.tabulateSurvey(survey, survey.questions);
     }
 
     public Survey loadSurvey() {
