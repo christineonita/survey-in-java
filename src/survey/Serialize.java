@@ -150,43 +150,8 @@ public class Serialize implements Serializable {
             if (!f.exists() || files.length == 0) {
                 Display.displayString("There are no responses to the chosen survey yet.\n");
             } else {
-                int responseFileCount = 0;
-                for (File file : files) {
-                    //System.out.println(file.getName()); // debugger
-                    try {
-                        FileInputStream fileIn = new FileInputStream("." + File.separator + this.responsesFolderName + File.separator + survey.nameOfSurvey + "_responses" + File.separator + survey.nameOfSurvey + "_response" + (responseFileCount + 1) + ".ser");
-                        ObjectInputStream in = new ObjectInputStream(fileIn);
-                        surveyResponse = (String[][]) in.readObject();
-                        //System.out.println("seeing array of arrays" + Arrays.deepToString(surveyResponse)); // debugger
-                        //for (String[] a : surveyResponse) {
-                        //for (String r : a) {
-                        String lines[] = surveyResponse[i][0].split("\\r?\\n");
-                        for (int x = 0; x < lines.length; x++) {
-                            questionResponsesCounter.put(lines[x], questionResponsesCounter.get(lines[x]) + 1);
-                        }
+                countResponses(survey.nameOfSurvey, files, surveyResponse, i, questionResponsesCounter);
 
-                        //}
-                        //}
-                        //System.out.println(questionResponsesCounter);
-                        in.close();
-                        fileIn.close();
-                        //Display.displayString("Response file " + "." + File.separator + this.responsesFolderName + File.separator + survey.nameOfSurvey + "_responses" + File.separator + survey.nameOfSurvey + "_response" + (responseFileCount + 1) + ".ser has been loaded.\n");
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    } catch (ClassNotFoundException c) {
-                        Display.displayString("Survey class not found");
-                        c.printStackTrace();
-                    }
-
-
-                /*for (String[] a : surveyResponse) {
-                    for (String r : a) {
-                        questionResponsesCounter.put(r, questionResponsesCounter.get(r) + 1);
-                    }
-                }*/
-
-                    responseFileCount++;
-                }
             }
             //System.out.println(questions.get(i).getPrompt() + "\n" + questionResponsesCounter);
             printPromptAndResponseCount(questions.get(i).getPrompt(), questionResponsesCounter);
@@ -194,6 +159,32 @@ public class Serialize implements Serializable {
         }
 
         //return surveyResponse;
+    }
+
+    private void countResponses(String nameOfSurvey, File[] files, String[][] surveyResponse, int loop, HashMap<String, Integer> questionResponsesCounter) {
+        int responseFileCount = 0;
+        for (File file : files) {
+            //System.out.println(file.getName()); // debugger
+            try {
+                FileInputStream fileIn = new FileInputStream("." + File.separator + this.responsesFolderName + File.separator + nameOfSurvey + "_responses" + File.separator + nameOfSurvey + "_response" + (responseFileCount + 1) + ".ser");
+                ObjectInputStream in = new ObjectInputStream(fileIn);
+                surveyResponse = (String[][]) in.readObject();
+                //System.out.println("seeing array of arrays" + Arrays.deepToString(surveyResponse)); // debugger
+                String lines[] = surveyResponse[loop][0].split("\\r?\\n");
+                for (int x = 0; x < lines.length; x++) {
+                    questionResponsesCounter.put(lines[x], questionResponsesCounter.get(lines[x]) + 1);
+                }
+                in.close();
+                fileIn.close();
+                //Display.displayString("Response file " + "." + File.separator + this.responsesFolderName + File.separator + survey.nameOfSurvey + "_responses" + File.separator + survey.nameOfSurvey + "_response" + (responseFileCount + 1) + ".ser has been loaded.\n");
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException c) {
+                Display.displayString("Survey class not found");
+                c.printStackTrace();
+            }
+            responseFileCount++;
+        }
     }
 
     private void printPromptAndResponseCount(String prompt, HashMap<String, Integer> questionResponsesCounter) {
