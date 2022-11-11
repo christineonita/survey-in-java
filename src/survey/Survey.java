@@ -112,9 +112,12 @@ public class Survey implements Serializable {
             question.take();
 
             question.questionResponses = new String[1]; //because each question array is always of size one but responses seprated by newline
-            question.questionResponses[0] = question.userResponse;
 
-            this.userAnswers[x] = question.questionResponses;
+            //question.questionResponses[0] = question.userResponse;
+            question.setResponses(question.userResponse);
+
+            //this.userAnswers[x] = question.questionResponses;
+            this.userAnswers[x] = question.getResponses();
 
             // ----------  this commented out part is the foundation for how i will get responses to compare for tests --------  DO NOT DELETE UNTIL I AM DONE!!!!!!
             /*System.out.println(">" + question.userResponse.split("\\r?\\n")[0] + "<");

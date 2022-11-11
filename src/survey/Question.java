@@ -8,8 +8,10 @@ public abstract class Question implements Serializable {
     public String[] questionResponses;
     protected String prompt, userResponse = "";
     protected String[] choices;
+    ResponseCorrectAnswer responseCorrectAnswer;
 
     Question() {
+
     }
 
     public abstract void take();
@@ -97,5 +99,13 @@ public abstract class Question implements Serializable {
 
 
     public void tabulate(HashMap<String, Integer> questionResponsesCounter) {
+    }
+
+    public String[] getResponses() {
+        return questionResponses;
+    }
+
+    public void setResponses(String userResponse) {
+        questionResponses[0] = userResponse;
     }
 }
