@@ -5,13 +5,13 @@ import java.util.HashMap;
 
 public abstract class Question implements Serializable {
     private static final long serialVersionUID = 1399189310822722123L;
-    public String[] questionResponses;
+
     protected String prompt, userResponse = "";
     protected String[] choices;
-    ResponseCorrectAnswer responseCorrectAnswer;
+    ResponseCorrectAnswer responseCorrectAnswer = new ResponseCorrectAnswer();
 
     Question() {
-
+        //responseCorrectAnswer = new ResponseCorrectAnswer();
     }
 
     public abstract void take();
@@ -102,10 +102,12 @@ public abstract class Question implements Serializable {
     }
 
     public String[] getResponses() {
-        return questionResponses;
+        return responseCorrectAnswer.getResponses();
+        //return questionResponses;
     }
 
     public void setResponses(String userResponse) {
-        questionResponses[0] = userResponse;
+        responseCorrectAnswer.setResponses(userResponse);
+        //questionResponses[0] = userResponse;
     }
 }

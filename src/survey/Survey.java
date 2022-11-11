@@ -111,8 +111,6 @@ public class Survey implements Serializable {
             System.out.print("Question " + (x + 1) + ". "); //not using println here so a new line doesn't print
             question.take();
 
-            question.questionResponses = new String[1]; //because each question array is always of size one but responses seprated by newline
-
             //question.questionResponses[0] = question.userResponse;
             question.setResponses(question.userResponse);
 
