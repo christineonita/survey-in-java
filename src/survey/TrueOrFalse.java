@@ -67,4 +67,24 @@ public class TrueOrFalse extends MultipleChoice implements Serializable {
 
         System.out.println();
     }
+
+    @Override
+    public void setCorrectAnswer() {
+        Display.displayString(getPrompt());
+        Display.displayStringArray(trueOrFalseQuestionChoices);
+        Display.displayString("Enter the correct answer(s) for this question.");
+        askCreatorForChoices();
+    }
+
+    public void askCreatorForChoices() {
+        Display.displayString("Please enter your choice #: ");
+
+        setSingleCreatorAnswer(UserInput.getOption(0, 2 + 1));
+    }
+
+    public void setSingleCreatorAnswer(int option) {
+        trueOrFalseChoice = this.trueOrFalseQuestionChoices[option - 1];
+        this.correctAnswer = trueOrFalseChoice;
+        responseCorrectAnswer.setCorrectAnswer(this.correctAnswer);
+    }
 }

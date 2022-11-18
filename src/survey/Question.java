@@ -6,7 +6,7 @@ import java.util.HashMap;
 public abstract class Question implements Serializable {
     private static final long serialVersionUID = 1399189310822722123L;
 
-    protected String prompt, userResponse = "";
+    protected String prompt, userResponse = "", correctAnswer = "";
     protected String[] choices;
     ResponseCorrectAnswer responseCorrectAnswer = new ResponseCorrectAnswer();
 
@@ -110,4 +110,11 @@ public abstract class Question implements Serializable {
         responseCorrectAnswer.setResponses(userResponse);
         //questionResponses[0] = userResponse;
     }
+
+    public void setCorrectAnswer() {
+        //responseCorrectAnswer.setCorrectAnswer(correctAnswer);
+    }
+
+
+    //i would also need a getCorrectAnswer method for questions
 }

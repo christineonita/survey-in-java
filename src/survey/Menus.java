@@ -37,56 +37,6 @@ public class Menus implements Serializable {
         }
     }
 
-    public void mainTestMenu() {
-        Test test = new Test();
-        int selectedTestMenuItem;
-
-        while (true) {
-            Display.displayStringArray(testMenu);
-
-            selectedTestMenuItem = UserInput.getOption(0, testMenu.length + 1);
-
-            switch (selectedTestMenuItem) {
-                case 1:
-                    Display.displayString("code needed for ------Create a new Test------");
-                    break;
-                case 2:
-                    Display.displayString("code needed for ------Display an existing Test without correct answers------");
-                    break;
-                case 3:
-                    Display.displayString("code needed for ------Display an existing Test with correct answers------");
-                    break;
-                case 4:
-                    Display.displayString("code needed for ------Load an existing Test------");
-                    break;
-                case 5:
-                    Display.displayString("code needed for ------Save the current Test------");
-                    break;
-                case 6:
-                    Display.displayString("code needed for ------Take the current Test------");
-                    break;
-                case 7:
-                    Display.displayString("code needed for ------Modify the current Test------");
-                    break;
-                case 8:
-                    Display.displayString("code needed for ------Tabulate a Test------");
-                    break;
-                case 9:
-                    Display.displayString("code needed for ------Grade a Test------");
-                    break;
-                case 10:
-                    mainMenu();
-                /*case 11:
-                    Display.displayString("Quitting program.... Bye!");
-                    System.exit(0);
-                    break;*/
-                default:
-                    Display.displayString("Please enter an integer value between 1 and " + testMenu.length);
-                    break;
-            }
-        }
-    }
-
     public void mainSurveyMenu() {
         Survey survey = new Survey();
         String[][] survResponse;// = new Response();
@@ -159,22 +109,6 @@ public class Menus implements Serializable {
         }
     }
 
-    public /*String[][]*/ void tabulateSurvey(Survey survey) {
-        Serialize serialize = new Serialize();
-        //return serialize.tabulateSurvey(survey, survey.questions);
-        serialize.tabulateSurvey(survey, survey.questions);
-    }
-
-    public Survey loadSurvey() {
-        Serialize serialize = new Serialize();
-        return serialize.loadSurvey();
-    }
-
-    public void saveSurvey(Survey survey) {
-        Serialize serialize = new Serialize();
-        serialize.saveSurvey(survey);
-    }
-
     public Survey questionTypesMenu(Survey survey) {
         int selectedQuestionType;
         survey.clearAllQuestions();
@@ -231,4 +165,133 @@ public class Menus implements Serializable {
         }
         return survey;
     }
+
+    public void mainTestMenu() {
+        Test test = new Test();
+        int selectedTestMenuItem;
+
+        while (true) {
+            Display.displayStringArray(testMenu);
+
+            selectedTestMenuItem = UserInput.getOption(0, testMenu.length + 1);
+
+            switch (selectedTestMenuItem) {
+                case 1:
+                    //Display.displayString("code needed for ------Create a new Test------");
+                    test = questionTypesMenu(test);
+                    break;
+                case 2:
+                    Display.displayString("code needed for ------Display an existing Test without correct answers------");
+                    break;
+                case 3:
+                    Display.displayString("code needed for ------Display an existing Test with correct answers------");
+                    break;
+                case 4:
+                    Display.displayString("code needed for ------Load an existing Test------");
+                    break;
+                case 5:
+                    //Display.displayString("code needed for ------Save the current Test------");
+                    saveTest(test);
+                    break;
+                case 6:
+                    Display.displayString("code needed for ------Take the current Test------");
+                    break;
+                case 7:
+                    Display.displayString("code needed for ------Modify the current Test------");
+                    break;
+                case 8:
+                    Display.displayString("code needed for ------Tabulate a Test------");
+                    break;
+                case 9:
+                    Display.displayString("code needed for ------Grade a Test------");
+                    break;
+                case 10:
+                    mainMenu();
+                /*case 11:
+                    Display.displayString("Quitting program.... Bye!");
+                    System.exit(0);
+                    break;*/
+                default:
+                    Display.displayString("Please enter an integer value between 1 and " + testMenu.length);
+                    break;
+            }
+        }
+    }
+
+    public Test questionTypesMenu(Test test) {
+        int selectedQuestionType;
+        test.clearAllQuestions();
+        boolean n = true;
+        String saveBeforeLeaving;
+
+        while (n) {
+            // prints survey menu
+            Display.displayStringArray(questionTypes);
+
+            // accepts user input to choose option
+            selectedQuestionType = UserInput.getOption(0, questionTypes.length + 1);
+
+            switch (selectedQuestionType) {
+                case 1:
+                    test.addTrueOrFalse();
+                    break;
+                /*case 2:
+                    test.addMultipleChoice();
+                    break;
+                case 3:
+                    test.addShortAnswer();
+                    break;
+                case 4:
+                    test.addEssay();
+                    break;
+                case 5:
+                    test.addValidDate();
+                    break;
+                case 6:
+                    test.addMatching();
+                    break;*/
+                case 7:
+                    Display.displayString("Save before leaving?");
+
+                    while (true) {
+                        saveBeforeLeaving = UserInput.getString();
+                        if (saveBeforeLeaving.equalsIgnoreCase("yes")) {
+                            saveTest(test);
+                            return test;
+                        } else if (saveBeforeLeaving.equalsIgnoreCase("no")) {
+                            return test;
+                        } else {
+                            Display.displayString("Please enter yes or no.");
+                        }
+                    }
+                default:
+                    return test;
+            }
+        }
+        return test;
+    }
+
+
+    public /*String[][]*/ void tabulateSurvey(Survey survey) {
+        Serialize serialize = new Serialize();
+        //return serialize.tabulateSurvey(survey, survey.questions);
+        serialize.tabulateSurvey(survey, survey.questions);
+    }
+
+    public Survey loadSurvey() {
+        Serialize serialize = new Serialize();
+        return serialize.loadSurvey();
+    }
+
+    public void saveSurvey(Survey survey) {
+        Serialize serialize = new Serialize();
+        serialize.saveSurvey(survey);
+    }
+
+    public void saveTest(Test test) {
+        Serialize serialize = new Serialize();
+        serialize.saveTest(test);
+    }
+
+
 }

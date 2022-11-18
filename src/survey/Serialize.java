@@ -6,7 +6,7 @@ import java.util.HashMap;
 
 public class Serialize implements Serializable {
     private static final long serialVersionUID = 6435622019401604877L;
-    protected String surveyFolderName = "MySurveys", responsesFolderName = "SurveyResponses";
+    protected String surveyFolderName = "MySurveys", responsesFolderName = "SurveyResponses", testFolderName = "MyTests";
     String survName;
 
     Serialize() {
@@ -33,6 +33,29 @@ public class Serialize implements Serializable {
             i.printStackTrace();
         }
         survey.displaySurvey();
+    }
+
+    protected void saveTest(Test test) {
+
+        String testPath, testName;
+        Display.displayString("Enter the name you want to save this file as --> ");
+        testName = UserInput.getString();
+
+        new File("." + File.separator + testFolderName).mkdirs();
+        testPath = testFolderName + File.separator + testName + ".ser";
+
+        try {
+            FileOutputStream fileOut = new FileOutputStream(testPath);
+            ObjectOutputStream out = new ObjectOutputStream(fileOut);
+            out.writeObject(test);
+            out.close();
+            fileOut.close();
+            Display.displayString("Saved in " + testPath);
+            System.out.println(); // just for neatness
+        } catch (IOException i) {
+            i.printStackTrace();
+        }
+        test.displayTest();
     }
 
     protected void modifySurvey(Survey survey, String nameOfSurvey) {
@@ -131,7 +154,7 @@ public class Serialize implements Serializable {
         Display.displayResponses(questions, userAnswers);
     }
 
-    public /*String[][]*/ void tabulateSurvey(Survey survey, ArrayList<Question> questions) { // todo - finish making this
+    public /*String[][]*/ void tabulateSurvey(Survey survey, ArrayList<Question> questions) {
         File f = new File("." + File.separator + this.responsesFolderName + File.separator + survey.nameOfSurvey + "_responses");
 
         File[] files = f.listFiles();
