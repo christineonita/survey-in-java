@@ -52,6 +52,14 @@ public class Serialize implements Serializable {
             i.printStackTrace();
         }
 
+        // this deletes the past responses of the survey being modified since one or more of the responses would be invalid
+        File f = new File(responsesFolderName + File.separator + nameOfSurvey + "_responses");
+        for (File g : f.listFiles()) {
+            g.delete();
+        }
+        f.delete();
+
+
         survey.displaySurvey();
     }
 
