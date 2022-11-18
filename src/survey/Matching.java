@@ -1,6 +1,7 @@
 package survey;
 
 import java.io.Serializable;
+import java.util.HashMap;
 
 public class Matching extends Question implements Serializable {
     private static final long serialVersionUID = -8176926467152362392L;
@@ -177,5 +178,16 @@ public class Matching extends Question implements Serializable {
     @Override
     public int getNumOfSecondColumnItems() {
         return this.numOfSecondColumnItems;
+    }
+
+    @Override
+    public void tabulate(HashMap<String, Integer> questionResponsesCounter) {
+        System.out.println(this.getPrompt());
+
+        questionResponsesCounter.entrySet().forEach(entry -> {
+            System.out.println(entry.getKey() + ": " + entry.getValue());
+        });
+
+        System.out.println();
     }
 }
