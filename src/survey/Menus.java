@@ -7,9 +7,9 @@ public class Menus implements Serializable {
 
     private final String[] surveyOrTestMenu = {"Survey", "Test", "Quit"};
     private final String[] surveyMenu = {"Create a new survey", "Display an existing Survey", "Load an existing Survey", "Save the current Survey",
-            "Take an existing Survey", "Modify an existing Survey", "Tabulate a survey", "Return to previous menu"};
+            "Take an existing Survey", "Modify an existing Survey", "Tabulate a survey", "Return to previous menu", "Quit"};
     private final String[] questionTypes = {"Add a new T/F question", "Add a new multiple-choice question", "Add a new short answer question", "Add a new essay question",
-            "Add a new date question", "Add a new matching question", "Return to previous menu"};
+            "Add a new date question", "Add a new matching question", "Return to previous menu", "Quit"};
 
     public void mainMenu() {
         int surveyOrTest;
@@ -24,8 +24,8 @@ public class Menus implements Serializable {
                 Display.displayString("no code for test at all yet");
                 break; // remove this after adding test menu
             case 3:
-                System.exit(0);
                 Display.displayString("Quitting program.... Bye!");
+                System.exit(0);
                 break;
             default:
                 Display.displayString("Please enter an integer value between 1 and " + surveyOrTestMenu.length);
@@ -93,6 +93,10 @@ public class Menus implements Serializable {
                     break;
                 case 8:
                     mainMenu();
+                case 9:
+                    Display.displayString("Quitting program.... Bye!");
+                    System.exit(0);
+                    break;
                 default:
                     Display.displayString("Please enter an integer value between 1 and " + surveyMenu.length);
                     break;
@@ -163,6 +167,10 @@ public class Menus implements Serializable {
                             Display.displayString("Please enter yes or no.");
                         }
                     }
+                case 8:
+                    Display.displayString("Quitting program.... Bye!");
+                    System.exit(0);
+                    break;
                 default:
                     return survey;
             }
