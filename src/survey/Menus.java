@@ -11,6 +11,9 @@ public class Menus implements Serializable {
     private final String[] questionTypes = {"Add a new T/F question", "Add a new multiple-choice question", "Add a new short answer question", "Add a new essay question",
             "Add a new date question", "Add a new matching question", "Return to previous menu", "Quit"};
 
+    private final String[] testMenu = {"Create a new Test", "Display an existing Test without correct answers", "Display an existing Test with correct answers", "Load an existing Test",
+            "Save the current Test", "Take the current Test", "Modify the current Test", "Tabulate a Test", "Grade a Test", "Return to the previous menu", "Quit"};
+
     public void mainMenu() {
         int surveyOrTest;
         Display.displayStringArray(surveyOrTestMenu);
@@ -21,8 +24,9 @@ public class Menus implements Serializable {
             case 1:
                 mainSurveyMenu();
             case 2:
-                Display.displayString("no code for test at all yet");
-                break; // remove this after adding test menu
+                //Display.displayString("no code for test at all yet");
+                mainTestMenu();
+                //break; // remove this after adding test menu
             case 3:
                 Display.displayString("Quitting program.... Bye!");
                 System.exit(0);
@@ -30,6 +34,56 @@ public class Menus implements Serializable {
             default:
                 Display.displayString("Please enter an integer value between 1 and " + surveyOrTestMenu.length);
                 break;
+        }
+    }
+
+    public void mainTestMenu() {
+        Test test = new Test();
+        int selectedTestMenuItem;
+
+        while (true) {
+            Display.displayStringArray(testMenu);
+
+            selectedTestMenuItem = UserInput.getOption(0, testMenu.length + 1);
+
+            switch (selectedTestMenuItem) {
+                case 1:
+                    Display.displayString("code needed for ------Create a new Test------");
+                    break;
+                case 2:
+                    Display.displayString("code needed for ------Display an existing Test without correct answers------");
+                    break;
+                case 3:
+                    Display.displayString("code needed for ------Display an existing Test with correct answers------");
+                    break;
+                case 4:
+                    Display.displayString("code needed for ------Load an existing Test------");
+                    break;
+                case 5:
+                    Display.displayString("code needed for ------Save the current Test------");
+                    break;
+                case 6:
+                    Display.displayString("code needed for ------Take the current Test------");
+                    break;
+                case 7:
+                    Display.displayString("code needed for ------Modify the current Test------");
+                    break;
+                case 8:
+                    Display.displayString("code needed for ------Tabulate a Test------");
+                    break;
+                case 9:
+                    Display.displayString("code needed for ------Grade a Test------");
+                    break;
+                case 10:
+                    mainMenu();
+                case 11:
+                    Display.displayString("Quitting program.... Bye!");
+                    System.exit(0);
+                    break;
+                default:
+                    Display.displayString("Please enter an integer value between 1 and " + testMenu.length);
+                    break;
+            }
         }
     }
 
