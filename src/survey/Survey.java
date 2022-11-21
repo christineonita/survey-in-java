@@ -82,7 +82,7 @@ public class Survey implements Serializable {
         questions.clear();
     }
 
-    public void displaySurvey() {
+    public void display() {
         int h = 0;
         int choicesLoop = 1;
         for (int x = 0; x < this.questions.size(); x++) {

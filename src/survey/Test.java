@@ -72,7 +72,7 @@ public class Test extends Survey implements Serializable {
         questions.add(question);
     }
 
-    public void displayTestWithoutCorrectAnswers() {
+    /*public void displayTestWithoutCorrectAnswers() { - no need for this since its the same as display survey
         int h = 0;
         int choicesLoop = 1;
         for (int x = 0; x < this.questions.size(); x++) {
@@ -88,7 +88,7 @@ public class Test extends Survey implements Serializable {
             choicesLoop = 1;
         }
         System.out.println();
-    }
+    }*/
 
     public void displayTestWithCorrectAnswers() {
         int h = 0;

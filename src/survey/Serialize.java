@@ -32,7 +32,7 @@ public class Serialize implements Serializable {
         } catch (IOException i) {
             i.printStackTrace();
         }
-        survey.displaySurvey();
+        survey.display();
     }
 
     protected void saveTest(Test test) {
@@ -55,7 +55,7 @@ public class Serialize implements Serializable {
         } catch (IOException i) {
             i.printStackTrace();
         }
-        test.displayTestWithoutCorrectAnswers();
+        test.display();
     }
 
     protected void modifySurvey(Survey survey, String nameOfSurvey) {
@@ -85,7 +85,7 @@ public class Serialize implements Serializable {
         }
 
 
-        survey.displaySurvey();
+        survey.display();
     }
 
     protected void modifyTest(Test test, String nameOfTest) {
@@ -116,7 +116,7 @@ public class Serialize implements Serializable {
             f.delete();
         }
 
-        test.displayTestWithoutCorrectAnswers();
+        test.display();
     }
 
     protected Survey loadSurvey() {

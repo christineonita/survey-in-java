@@ -57,7 +57,7 @@ public class Menus implements Serializable {
                 case 2:
                     try {
                         survey = loadSurvey();
-                        survey.displaySurvey();
+                        survey.display();
                     } catch (NullPointerException e) {
                         Display.displayString("No survey has been made yet.\n");
                     }
@@ -184,7 +184,7 @@ public class Menus implements Serializable {
                     //Display.displayString("code needed for ------Display an existing Test without correct answers------");
                     try {
                         test = loadTest();
-                        test.displayTestWithoutCorrectAnswers();
+                        test.display();
                     } catch (NullPointerException e) {
                         Display.displayString("No test has been made yet.\n");
                     }
