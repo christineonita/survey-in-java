@@ -31,6 +31,12 @@ public class ResponseCorrectAnswer implements Serializable {
     }
 
     public boolean compare(String[] correctResponses, String[] testResponse) {
-        return Arrays.equals(correctResponses, testResponse);
+        String[] sortedCorrectResponses = correctResponses[0].split("\\r?\\n");
+        String[] sortedTestResponses = testResponse[0].split("\\r?\\n");
+
+        Arrays.sort(sortedCorrectResponses);
+        Arrays.sort(sortedTestResponses);
+
+        return Arrays.equals(sortedCorrectResponses, sortedTestResponses);
     }
 }
