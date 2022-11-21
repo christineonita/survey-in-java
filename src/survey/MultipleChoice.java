@@ -107,24 +107,15 @@ public class MultipleChoice extends Question implements Serializable {
             if (i == 0) {
                 break;
             }
-            //userAnswer = userAnswer + Integer.toString(multipleAnswersArray[g]) + ") " + multipleChoiceQuestionChoices[multipleAnswersArray[g] - 1] + "\n";
             userAnswer = multipleChoiceQuestionChoices[i - 1] + "\n"; // so that the question choice numbers are not saved in the responses
             userResponse = userResponse + userAnswer;
         }
     }
 
     protected void setSingleUserAnswer(int anInt) {
-        //userAnswer = Integer.toString(anInt) + ") " + this.multipleChoiceQuestionChoices[anInt - 1];
         userAnswer = this.multipleChoiceQuestionChoices[anInt - 1]; // so that the question choice numbers are not saved in the responses
         userResponse = userAnswer;
     }
-
-    /*@Override
-    public void populate(HashMap<String, Integer> responsesCounter) {
-        for (String choice : getQuestionChoices()) {
-            responsesCounter.put(choice, 0);
-        }
-    }*/
 
     @Override
     public void setCorrectAnswer() {

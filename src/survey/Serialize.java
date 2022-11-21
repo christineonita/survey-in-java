@@ -105,9 +105,7 @@ public class Serialize implements Serializable {
             i.printStackTrace();
         }
 
-        //System.out.println(test.questions.get(0).getPrompt()); // - debugger
-        // this deletes the past responses of the survey being modified since one or more of the responses would be invalid
-
+        // this deletes the past responses of the test being modified since one or more of the responses would be invalid
         File f = new File(testResponsesFolderName + File.separator + nameOfTest + "_responses");
         if (f.exists()) {
             for (File g : f.listFiles()) {
@@ -187,7 +185,7 @@ public class Serialize implements Serializable {
         Display.displayResponses(questions, userAnswers);
     }
 
-    public /*String[][]*/ void tabulateSurvey(Survey survey, ArrayList<Question> questions) {
+    public void tabulateSurvey(Survey survey, ArrayList<Question> questions) {
         File f = new File("." + File.separator + this.responsesFolderName + File.separator + survey.nameOfSurvey + "_responses");
 
         File[] files = f.listFiles();
@@ -208,7 +206,7 @@ public class Serialize implements Serializable {
         }
     }
 
-    public /*String[][]*/ void tabulateTest(Test test, ArrayList<Question> questions) {
+    public void tabulateTest(Test test, ArrayList<Question> questions) {
         File f = new File("." + File.separator + this.testResponsesFolderName + File.separator + test.nameOfTest + "_responses");
 
         File[] files = f.listFiles();
@@ -232,17 +230,14 @@ public class Serialize implements Serializable {
     protected void countResponses(String nameOfSurveyOrTest, String testOrSurveyResponseFolder, File[] files, String[][] questionResponse, int loop, HashMap<String, Integer> questionResponsesCounter) {
         int responseFileCount = 0;
         for (File file : files) {
-            //System.out.println(file.getName()); // debugger
             try {
                 FileInputStream fileIn = new FileInputStream("." + File.separator + testOrSurveyResponseFolder + File.separator + nameOfSurveyOrTest + "_responses" + File.separator + nameOfSurveyOrTest + "_response" + (responseFileCount + 1) + ".ser");
                 ObjectInputStream in = new ObjectInputStream(fileIn);
                 questionResponse = (String[][]) in.readObject();
-                //System.out.println("seeing array of arrays" + Arrays.deepToString(surveyResponse)); // debugger
                 String lines[] = questionResponse[loop][0].split("\\r?\\n");
                 for (int x = 0; x < lines.length; x++) {
 
                     if (!questionResponsesCounter.containsKey(lines[x])) {
-                        //System.out.println(">" + lines[x] + "<"); // debugger
                         questionResponsesCounter.put(lines[x], 1);
                     } else {
                         questionResponsesCounter.put(lines[x], questionResponsesCounter.get(lines[x]) + 1);
@@ -250,7 +245,6 @@ public class Serialize implements Serializable {
                 }
                 in.close();
                 fileIn.close();
-                //Display.displayString("Response file " + "." + File.separator + this.responsesFolderName + File.separator + survey.nameOfSurvey + "_responses" + File.separator + survey.nameOfSurvey + "_response" + (responseFileCount + 1) + ".ser has been loaded.\n");
             } catch (IOException e) {
                 e.printStackTrace();
             } catch (ClassNotFoundException c) {
@@ -309,7 +303,6 @@ public class Serialize implements Serializable {
         int testResponseNumber;
 
         File f = new File(testResponsesFolderName + File.separator + nameOfTest + "_responses");
-        //System.out.println(">" + testResponsesFolderName + File.separator + nameOfTest + "<");
 
         File[] files = f.listFiles();
 
@@ -328,9 +321,7 @@ public class Serialize implements Serializable {
             try {
                 FileInputStream fileIn = new FileInputStream(testResponsePath);
                 ObjectInputStream in = new ObjectInputStream(fileIn);
-                //test = (Test) in.readObject();
                 singleTestResponse = (String[][]) in.readObject();
-                //System.out.println("seeing test arrays" + Arrays.deepToString(singleTestResponse));
                 in.close();
                 fileIn.close();
                 Display.displayString("Test response file " + testResponsePath + " has been loaded.\n");

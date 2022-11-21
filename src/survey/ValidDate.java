@@ -51,7 +51,7 @@ public class ValidDate extends Question implements Serializable {
         System.out.println(this.getPrompt());
 
         questionResponsesCounter.entrySet().forEach(entry -> {
-            Display.displayString(entry.getKey()/* + ": " + entry.getValue()*/);
+            Display.displayString(entry.getKey());
             Display.displayString(String.valueOf(entry.getValue()));
         });
 
@@ -61,7 +61,6 @@ public class ValidDate extends Question implements Serializable {
     @Override
     public void setCorrectAnswer() {
         Display.displayString(getPrompt());
-        //Display.displayStringArray(multipleChoiceQuestionChoices);
         Display.displayString("Enter the correct answer(s) for this question.");
         Display.displayString("\nPlease enter your response(s) in the format MM/DD/YYYY\n");
         getCreatorValidDateResponse();

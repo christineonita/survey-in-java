@@ -7,12 +7,10 @@ public class Survey implements Serializable {
 
     private static final long serialVersionUID = 4925296878791173007L;
     public String nameOfSurvey;
-    String surveyResponseFolder;// = "SurveyResponses";
+    String surveyResponseFolder, newPrompt, modifyPrompt, modifyChoicesYesOrNo, modifyColumnChoicesYesOrNo;// = "SurveyResponses";
     ArrayList<Question> questions = null;
     String[][] userAnswers;
-    String newPrompt;
-    String modifyPrompt;
-    String modifyChoicesYesOrNo, modifyColumnChoicesYesOrNo;
+
     int questionToModify;
 
     Survey() {
@@ -102,34 +100,20 @@ public class Survey implements Serializable {
     public void take() {
         int x = 0;
         Serialize serialize = new Serialize();
-        //System.out.println("num of questions    =     " + this.questions.size());// debugger
         userAnswers = new String[this.questions.size()][];
 
 
         for (Question question : questions) {
             Display.displayString("\n");
-            Display.displayString("Question " + (x + 1) + ". "); //not using println here so a new line doesn't print
+            System.out.print("Question " + (x + 1) + ". "); //not using println here so a new line doesn't print
             question.take();
 
-            //question.questionResponses[0] = question.userResponse;
             question.setResponses(question.userResponse);
 
-            //this.userAnswers[x] = question.questionResponses;
             this.userAnswers[x] = question.getResponses();
-
-            // ----------  this commented out part is the foundation for how i will get responses to compare for tests --------  DO NOT DELETE UNTIL I AM DONE!!!!!!
-            /*System.out.println(">" + question.userResponse.split("\\r?\\n")[0] + "<");
-            if (question.userResponse.equals("Barbara\nAyato Kamisato\n")) {
-                System.out.println("Jean's sister and Ayaka's brother");
-            }
-            if (question.userResponse.split("\\r?\\n")[0].equals("Barbara")) {
-                System.out.println("Jean's sister");
-            }*/
-
 
             x++;
         }
-        //System.out.println("seeing array of arrays" + Arrays.deepToString(this.userAnswers)); // debugger
 
         serialize.displayUserResponses(this.questions, this.userAnswers);
 
@@ -144,7 +128,6 @@ public class Survey implements Serializable {
         questionToModify = UserInput.getOption(0, this.questions.size() + 1);
         modifyQuestionPrompt(questionToModify);
 
-        //if (this.questions.get(questionToModify - 1) instanceof MultipleChoice) {
         if (this.questions.get(questionToModify - 1).getClass().equals(MultipleChoice.class)) {
             Display.displayString("Do you wish to modify the choices?");
             modifyChoicesYesOrNo = UserInput.getString();

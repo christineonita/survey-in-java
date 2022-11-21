@@ -115,10 +115,7 @@ public class Matching extends Question implements Serializable {
         if (second > 26) {
             Display.displayString("The number of items should be less than or equal to 26.");
             setNumberOfSecondColumnItems();
-        } /*else if (second < this.numOfFirstColumnItems) {
-            Display.displayString("The number of items on the second column cannot be less than the first.");
-            setNumberOfSecondColumnItems();
-        }*/ else {
+        } else {
             this.numOfSecondColumnItems = second;
         }
     }

@@ -50,13 +50,6 @@ public class TrueOrFalse extends MultipleChoice implements Serializable {
         return trueOrFalseQuestionChoices;
     }
 
-    /*@Override
-    public void populate(HashMap<String, Integer> responsesCounter) {
-        for (String choice : getQuestionChoices()) {
-            responsesCounter.put(choice, 0);
-        }
-    }*/
-
     @Override
     public void tabulate(HashMap<String, Integer> questionResponsesCounter) {
         Display.displayString(this.getPrompt());

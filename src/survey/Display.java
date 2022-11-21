@@ -29,22 +29,15 @@ public class Display implements Serializable {
         for (String[] p : userAnswers) {
             for (String answer : p) {
                 int responseCnt = 0;
-                //System.out.print((questionCnt + 1) + ". "); - prints just question number
                 System.out.println("Question " + (questionCnt + 1) + ". " + questions.get(questionCnt).getPrompt()); // prints question number and prompt
                 if (questions.get(questionCnt) instanceof Matching) {
                     for (int k = 0; k < ((Matching) questions.get(questionCnt)).takerFirstChoice.length; k++) {
-                        //System.out.printf("%-30s", ((Matching) questions.get(questionCnt)).takerFirstChoice[k]);
-                        //System.out.printf(((Matching) questions.get(questionCnt)).takerSecondchoice[k] + "\n");
                         displayTwoColumns("  " + ((Matching) questions.get(questionCnt)).takerFirstChoice[k], ((Matching) questions.get(questionCnt)).takerSecondChoice[k]);
                     }
                 } else {
                     String lines[] = answer.split("\\r?\\n");
                     for (String line : lines) {
-                        //if (responseCnt == 0) {
-                        //System.out.println(line);
-                        //} else {
                         System.out.println("  " + line);
-                        //}
                         responseCnt++;
                     }
                 }
@@ -64,20 +57,17 @@ public class Display implements Serializable {
 
             if (h + 1 > question.getNumOfFirstColumnItems()) {
                 for (int f = h; f < question.getNumOfSecondColumnItems(); f++) {
-                    //System.out.println("extra 2nd --- " + this.questions.get(x).getSecondColumn()[f]);
                     Display.displayString("                              " + (f + 1) + ".) " + question.getSecondColumn()[f]);
                 }
                 break;
             } else if (h + 1 > question.getNumOfSecondColumnItems()) {
                 for (int g = h; g < question.getNumOfFirstColumnItems(); g++) {
-                    //System.out.println("extra 1st --- " + this.questions.get(x).getFirstColumn()[g]);
                     Display.displayString("   " + (g + 1) + ".) " + question.getFirstColumn()[g]);
                 }
                 break;
             } else {
                 question.printTwoColumns("   " + (h + 1) + ".) " + question.getFirstColumn()[h], (h + 1) + ".) " + question.getSecondColumn()[h]);
             }
-            //System.out.printf("   " + (h + 1) + ". " + this.questions.get(x).getFirstColumn()[h] + "\t" + (h + 1) + ". " + this.questions.get(x).getSecondColumn()[h]);
         }
     }
 }

@@ -11,7 +11,6 @@ public abstract class Question implements Serializable {
     ResponseCorrectAnswer responseCorrectAnswer = new ResponseCorrectAnswer();
 
     Question() {
-        //responseCorrectAnswer = new ResponseCorrectAnswer();
     }
 
     public abstract void take();
@@ -46,8 +45,6 @@ public abstract class Question implements Serializable {
     public void setShortAnswerLimit() {
 
     }
-
-    //public abstract void setNumberOfRows();
 
     public void setFirstColumn() {
 
@@ -94,36 +91,26 @@ public abstract class Question implements Serializable {
 
     }
 
-    /*public void populate(HashMap<String, Integer> responsesCounter) {
-    }*/
-
-
     public void tabulate(HashMap<String, Integer> questionResponsesCounter) {
     }
 
     public String[] getResponses() {
         return responseCorrectAnswer.getResponses();
-        //return questionResponses;
     }
 
     public void setResponses(String userResponse) {
         responseCorrectAnswer.setResponses(userResponse);
-        //questionResponses[0] = userResponse;
     }
 
     public void setCorrectAnswer() {
-        //responseCorrectAnswer.setCorrectAnswer(correctAnswer);
     }
 
 
-    //i would also need a getCorrectAnswer method for questions
     public String[] getCorrectResponses() {
         return responseCorrectAnswer.getCorrectResponses();
-        //return questionResponses;
     }
 
     public void modifyCorrectAnswer() {
-        //responseCorrectAnswer.modifyCorrectResponse();
         this.correctAnswer = "";
         setCorrectAnswer();
     }

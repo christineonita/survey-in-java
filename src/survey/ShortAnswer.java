@@ -7,8 +7,7 @@ public class ShortAnswer extends Essay implements Serializable {
     private static final long serialVersionUID = -3786764219358424837L;
     //protected String[] shortAnswerResponses;
     protected String userShortAnswer;
-    private int numberOfShortAnswerResponsesRequired;
-    private int shortAnswerLimit;
+    private int numberOfShortAnswerResponsesRequired, shortAnswerLimit;
 
     ShortAnswer() {
     }
@@ -34,7 +33,6 @@ public class ShortAnswer extends Essay implements Serializable {
             } //code here to ask for reentry if response is over short answer response limit
             userShortAnswer = ans + "\n";
             userResponse = userResponse + userShortAnswer;
-            //shortAnswerResponses[p] = ans;
             p++;
         }
 
@@ -86,7 +84,6 @@ public class ShortAnswer extends Essay implements Serializable {
     @Override
     public void setCorrectAnswer() {
         Display.displayString(getPrompt());
-        //Display.displayStringArray(multipleChoiceQuestionChoices);
         Display.displayString("Enter the correct answer(s) for this question.");
         getCreatorShortAnswerResponse(this.numberOfShortAnswerResponsesRequired, this.shortAnswerLimit);
     }

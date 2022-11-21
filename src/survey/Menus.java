@@ -24,9 +24,7 @@ public class Menus implements Serializable {
             case 1:
                 mainSurveyMenu();
             case 2:
-                //Display.displayString("no code for test at all yet");
                 mainTestMenu();
-                //break; // remove this after adding test menu
             case 3:
                 Display.displayString("Quitting program.... Bye!");
                 System.exit(0);
@@ -39,7 +37,6 @@ public class Menus implements Serializable {
 
     public void mainSurveyMenu() {
         Survey survey = new Survey();
-        String[][] survResponse;// = new Response();
         int selectedSurveyMenuItem;
 
         while (true) {
@@ -91,16 +88,10 @@ public class Menus implements Serializable {
                 case 7:
                     System.out.println("need to finish code code for tabulating survey");
                     survey = loadSurvey();
-                    /*survResponse = */
                     tabulateSurvey(survey);
-                    //System.out.println("seeing array of arrays" + Arrays.deepToString(survResponse)); // debugger
                     break;
                 case 8:
                     mainMenu();
-                /*case 9:
-                    Display.displayString("Quitting program.... Bye!");
-                    System.exit(0);
-                    break;*/
                 default:
                     Display.displayString("Please enter an integer value between 1 and " + surveyMenu.length);
                     break;
@@ -155,10 +146,6 @@ public class Menus implements Serializable {
                             Display.displayString("Please enter yes or no.");
                         }
                     }
-                /*case 8:
-                    Display.displayString("Quitting program.... Bye!");
-                    System.exit(0);
-                    break;*/
                 default:
                     return survey;
             }
@@ -177,11 +164,9 @@ public class Menus implements Serializable {
 
             switch (selectedTestMenuItem) {
                 case 1:
-                    //Display.displayString("code needed for ------Create a new Test------");
                     test = questionTypesMenu(test);
                     break;
                 case 2:
-                    //Display.displayString("code needed for ------Display an existing Test without correct answers------");
                     try {
                         test = loadTest();
                         test.display();
@@ -190,7 +175,6 @@ public class Menus implements Serializable {
                     }
                     break;
                 case 3:
-                    //Display.displayString("code needed for ------Display an existing Test with correct answers------");
                     try {
                         test = loadTest();
                         test.displayTestWithCorrectAnswers();
@@ -199,20 +183,16 @@ public class Menus implements Serializable {
                     }
                     break;
                 case 4:
-                    //Display.displayString("code needed for ------Load an existing Test------");
                     try {
                         test = loadTest();
-                        // apparently i also need to load the correct answers - i think ive done this since the correct answers are part of a text file
                     } catch (NullPointerException e) {
                         Display.displayString("No test has been made yet.\n");
                     }
                     break;
                 case 5:
-                    //Display.displayString("code needed for ------Save the current Test------");
                     saveTest(test);
                     break;
                 case 6:
-                    //Display.displayString("code needed for ------Take the current Test------");
                     try {
                         test = loadTest();
                         test.take();
@@ -221,9 +201,6 @@ public class Menus implements Serializable {
                     }
                     break;
                 case 7:
-                    //Display.displayString("code needed for ------Modify the current Test------");
-
-
                     try {
                         test = loadTest();
                         test.modify();
@@ -233,21 +210,15 @@ public class Menus implements Serializable {
 
                     break;
                 case 8:
-                    //Display.displayString("code needed for ------Tabulate a Test------");
                     test = loadTest();
                     tabulateTest(test);
                     break;
                 case 9:
-                    //Display.displayString("code needed for ------Grade a Test------");
                     test = loadTest();
                     test.grade();
                     break;
                 case 10:
                     mainMenu();
-                /*case 11:
-                    Display.displayString("Quitting program.... Bye!");
-                    System.exit(0);
-                    break;*/
                 default:
                     Display.displayString("Please enter an integer value between 1 and " + testMenu.length);
                     break;
@@ -309,9 +280,8 @@ public class Menus implements Serializable {
     }
 
 
-    public /*String[][]*/ void tabulateSurvey(Survey survey) {
+    public void tabulateSurvey(Survey survey) {
         Serialize serialize = new Serialize();
-        //return serialize.tabulateSurvey(survey, survey.questions);
         serialize.tabulateSurvey(survey, survey.questions);
     }
 
@@ -335,9 +305,8 @@ public class Menus implements Serializable {
         return serialize.loadTest();
     }
 
-    public /*String[][]*/ void tabulateTest(Test test) {
+    public void tabulateTest(Test test) {
         Serialize serialize = new Serialize();
-        //return serialize.tabulateSurvey(survey, survey.questions);
         serialize.tabulateTest(test, test.questions);
     }
 }
