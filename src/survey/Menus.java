@@ -199,14 +199,26 @@ public class Menus implements Serializable {
                     }
                     break;
                 case 4:
-                    Display.displayString("code needed for ------Load an existing Test------");
+                    //Display.displayString("code needed for ------Load an existing Test------");
+                    try {
+                        test = loadTest();
+                        // apparently i also need to load the correct answers - i think ive done this since the correct answers are part of a text file
+                    } catch (NullPointerException e) {
+                        Display.displayString("No test has been made yet.\n");
+                    }
                     break;
                 case 5:
                     //Display.displayString("code needed for ------Save the current Test------");
                     saveTest(test);
                     break;
                 case 6:
-                    Display.displayString("code needed for ------Take the current Test------");
+                    //Display.displayString("code needed for ------Take the current Test------");
+                    try {
+                        test = loadTest();
+                        test.take();
+                    } catch (NullPointerException e) {
+                        Display.displayString("No test has been made yet.\n");
+                    }
                     break;
                 case 7:
                     Display.displayString("code needed for ------Modify the current Test------");

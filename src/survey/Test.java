@@ -1,6 +1,7 @@
 package survey;
 
 import java.io.Serializable;
+import java.util.Arrays;
 
 public class Test extends Survey implements Serializable {
 
@@ -74,5 +75,32 @@ public class Test extends Survey implements Serializable {
         for (int i = 0; i < lines.length; i++) {
             System.out.println(("    " + lines[i]));
         }
+    }
+
+    @Override
+    public void take() {
+        int x = 0;
+        Serialize serialize = new Serialize();
+        System.out.println("num of questions    =     " + this.questions.size());// debugger
+        userAnswers = new String[this.questions.size()][];
+
+
+        for (Question question : questions) {
+            System.out.print("Question " + (x + 1) + ". "); //not using println here so a new line doesn't print
+            question.take();
+
+            //question.questionResponses[0] = question.userResponse;
+            question.setResponses(question.userResponse);
+
+            //this.userAnswers[x] = question.questionResponses;
+            this.userAnswers[x] = question.getResponses();
+
+            x++;
+        }
+        System.out.println("seeing array of arrays" + Arrays.deepToString(this.userAnswers)); // debugger
+
+        serialize.displayUserResponses(this.questions, this.userAnswers);
+
+        serialize.saveUserAnswers(userAnswers, testResponseFolder, nameOfTest);
     }
 }
