@@ -24,6 +24,10 @@ public class ResponseCorrectAnswer implements Serializable {
         correctResponses[0] = creatorResponse;
         System.out.println("--->" + correctResponses[0] + "<---");
     }
+
+    public String[] getCorrectResponses() {
+        return correctResponses;
+    }
     //todo - to grade tests
     // + compare (RCA a, RCA b): Bool
 }

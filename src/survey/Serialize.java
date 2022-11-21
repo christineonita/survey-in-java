@@ -6,8 +6,8 @@ import java.util.HashMap;
 
 public class Serialize implements Serializable {
     private static final long serialVersionUID = 6435622019401604877L;
-    protected String surveyFolderName = "MySurveys", responsesFolderName = "SurveyResponses", testFolderName = "MyTests";
-    String survName;
+    protected String surveyFolderName = "MySurveys", responsesFolderName = "SurveyResponses", testFolderName = "MyTests", testResponsesFolderName = "TestResponses";
+    String survName, tName;
 
     Serialize() {
     }
@@ -55,7 +55,7 @@ public class Serialize implements Serializable {
         } catch (IOException i) {
             i.printStackTrace();
         }
-        test.displayTest();
+        test.displayTestWithoutCorrectAnswers();
     }
 
     protected void modifySurvey(Survey survey, String nameOfSurvey) {
@@ -207,5 +207,45 @@ public class Serialize implements Serializable {
         }
     }
 
+    protected Test loadTest() {
+        Test test = null;
+        String testPath;
+        int testNumber;
 
+        File f = new File(testFolderName);
+
+        File[] files = f.listFiles();
+
+        if (files.length == 0) {
+            Display.displayString("\nThere are no surveys to load.\n");
+        } else {
+            Display.displayString("Select a survey to load: ");
+            for (int j = 0; j < files.length; j++) {
+                Display.displayString((j + 1) + ") " + files[j].getName());
+            }
+
+            testNumber = UserInput.getOption(0, files.length + 1);
+            testPath = testFolderName + File.separator + files[testNumber - 1].getName();
+
+            try {
+                FileInputStream fileIn = new FileInputStream(testPath);
+                ObjectInputStream in = new ObjectInputStream(fileIn);
+                test = (Test) in.readObject();
+                in.close();
+                fileIn.close();
+                Display.displayString("Test file " + testPath + " has been loaded.\n");
+            } catch (IOException i) {
+                i.printStackTrace();
+            } catch (ClassNotFoundException c) {
+                Display.displayString("Test class not found");
+                c.printStackTrace();
+            }
+
+            test.nameOfTest = files[testNumber - 1].getName().replace(".ser", "");
+            this.tName = files[testNumber - 1].getName().replace(".ser", "");
+            test.testResponseFolder = testResponsesFolderName;
+        }
+
+        return test;
+    }
 }

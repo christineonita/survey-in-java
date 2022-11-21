@@ -181,10 +181,22 @@ public class Menus implements Serializable {
                     test = questionTypesMenu(test);
                     break;
                 case 2:
-                    Display.displayString("code needed for ------Display an existing Test without correct answers------");
+                    //Display.displayString("code needed for ------Display an existing Test without correct answers------");
+                    try {
+                        test = loadTest();
+                        test.displayTestWithoutCorrectAnswers();
+                    } catch (NullPointerException e) {
+                        Display.displayString("No test has been made yet.\n");
+                    }
                     break;
                 case 3:
-                    Display.displayString("code needed for ------Display an existing Test with correct answers------");
+                    //Display.displayString("code needed for ------Display an existing Test with correct answers------");
+                    try {
+                        test = loadTest();
+                        test.displayTestWithCorrectAnswers();
+                    } catch (NullPointerException e) {
+                        Display.displayString("No test has been made yet.\n");
+                    }
                     break;
                 case 4:
                     Display.displayString("code needed for ------Load an existing Test------");
@@ -235,10 +247,10 @@ public class Menus implements Serializable {
                 case 1:
                     test.addTrueOrFalse();
                     break;
-                /*case 2:
+                case 2:
                     test.addMultipleChoice();
                     break;
-                case 3:
+                /*case 3:
                     test.addShortAnswer();
                     break;
                 case 4:
@@ -293,5 +305,9 @@ public class Menus implements Serializable {
         serialize.saveTest(test);
     }
 
+    public Test loadTest() {
+        Serialize serialize = new Serialize();
+        return serialize.loadTest();
+    }
 
 }

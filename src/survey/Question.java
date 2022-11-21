@@ -117,4 +117,8 @@ public abstract class Question implements Serializable {
 
 
     //i would also need a getCorrectAnswer method for questions
+    public String[] getCorrectResponses() {
+        return responseCorrectAnswer.getCorrectResponses();
+        //return questionResponses;
+    }
 }

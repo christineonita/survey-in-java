@@ -7,9 +7,9 @@ import java.util.InputMismatchException;
 public class MultipleChoice extends Question implements Serializable {
     private static final long serialVersionUID = 493583457744295169L;
     protected String[] multipleChoiceQuestionChoices;
-    protected int[] answersForMultChoiceQuestionsWithMultipleAnswers;
+    protected int[] answersForMultChoiceQuestionsWithMultipleAnswers, creatorAnswersForMultChoice;
     protected boolean hasMultipleAnswers;
-    protected String userAnswer;
+    protected String userAnswer, creatorAnswer;
     private int mult, numberOfChoices, choiceNumber;
 
     MultipleChoice() {
@@ -35,6 +35,8 @@ public class MultipleChoice extends Question implements Serializable {
                 if (yesOrNo.equalsIgnoreCase("yes")) {
                     hasMultipleAnswers = true;
                     answersForMultChoiceQuestionsWithMultipleAnswers = new int[numberOfChoices];
+                    creatorAnswersForMultChoice = new int[numberOfChoices];
+                    //System.out.println(">" + creatorAnswersForMultChoice.length + "<");
                     break;
                 } else if (yesOrNo.equalsIgnoreCase("no")) {
                     hasMultipleAnswers = false;
@@ -123,6 +125,56 @@ public class MultipleChoice extends Question implements Serializable {
             responsesCounter.put(choice, 0);
         }
     }*/
+
+    @Override
+    public void setCorrectAnswer() {
+        Display.displayString(getPrompt());
+        Display.displayStringArray(multipleChoiceQuestionChoices);
+        Display.displayString("Enter the correct answer(s) for this question.");
+        askCreatorForChoices();
+    }
+
+    public void askCreatorForChoices() {
+        if (hasMultipleAnswers == false) {
+            Display.displayString("Please enter your choice #: ");
+            setSingleCreatorAnswer(UserInput.getOption(0, multipleChoiceQuestionChoices.length + 1));
+        } else {
+            Display.displayString("This question has multiple answers so press enter after each choice you type and enter again when you're finished "); // i might edit this prompt to be more clear
+            for (int y = 0; y < creatorAnswersForMultChoice.length; y++) {
+                Display.displayString("Please enter your choice #: ");
+                try {
+                    mult = UserInput.getMultipleOptions(0, creatorAnswersForMultChoice.length + 1);
+                    if (mult == 0) { // when the user presses just the enter key after a prompt the recorded integer value is 0 so this saves the responses previous to that
+                        break;
+                    } else {
+                        creatorAnswersForMultChoice[y] = mult;
+                    }
+                } catch (InputMismatchException e) {
+                    break;
+                }
+            }
+            setMultipleCreatorAnswer(creatorAnswersForMultChoice);
+        }
+    }
+
+    protected void setMultipleCreatorAnswer(int[] multipleAnswersArray) {
+        creatorAnswer = "";
+        for (int i : multipleAnswersArray) {
+            if (i == 0) {
+                break;
+            }
+            creatorAnswer = multipleChoiceQuestionChoices[i - 1] + "\n"; // so that the question choice numbers are not saved in the responses
+            correctAnswer = correctAnswer + creatorAnswer;
+        }
+        responseCorrectAnswer.setCorrectAnswer(correctAnswer);
+    }
+
+    protected void setSingleCreatorAnswer(int option) {
+        creatorAnswer = this.multipleChoiceQuestionChoices[option - 1];
+        this.correctAnswer = creatorAnswer;
+        responseCorrectAnswer.setCorrectAnswer(this.correctAnswer);
+    }
+
 
     @Override
     public void tabulate(HashMap<String, Integer> questionResponsesCounter) {
