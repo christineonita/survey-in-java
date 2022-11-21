@@ -7,7 +7,7 @@ public class Survey implements Serializable {
 
     private static final long serialVersionUID = 4925296878791173007L;
     public String nameOfSurvey;
-    String surveyResponseFolder, newPrompt, modifyPrompt, modifyChoicesYesOrNo, modifyColumnChoicesYesOrNo;// = "SurveyResponses";
+    String surveyResponseFolder, newPrompt, modifyPrompt, modifyChoicesYesOrNo, modifyColumnChoicesYesOrNo;
     ArrayList<Question> questions = null;
     String[][] userAnswers;
 
@@ -80,7 +80,6 @@ public class Survey implements Serializable {
     }
 
     public void display() {
-        int h = 0;
         int choicesLoop = 1;
         for (int x = 0; x < this.questions.size(); x++) {
             Display.displayString("\n Question " + (x + 1) + ". " + this.questions.get(x).getPrompt());

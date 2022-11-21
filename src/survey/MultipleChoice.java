@@ -77,12 +77,12 @@ public class MultipleChoice extends Question implements Serializable {
     }
 
     protected void askUserForChoices() {
-        if (hasMultipleAnswers == false) {
+        if (!hasMultipleAnswers) {
             Display.displayString("Please enter your choice #: ");
 
             setSingleUserAnswer(UserInput.getOption(0, multipleChoiceQuestionChoices.length + 1));
         } else {
-            Display.displayString("This question has multiple answers so press enter after each choice you type and enter again when you're finished "); // i might edit this prompt to be more clear
+            Display.displayString("This question has multiple answers so press enter after each choice you type and enter again when you're finished ");
             for (int y = 0; y < answersForMultChoiceQuestionsWithMultipleAnswers.length; y++) {
                 Display.displayString("Please enter your choice #: ");
                 try {
@@ -125,11 +125,11 @@ public class MultipleChoice extends Question implements Serializable {
     }
 
     public void askCreatorForChoices() {
-        if (hasMultipleAnswers == false) {
+        if (!hasMultipleAnswers) {
             Display.displayString("Please enter your choice #: ");
             setSingleCreatorAnswer(UserInput.getOption(0, multipleChoiceQuestionChoices.length + 1));
         } else {
-            Display.displayString("This question has multiple answers so press enter after each choice you type and enter again when you're finished "); // i might edit this prompt to be more clear
+            Display.displayString("This question has multiple answers so press enter after each choice you type and enter again when you're finished ");
             for (int y = 0; y < creatorAnswersForMultChoice.length; y++) {
                 Display.displayString("Please enter your choice #: ");
                 try {

@@ -6,7 +6,7 @@ import java.util.HashMap;
 
 public class Serialize implements Serializable {
     private static final long serialVersionUID = 6435622019401604877L;
-    protected String surveyFolderName = "MySurveys", responsesFolderName = "SurveyResponses", testFolderName = "MyTests", testResponsesFolderName = "TestResponses";
+    protected final String surveyFolderName = "MySurveys", responsesFolderName = "SurveyResponses", testFolderName = "MyTests", testResponsesFolderName = "TestResponses";
     String survName, tName;
 
     Serialize() {
@@ -234,7 +234,7 @@ public class Serialize implements Serializable {
                 FileInputStream fileIn = new FileInputStream("." + File.separator + testOrSurveyResponseFolder + File.separator + nameOfSurveyOrTest + "_responses" + File.separator + nameOfSurveyOrTest + "_response" + (responseFileCount + 1) + ".ser");
                 ObjectInputStream in = new ObjectInputStream(fileIn);
                 questionResponse = (String[][]) in.readObject();
-                String lines[] = questionResponse[loop][0].split("\\r?\\n");
+                String[] lines = questionResponse[loop][0].split("\\r?\\n");
                 for (int x = 0; x < lines.length; x++) {
 
                     if (!questionResponsesCounter.containsKey(lines[x])) {

@@ -5,7 +5,6 @@ import java.util.HashMap;
 
 public class ShortAnswer extends Essay implements Serializable {
     private static final long serialVersionUID = -3786764219358424837L;
-    //protected String[] shortAnswerResponses;
     protected String userShortAnswer;
     private int numberOfShortAnswerResponsesRequired, shortAnswerLimit;
 

@@ -35,7 +35,7 @@ public class Display implements Serializable {
                         displayTwoColumns("  " + ((Matching) questions.get(questionCnt)).takerFirstChoice[k], ((Matching) questions.get(questionCnt)).takerSecondChoice[k]);
                     }
                 } else {
-                    String lines[] = answer.split("\\r?\\n");
+                    String[] lines = answer.split("\\r?\\n");
                     for (String line : lines) {
                         System.out.println("  " + line);
                         responseCnt++;

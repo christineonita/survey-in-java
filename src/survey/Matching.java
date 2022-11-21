@@ -63,7 +63,6 @@ public class Matching extends Question implements Serializable {
                     }
                 } catch (NumberFormatException e) {
                     Display.displayString("Please enter your response(s) in a valid format e.g. '1 3' will match 1 to 3.");
-                    continue;
                 }
             }
 
@@ -221,7 +220,6 @@ public class Matching extends Question implements Serializable {
                     }
                 } catch (NumberFormatException e) {
                     Display.displayString("Please enter your response(s) in a valid format e.g. '1 3' will match 1 to 3.");
-                    continue;
                 }
             }
 

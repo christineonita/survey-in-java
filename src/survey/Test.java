@@ -43,7 +43,7 @@ public class Test extends Survey implements Serializable {
         questions.add(question);
     }
 
-    // no need for addEssay method in test class since its the same as survey
+    // no need for addEssay method in test class since it's the same as survey
 
     @Override
     protected void addValidDate() {
@@ -72,7 +72,6 @@ public class Test extends Survey implements Serializable {
     }
 
     public void displayTestWithCorrectAnswers() {
-        int h = 0;
         int choicesLoop = 1;
         for (int x = 0; x < this.questions.size(); x++) {
             Display.displayString("\n Question " + (x + 1) + ". " + this.questions.get(x).getPrompt());
@@ -94,7 +93,7 @@ public class Test extends Survey implements Serializable {
     }
 
     protected void displayCorrectAnswers(String[] correctResponses) {
-        String lines[] = correctResponses[0].split("\\r?\\n");
+        String[] lines = correctResponses[0].split("\\r?\\n");
         for (int i = 0; i < lines.length; i++) {
             Display.displayString(("    " + lines[i]));
         }
@@ -179,7 +178,7 @@ public class Test extends Survey implements Serializable {
         Serialize serialize = new Serialize();
         testResponses = serialize.loadTestResponses(this.nameOfTest);
         for (int i = 0; i < this.questions.size(); i++) {
-            if (this.questions.get(i) instanceof Essay && !(this.questions.get(i) instanceof ShortAnswer)) {// || (!responseCorrectAnswer.compare(this.questions.get(i).getCorrectResponses(), (testResponses[i])))) {
+            if (this.questions.get(i) instanceof Essay && !(this.questions.get(i) instanceof ShortAnswer)) {
                 score -= ((double) 100 / this.questions.size());
                 essayQuestionCounter++;
                 continue;
