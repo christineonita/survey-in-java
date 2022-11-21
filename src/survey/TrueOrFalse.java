@@ -42,7 +42,7 @@ public class TrueOrFalse extends MultipleChoice implements Serializable {
 
     @Override
     public String getQuestionType() {
-        return "True/False";
+        return "true or false";
     }
 
     @Override
@@ -59,13 +59,13 @@ public class TrueOrFalse extends MultipleChoice implements Serializable {
 
     @Override
     public void tabulate(HashMap<String, Integer> questionResponsesCounter) {
-        System.out.println(this.getPrompt());
+        Display.displayString(this.getPrompt());
 
         questionResponsesCounter.entrySet().forEach(entry -> {
-            System.out.println(entry.getKey() + ": " + entry.getValue());
+            Display.displayString(entry.getKey() + ": " + entry.getValue());
         });
 
-        System.out.println();
+        Display.displayString("");
     }
 
     @Override
@@ -76,12 +76,14 @@ public class TrueOrFalse extends MultipleChoice implements Serializable {
         askCreatorForChoices();
     }
 
+    @Override
     public void askCreatorForChoices() {
         Display.displayString("Please enter your choice #: ");
 
         setSingleCreatorAnswer(UserInput.getOption(0, 2 + 1));
     }
 
+    @Override
     public void setSingleCreatorAnswer(int option) {
         trueOrFalseChoice = this.trueOrFalseQuestionChoices[option - 1];
         this.correctAnswer = trueOrFalseChoice;

@@ -52,12 +52,12 @@ public class Essay extends Question implements Serializable { // - short answer 
 
     @Override
     public void tabulate(HashMap<String, Integer> questionResponsesCounter) {
-        System.out.println(this.getPrompt());
+        Display.displayString(this.getPrompt());
 
         questionResponsesCounter.entrySet().forEach(entry -> {
-            System.out.println(entry.getKey() + "\n");
+            Display.displayString(entry.getKey() + "\n");
         });
 
-        System.out.println();
+        Display.displayString("");
     }
 }

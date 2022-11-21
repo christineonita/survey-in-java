@@ -106,7 +106,7 @@ public class Test extends Survey implements Serializable {
                 Display.displayMatchingColumns(this.questions.get(x));
             }
             choicesLoop = 1;
-            System.out.println("The correct answers are: ");
+            System.out.println(" The correct answers are: ");
             //Display.displayStringArray(this.questions.get(x).getCorrectResponses());
             displayCorrectAnswers(this.questions.get(x).getCorrectResponses());
             System.out.println();
@@ -228,6 +228,6 @@ public class Test extends Survey implements Serializable {
         //System.out.println("Your score on this test is" + finalScore + "%.");
         testResultMessage = (essayQuestionCounter < 1) ? "Your score on this test is" + finalScore + "%." : "Your score on this test is" + finalScore + "%. The test was worth 100 points, but only" + (100 - (100 * essayQuestionCounter / this.questions.size())) + "of those points could be auto graded because there was/were" + essayQuestionCounter + "essay question(s).";
 
-        System.out.println(testResultMessage);
+        Display.displayString(testResultMessage);
     }
 }

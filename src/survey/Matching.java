@@ -16,8 +16,8 @@ public class Matching extends Question implements Serializable {
     @Override
     public void take() {
         int h = 0;
-        this.takerFirstChoice = new String[firstColumnOptions.length];
-        this.takerSecondChoice = new String[secondColumnOptions.length];
+        this.takerFirstChoice = new String[Math.max(firstColumnOptions.length, secondColumnOptions.length)];
+        this.takerSecondChoice = new String[Math.max(firstColumnOptions.length, secondColumnOptions.length)];
         Display.displayString(getPrompt() + " (each item on the left has only one answer on the right - and vice versa)");
         for (h = 0; h < Math.max(numOfFirstColumnItems, numOfSecondColumnItems); h++) {
             if (h + 1 > numOfFirstColumnItems) {
@@ -111,10 +111,10 @@ public class Matching extends Question implements Serializable {
         if (second > 26) {
             Display.displayString("The number of items should be less than or equal to 26.");
             setNumberOfSecondColumnItems();
-        } else if (second < this.numOfFirstColumnItems) {
+        } /*else if (second < this.numOfFirstColumnItems) {
             Display.displayString("The number of items on the second column cannot be less than the first.");
             setNumberOfSecondColumnItems();
-        } else {
+        }*/ else {
             this.numOfSecondColumnItems = second;
         }
     }
@@ -159,13 +159,13 @@ public class Matching extends Question implements Serializable {
 
     @Override
     public void tabulate(HashMap<String, Integer> questionResponsesCounter) {
-        System.out.println(this.getPrompt());
+        Display.displayString(this.getPrompt());
 
         questionResponsesCounter.entrySet().forEach(entry -> {
-            System.out.println(String.format("%-100s", entry.getKey() + ":") + entry.getValue());
+            Display.displayString(String.format("%-100s", entry.getKey() + ":") + entry.getValue());
         });
 
-        System.out.println();
+        Display.displayString("");
     }
 
     @Override
@@ -173,8 +173,8 @@ public class Matching extends Question implements Serializable {
         Display.displayString(getPrompt());
         Display.displayString("Enter the correct answer(s) for this question.");
         int h = 0;
-        this.takerFirstChoice = new String[firstColumnOptions.length];
-        this.takerSecondChoice = new String[secondColumnOptions.length];
+        this.takerFirstChoice = new String[Math.max(firstColumnOptions.length, secondColumnOptions.length)];
+        this.takerSecondChoice = new String[Math.max(firstColumnOptions.length, secondColumnOptions.length)];
         Display.displayString(getPrompt() + " (each item on the left has only one answer on the right - and vice versa)");
         for (h = 0; h < Math.max(numOfFirstColumnItems, numOfSecondColumnItems); h++) {
             if (h + 1 > numOfFirstColumnItems) {

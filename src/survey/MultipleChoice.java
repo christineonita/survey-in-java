@@ -74,7 +74,7 @@ public class MultipleChoice extends Question implements Serializable {
 
     @Override
     public String getQuestionType() {
-        return "multiple-choice";
+        return "multiple choice";
     }
 
     protected void askUserForChoices() {
