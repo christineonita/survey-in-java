@@ -190,4 +190,75 @@ public class Matching extends Question implements Serializable {
 
         System.out.println();
     }
+
+    @Override
+    public void setCorrectAnswer() {
+        Display.displayString(getPrompt());
+        //Display.displayStringArray(multipleChoiceQuestionChoices);
+        Display.displayString("Enter the correct answer(s) for this question.");
+        int h = 0;
+        // matchingAnswers = new String[this.numOfRows];
+        this.takerFirstChoice = new String[firstColumnOptions.length];
+        this.takerSecondChoice = new String[secondColumnOptions.length];
+        Display.displayString(getPrompt() + " (each item on the left has only one answer on the right - and vice versa)");
+        for (h = 0; h < Math.max(numOfFirstColumnItems, numOfSecondColumnItems); h++) {
+            if (h + 1 > numOfFirstColumnItems) {
+                for (int f = h; f < numOfSecondColumnItems; f++) {
+                    Display.displayString("                              " + (f + 1) + ". " + getSecondColumn()[f]);
+                }
+                break;
+            } else if (h + 1 > numOfSecondColumnItems) {
+                for (int g = h; g < numOfFirstColumnItems; g++) {
+                    Display.displayString("   " + (g + 1) + ". " + getFirstColumn()[g]);
+                }
+                break;
+            } else {
+                printTwoColumns("   " + (h + 1) + ". " + getFirstColumn()[h], (h + 1) + ". " + getSecondColumn()[h]);
+            }
+        }
+        Display.displayString("\nPlease enter your response(s) in a valid format e.g. '1 3' will match 1 to 3\n");
+        askCreatorForMatchingResponse();
+    }
+
+    protected void askCreatorForMatchingResponse() {
+        for (int l = 0; l < numOfFirstColumnItems; l++) {
+            String d;
+            int one;
+            int two;
+
+            while (true) {
+                try {
+                    d = UserInput.getString();
+                    String[] arr = d.split(" ", 2);
+                    one = Integer.parseInt(arr[0]);
+                    two = Integer.parseInt(arr[1]);
+                    if (one > numOfFirstColumnItems || one < 0) {
+                        Display.displayString("Please re-enter your response.");
+                        //Display.displayString("Please re-enter your response for item " + two + " on the second column");
+                    } else if (two > numOfSecondColumnItems || two < 0) {
+                        Display.displayString("Please re-enter your response.");
+                        //Display.displayString("Please re-enter your response for item " + one + " on the first column");
+                    } else {
+                        break;
+                    }
+                } catch (NumberFormatException e) {
+                    Display.displayString("Please enter your response(s) in a valid format e.g. '1 3' will match 1 to 3.");
+                    continue;
+                }
+            }
+
+            this.takerFirstChoice[l] = firstColumnOptions[one - 1];
+            this.takerSecondChoice[l] = secondColumnOptions[two - 1];
+
+            // matchingAnswers[l] = firstColumnOptions[one - 1] + secondColumnOptions[two - 1];
+            this.matchAns = firstColumnOptions[one - 1] + " " + secondColumnOptions[two - 1] + "\n";
+            this.correctAnswer = this.correctAnswer + this.matchAns;
+            responseCorrectAnswer.setCorrectAnswer(this.correctAnswer);
+        }
+    }
+
+    /*public void modifyCorrectAnswer() {
+        //responseCorrectAnswer.modifyCorrectResponse();
+        this.correctAnswer =
+    }*/
 }

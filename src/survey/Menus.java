@@ -221,7 +221,16 @@ public class Menus implements Serializable {
                     }
                     break;
                 case 7:
-                    Display.displayString("code needed for ------Modify the current Test------");
+                    //Display.displayString("code needed for ------Modify the current Test------");
+
+
+                    try {
+                        test = loadTest();
+                        test.modify();
+                    } catch (NullPointerException e) {
+                        Display.displayString("No test has been made yet.\n");
+                    }
+
                     break;
                 case 8:
                     //Display.displayString("code needed for ------Tabulate a Test------");
@@ -269,15 +278,15 @@ public class Menus implements Serializable {
                 case 3:
                     test.addShortAnswer();
                     break;
-                /*case 4:
-                    test.addEssay();
+                case 4:
+                    test.addEssay(); // note that essay has no correct answer so no need for a new addEssay method override in test class
                     break;
                 case 5:
                     test.addValidDate();
                     break;
                 case 6:
                     test.addMatching();
-                    break;*/
+                    break;
                 case 7:
                     Display.displayString("Save before leaving?");
 

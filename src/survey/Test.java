@@ -44,6 +44,34 @@ public class Test extends Survey implements Serializable {
         questions.add(question);
     }
 
+    // no need for addEssay method in test class since its the same as survey
+
+    @Override
+    protected void addValidDate() {
+        Question question = new ValidDate();
+        setQuestionPrompt(question);
+
+        question.setCorrectAnswer();
+
+        questions.add(question);
+    }
+
+    @Override
+    protected void addMatching() {
+        Question question = new Matching();
+        setQuestionPrompt(question);
+
+        question.setNumberOfFirstColumnItems();
+        question.setNumberOfSecondColumnItems();
+
+        question.setFirstColumn();
+        question.setSecondColumn();
+
+        question.setCorrectAnswer();
+
+        questions.add(question);
+    }
+
     public void displayTestWithoutCorrectAnswers() {
         int h = 0;
         int choicesLoop = 1;
@@ -67,7 +95,9 @@ public class Test extends Survey implements Serializable {
         int choicesLoop = 1;
         for (int x = 0; x < this.questions.size(); x++) {
             Display.displayString("\n Question " + (x + 1) + ". " + this.questions.get(x).getPrompt());
-            if (this.questions.get(x) instanceof MultipleChoice || this.questions.get(x) instanceof TrueOrFalse) {
+            if ((this.questions.get(x) instanceof Essay) && !(this.questions.get(x) instanceof ShortAnswer)) {
+                continue;
+            } else if (this.questions.get(x) instanceof MultipleChoice || this.questions.get(x) instanceof TrueOrFalse) {
                 for (String s : this.questions.get(x).getQuestionChoices()) {
                     Display.displayString("   " + choicesLoop + ".) " + s);
                     choicesLoop++;
@@ -115,6 +145,54 @@ public class Test extends Survey implements Serializable {
         serialize.displayUserResponses(this.questions, this.userAnswers);
 
         serialize.saveUserAnswers(userAnswers, testResponseFolder, nameOfTest);
+    }
+
+    @Override
+    public void modify() {
+        Serialize serialize = new Serialize();
+
+
+        Display.displayString("What question do you wish to modify?");
+        questionToModify = UserInput.getOption(0, this.questions.size() + 1);
+        modifyQuestionPrompt(questionToModify);
+
+        //if (this.questions.get(questionToModify - 1) instanceof MultipleChoice) {
+        if (this.questions.get(questionToModify - 1).getClass().equals(MultipleChoice.class)) {
+            Display.displayString("Do you wish to modify the choices?");
+            modifyChoicesYesOrNo = UserInput.getString();
+            if (modifyChoicesYesOrNo.equalsIgnoreCase("yes")) {
+                modifyQuestionChoices(questionToModify);
+            }
+        }
+
+        if (this.questions.get(questionToModify - 1).getClass().equals(Matching.class)) {
+            Display.displayString("Do you wish to modify the columns?");
+            modifyColumnChoicesYesOrNo = UserInput.getString();
+            if (modifyColumnChoicesYesOrNo.equalsIgnoreCase("yes")) {
+                modifyColumnChoices(questionToModify);
+            }
+        }
+
+        String modifyCorrectAnswer;
+        Display.displayString("Do you wish to modify the correct answer(s) for this question?");
+        modifyCorrectAnswer = UserInput.getString();
+        if (modifyCorrectAnswer.equalsIgnoreCase("yes")) {
+            modifyCorrectAnswer(this.questions.get(questionToModify - 1));
+        }
+
+        //this.questions.get(questionToModify - 1).setCorrectAnswer();
+        String modifyAnotherQuestionYesOrNo;
+        Display.displayString("Do you wish to modify another question?");
+        modifyAnotherQuestionYesOrNo = UserInput.getString();
+        if (modifyAnotherQuestionYesOrNo.equalsIgnoreCase("yes")) {
+            modify();
+        }
+
+        serialize.modifyTest(this, this.nameOfTest);
+    }
+
+    protected void modifyCorrectAnswer(Question question) {
+        question.modifyCorrectAnswer();
     }
 
     public void grade() {

@@ -77,13 +77,46 @@ public class Serialize implements Serializable {
 
         // this deletes the past responses of the survey being modified since one or more of the responses would be invalid
         File f = new File(responsesFolderName + File.separator + nameOfSurvey + "_responses");
-        for (File g : f.listFiles()) {
-            g.delete();
+        if (f.exists()) {
+            for (File g : f.listFiles()) {
+                g.delete();
+            }
+            f.delete();
         }
-        f.delete();
 
 
         survey.displaySurvey();
+    }
+
+    protected void modifyTest(Test test, String nameOfTest) {
+        String testPath;
+
+        new File("." + File.separator + testFolderName).mkdirs();
+        testPath = testFolderName + File.separator + nameOfTest + ".ser";
+
+        try {
+            FileOutputStream fileOut = new FileOutputStream(testPath);
+            ObjectOutputStream out = new ObjectOutputStream(fileOut);
+            out.writeObject(test);
+            out.close();
+            fileOut.close();
+            Display.displayString("Survey " + nameOfTest + ".ser updated successfully and saved in " + testPath);
+        } catch (IOException i) {
+            i.printStackTrace();
+        }
+
+        //System.out.println(test.questions.get(0).getPrompt()); // - debugger
+        // this deletes the past responses of the survey being modified since one or more of the responses would be invalid
+
+        File f = new File(testResponsesFolderName + File.separator + nameOfTest + "_responses");
+        if (f.exists()) {
+            for (File g : f.listFiles()) {
+                g.delete();
+            }
+            f.delete();
+        }
+
+        test.displayTestWithoutCorrectAnswers();
     }
 
     protected Survey loadSurvey() {

@@ -57,4 +57,33 @@ public class ValidDate extends Question implements Serializable {
 
         System.out.println();
     }
+
+    @Override
+    public void setCorrectAnswer() {
+        Display.displayString(getPrompt());
+        //Display.displayStringArray(multipleChoiceQuestionChoices);
+        Display.displayString("Enter the correct answer(s) for this question.");
+        Display.displayString("\nPlease enter your response(s) in the format MM/DD/YYYY\n");
+        getCreatorValidDateResponse();
+    }
+
+    protected void getCreatorValidDateResponse() {
+
+        userInputDate = UserInput.getString();
+        SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
+        formatter.setLenient(false);
+
+        while (true) {
+            try {
+                Date date = formatter.parse(userInputDate);
+                userSavedDateResponse = userInputDate;
+                correctAnswer = userSavedDateResponse;
+                responseCorrectAnswer.setCorrectAnswer(this.correctAnswer);
+                break;
+            } catch (ParseException e) {
+                Display.displayString("Please enter a valid date in the format MM/DD/YYYY");
+                userInputDate = UserInput.getString();
+            }
+        }
+    }
 }

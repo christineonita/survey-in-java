@@ -121,4 +121,10 @@ public abstract class Question implements Serializable {
         return responseCorrectAnswer.getCorrectResponses();
         //return questionResponses;
     }
+
+    public void modifyCorrectAnswer() {
+        //responseCorrectAnswer.modifyCorrectResponse();
+        this.correctAnswer = "";
+        setCorrectAnswer();
+    }
 }
