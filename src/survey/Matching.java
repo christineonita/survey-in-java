@@ -5,20 +5,17 @@ import java.util.HashMap;
 
 public class Matching extends Question implements Serializable {
     private static final long serialVersionUID = -8176926467152362392L;
-    public int numOfRows, numOfFirstColumnItems, numOfSecondColumnItems;
+    public int numOfFirstColumnItems, numOfSecondColumnItems;
     protected String[] firstColumnOptions, secondColumnOptions, takerFirstChoice, takerSecondChoice;
-    //protected String[] matchingAnswers;
     protected String matchAns;
 
     Matching() {
 
     }
 
-
     @Override
     public void take() {
         int h = 0;
-        // matchingAnswers = new String[this.numOfRows];
         this.takerFirstChoice = new String[firstColumnOptions.length];
         this.takerSecondChoice = new String[secondColumnOptions.length];
         Display.displayString(getPrompt() + " (each item on the left has only one answer on the right - and vice versa)");
@@ -55,10 +52,8 @@ public class Matching extends Question implements Serializable {
                     two = Integer.parseInt(arr[1]);
                     if (one > numOfFirstColumnItems || one < 0) {
                         Display.displayString("Please re-enter your response.");
-                        //Display.displayString("Please re-enter your response for item " + two + " on the second column");
                     } else if (two > numOfSecondColumnItems || two < 0) {
                         Display.displayString("Please re-enter your response.");
-                        //Display.displayString("Please re-enter your response for item " + one + " on the first column");
                     } else {
                         break;
                     }
@@ -71,8 +66,7 @@ public class Matching extends Question implements Serializable {
             this.takerFirstChoice[l] = firstColumnOptions[one - 1];
             this.takerSecondChoice[l] = secondColumnOptions[two - 1];
 
-            // matchingAnswers[l] = firstColumnOptions[one - 1] + secondColumnOptions[two - 1];
-            matchAns = firstColumnOptions[one - 1] + " " + secondColumnOptions[two - 1] + "\n";
+            matchAns = String.format("%-30s", firstColumnOptions[one - 1]) + secondColumnOptions[two - 1] + "\n";
             userResponse = userResponse + matchAns;
         }
 
@@ -83,11 +77,8 @@ public class Matching extends Question implements Serializable {
         return "matching";
     }
 
-
     @Override
     public void printTwoColumns(String left, String right) {
-        //System.out.printf("%-30s", left); // using printf to format the display of both columns
-        //System.out.printf(right + "\n");
         Display.displayTwoColumns(left, right);
     }
 
@@ -100,18 +91,6 @@ public class Matching extends Question implements Serializable {
     public void modifySecondColumnItem(int i, String newItem) {
         secondColumnOptions[i] = newItem;
     }
-
-    /*@Override
-    public void setNumberOfRows() { // no longer need this
-        Display.displayString("How many pairs do you want in this question?");
-        int enteredNumOfRows = UserInput.getInt();
-        if (enteredNumOfRows > 26) {
-            Display.displayString("The number of pairs should be less than or equal to 26.");
-            setNumberOfRows();
-        } else {
-            this.numOfRows = enteredNumOfRows;
-        }
-    }*/
 
     @Override
     public void setNumberOfFirstColumnItems() {
@@ -144,7 +123,6 @@ public class Matching extends Question implements Serializable {
     public void setFirstColumn() {
         firstColumnOptions = new String[this.numOfFirstColumnItems];
         for (int s = 0; s < this.numOfFirstColumnItems; s++) {
-            //Display.displayString("Please enter column one's choice " + alphabets[s]);
             Display.displayString("Please enter column one's choice " + (s + 1));
             firstColumnOptions[s] = UserInput.getString();
         }
@@ -154,7 +132,6 @@ public class Matching extends Question implements Serializable {
     public void setSecondColumn() {
         secondColumnOptions = new String[this.numOfSecondColumnItems];
         for (int s = 0; s < this.numOfSecondColumnItems; s++) {
-            //Display.displayString("Please enter column two's choice " + alphabets[s]);
             Display.displayString("Please enter column two's choice " + (s + 1));
             secondColumnOptions[s] = UserInput.getString();
         }
@@ -185,7 +162,7 @@ public class Matching extends Question implements Serializable {
         System.out.println(this.getPrompt());
 
         questionResponsesCounter.entrySet().forEach(entry -> {
-            System.out.println(entry.getKey() + ": " + entry.getValue());
+            System.out.println(String.format("%-100s", entry.getKey() + ":") + entry.getValue());
         });
 
         System.out.println();
@@ -194,10 +171,8 @@ public class Matching extends Question implements Serializable {
     @Override
     public void setCorrectAnswer() {
         Display.displayString(getPrompt());
-        //Display.displayStringArray(multipleChoiceQuestionChoices);
         Display.displayString("Enter the correct answer(s) for this question.");
         int h = 0;
-        // matchingAnswers = new String[this.numOfRows];
         this.takerFirstChoice = new String[firstColumnOptions.length];
         this.takerSecondChoice = new String[secondColumnOptions.length];
         Display.displayString(getPrompt() + " (each item on the left has only one answer on the right - and vice versa)");
@@ -234,10 +209,8 @@ public class Matching extends Question implements Serializable {
                     two = Integer.parseInt(arr[1]);
                     if (one > numOfFirstColumnItems || one < 0) {
                         Display.displayString("Please re-enter your response.");
-                        //Display.displayString("Please re-enter your response for item " + two + " on the second column");
                     } else if (two > numOfSecondColumnItems || two < 0) {
                         Display.displayString("Please re-enter your response.");
-                        //Display.displayString("Please re-enter your response for item " + one + " on the first column");
                     } else {
                         break;
                     }
@@ -250,15 +223,9 @@ public class Matching extends Question implements Serializable {
             this.takerFirstChoice[l] = firstColumnOptions[one - 1];
             this.takerSecondChoice[l] = secondColumnOptions[two - 1];
 
-            // matchingAnswers[l] = firstColumnOptions[one - 1] + secondColumnOptions[two - 1];
-            this.matchAns = firstColumnOptions[one - 1] + " " + secondColumnOptions[two - 1] + "\n";
+            this.matchAns = String.format("%-30s", firstColumnOptions[one - 1]) + secondColumnOptions[two - 1] + "\n";
             this.correctAnswer = this.correctAnswer + this.matchAns;
             responseCorrectAnswer.setCorrectAnswer(this.correctAnswer);
         }
     }
-
-    /*public void modifyCorrectAnswer() {
-        //responseCorrectAnswer.modifyCorrectResponse();
-        this.correctAnswer =
-    }*/
 }

@@ -2,7 +2,6 @@ package survey;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class Survey implements Serializable {
 
@@ -103,12 +102,13 @@ public class Survey implements Serializable {
     public void take() {
         int x = 0;
         Serialize serialize = new Serialize();
-        System.out.println("num of questions    =     " + this.questions.size());// debugger
+        //System.out.println("num of questions    =     " + this.questions.size());// debugger
         userAnswers = new String[this.questions.size()][];
 
 
         for (Question question : questions) {
-            System.out.print("Question " + (x + 1) + ". "); //not using println here so a new line doesn't print
+            Display.displayString("\n");
+            Display.displayString("Question " + (x + 1) + ". "); //not using println here so a new line doesn't print
             question.take();
 
             //question.questionResponses[0] = question.userResponse;
@@ -129,7 +129,7 @@ public class Survey implements Serializable {
 
             x++;
         }
-        System.out.println("seeing array of arrays" + Arrays.deepToString(this.userAnswers)); // debugger
+        //System.out.println("seeing array of arrays" + Arrays.deepToString(this.userAnswers)); // debugger
 
         serialize.displayUserResponses(this.questions, this.userAnswers);
 

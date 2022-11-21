@@ -52,7 +52,7 @@ public class ValidDate extends Question implements Serializable {
 
         questionResponsesCounter.entrySet().forEach(entry -> {
             System.out.println(entry.getKey()/* + ": " + entry.getValue()*/);
-            System.out.println(entry.getValue() + "\n");
+            System.out.println(entry.getValue());
         });
 
         System.out.println();
