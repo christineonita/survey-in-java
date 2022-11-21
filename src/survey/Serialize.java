@@ -217,9 +217,9 @@ public class Serialize implements Serializable {
         File[] files = f.listFiles();
 
         if (files.length == 0) {
-            Display.displayString("\nThere are no surveys to load.\n");
+            Display.displayString("\nThere are no tests to load.\n");
         } else {
-            Display.displayString("Select a survey to load: ");
+            Display.displayString("Select a test to load: ");
             for (int j = 0; j < files.length; j++) {
                 Display.displayString((j + 1) + ") " + files[j].getName());
             }
@@ -247,5 +247,46 @@ public class Serialize implements Serializable {
         }
 
         return test;
+    }
+
+    public String[][] loadTestResponses(String nameOfTest) {
+        String[][] singleTestResponse = new String[0][];
+        String testResponsePath;
+        int testResponseNumber;
+
+        File f = new File(testResponsesFolderName + File.separator + nameOfTest + "_responses");
+        //System.out.println(">" + testResponsesFolderName + File.separator + nameOfTest + "<");
+
+        File[] files = f.listFiles();
+
+        if (files == null || files.length == 0) {
+            Display.displayString("\nThere are no test responses to load.\n");
+        } else {
+            Display.displayString("Select a test response to load: ");
+            for (int j = 0; j < files.length; j++) {
+                Display.displayString((j + 1) + ") " + files[j].getName());
+            }
+
+            testResponseNumber = UserInput.getOption(0, files.length + 1);
+            testResponsePath = testResponsesFolderName + File.separator + nameOfTest + "_responses" + File.separator + files[testResponseNumber - 1].getName();
+
+
+            try {
+                FileInputStream fileIn = new FileInputStream(testResponsePath);
+                ObjectInputStream in = new ObjectInputStream(fileIn);
+                //test = (Test) in.readObject();
+                singleTestResponse = (String[][]) in.readObject();
+                //System.out.println("seeing test arrays" + Arrays.deepToString(singleTestResponse));
+                in.close();
+                fileIn.close();
+                Display.displayString("Test response file " + testResponsePath + " has been loaded.\n");
+            } catch (IOException i) {
+                i.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+        return singleTestResponse;
     }
 }

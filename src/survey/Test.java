@@ -1,6 +1,7 @@
 package survey;
 
 import java.io.Serializable;
+import java.text.DecimalFormat;
 import java.util.Arrays;
 
 public class Test extends Survey implements Serializable {
@@ -102,5 +103,29 @@ public class Test extends Survey implements Serializable {
         serialize.displayUserResponses(this.questions, this.userAnswers);
 
         serialize.saveUserAnswers(userAnswers, testResponseFolder, nameOfTest);
+    }
+
+    public void grade() {
+        ResponseCorrectAnswer responseCorrectAnswer = new ResponseCorrectAnswer();
+        double score = 100;
+        DecimalFormat df = new DecimalFormat("0.00");
+        String[][] testResponses;
+        Serialize serialize = new Serialize();
+        testResponses = serialize.loadTestResponses(this.nameOfTest);
+        for (int i = 0; i < this.questions.size(); i++) {
+            //System.out.println("correct stuff --->" + Arrays.toString(this.questions.get(i).getCorrectResponses()));
+            //System.out.println("taker response--->" + Arrays.toString(testResponses[i]));
+
+            // todo - i think i should combine these?
+            if (this.questions.get(i) instanceof Essay && !(this.questions.get(i) instanceof ShortAnswer)) {
+                score -= ((double) 100 / this.questions.size());
+                continue;
+            }
+            if (!responseCorrectAnswer.compare(this.questions.get(i).getCorrectResponses(), (testResponses[i]))) {
+                score -= ((double) 100 / this.questions.size());
+            }
+        }
+
+        System.out.println((score < 0) ? "grade is: 0.00" : "grade is: " + df.format(score)); // todo - make the printed statement match the written instructions pdf
     }
 }

@@ -6,6 +6,7 @@ public class Main {
         menus.mainMenu();
     }
     // todo - remember to implement serializable
+    // todo - replace all souts with display class
     // todo - when modifying a question in test, ask user if they want to modify the correct answer for the question
     // todo - when modifying a survey or test delete the old responses (so just delete the corresponding response folder) since they’ll be invalid
     // todo - for mult choice test, sort responses - alphabetically? - (both taker and creator) before comparing for grading

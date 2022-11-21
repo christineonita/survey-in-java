@@ -227,7 +227,9 @@ public class Menus implements Serializable {
                     Display.displayString("code needed for ------Tabulate a Test------");
                     break;
                 case 9:
-                    Display.displayString("code needed for ------Grade a Test------");
+                    //Display.displayString("code needed for ------Grade a Test------");
+                    test = loadTest();
+                    test.grade();
                     break;
                 case 10:
                     mainMenu();
