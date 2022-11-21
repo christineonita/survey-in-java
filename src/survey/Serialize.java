@@ -28,7 +28,7 @@ public class Serialize implements Serializable {
             out.close();
             fileOut.close();
             Display.displayString("Saved in " + surveyPath);
-            System.out.println(); // just for neatness
+            Display.displayString("");
         } catch (IOException i) {
             i.printStackTrace();
         }
@@ -51,7 +51,7 @@ public class Serialize implements Serializable {
             out.close();
             fileOut.close();
             Display.displayString("Saved in " + testPath);
-            System.out.println(); // just for neatness
+            Display.displayString("");
         } catch (IOException i) {
             i.printStackTrace();
         }

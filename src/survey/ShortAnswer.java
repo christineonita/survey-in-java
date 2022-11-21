@@ -72,13 +72,13 @@ public class ShortAnswer extends Essay implements Serializable {
 
     @Override
     public void tabulate(HashMap<String, Integer> questionResponsesCounter) {
-        System.out.println(this.getPrompt());
+        Display.displayString(this.getPrompt());
 
         questionResponsesCounter.entrySet().forEach(entry -> {
-            System.out.println(entry.getKey() + ": " + entry.getValue());
+            Display.displayString(entry.getKey() + ": " + entry.getValue());
         });
 
-        System.out.println();
+        Display.displayString("");
     }
 
     @Override

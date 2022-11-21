@@ -94,7 +94,7 @@ public class Survey implements Serializable {
             }
             choicesLoop = 1;
         }
-        System.out.println();
+        Display.displayString("");
     }
 
     public void take() {

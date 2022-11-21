@@ -87,16 +87,16 @@ public class Test extends Survey implements Serializable {
                 Display.displayMatchingColumns(this.questions.get(x));
             }
             choicesLoop = 1;
-            System.out.println(" The correct answers are: ");
+            Display.displayString(" The correct answers are: ");
             displayCorrectAnswers(this.questions.get(x).getCorrectResponses());
-            System.out.println();
+            Display.displayString("");
         }
     }
 
     protected void displayCorrectAnswers(String[] correctResponses) {
         String lines[] = correctResponses[0].split("\\r?\\n");
         for (int i = 0; i < lines.length; i++) {
-            System.out.println(("    " + lines[i]));
+            Display.displayString(("    " + lines[i]));
         }
     }
 

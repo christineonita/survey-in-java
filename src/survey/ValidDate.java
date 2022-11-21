@@ -48,7 +48,7 @@ public class ValidDate extends Question implements Serializable {
 
     @Override
     public void tabulate(HashMap<String, Integer> questionResponsesCounter) {
-        System.out.println(this.getPrompt());
+        Display.displayString(this.getPrompt());
 
         questionResponsesCounter.entrySet().forEach(entry -> {
             Display.displayString(entry.getKey());

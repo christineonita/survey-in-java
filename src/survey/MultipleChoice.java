@@ -36,7 +36,6 @@ public class MultipleChoice extends Question implements Serializable {
                     hasMultipleAnswers = true;
                     answersForMultChoiceQuestionsWithMultipleAnswers = new int[numberOfChoices];
                     creatorAnswersForMultChoice = new int[numberOfChoices];
-                    //System.out.println(">" + creatorAnswersForMultChoice.length + "<");
                     break;
                 } else if (yesOrNo.equalsIgnoreCase("no")) {
                     hasMultipleAnswers = false;
@@ -169,12 +168,12 @@ public class MultipleChoice extends Question implements Serializable {
 
     @Override
     public void tabulate(HashMap<String, Integer> questionResponsesCounter) {
-        System.out.println(this.getPrompt());
+        Display.displayString(this.getPrompt());
 
         questionResponsesCounter.entrySet().forEach(entry -> {
-            System.out.println(entry.getKey() + ": " + entry.getValue());
+            Display.displayString(entry.getKey() + ": " + entry.getValue());
         });
 
-        System.out.println();
+        Display.displayString("");
     }
 }

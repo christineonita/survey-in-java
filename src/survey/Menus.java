@@ -86,7 +86,7 @@ public class Menus implements Serializable {
                     }
                     break;
                 case 7:
-                    System.out.println("need to finish code code for tabulating survey");
+                    Display.displayString("need to finish code code for tabulating survey");
                     survey = loadSurvey();
                     tabulateSurvey(survey);
                     break;
