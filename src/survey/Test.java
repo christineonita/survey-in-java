@@ -197,7 +197,9 @@ public class Test extends Survey implements Serializable {
 
     public void grade() {
         ResponseCorrectAnswer responseCorrectAnswer = new ResponseCorrectAnswer();
-        double score = 100;
+        int essayQuestionCounter = 0;
+        double finalScore, score = 100;
+        String testResultMessage;
         DecimalFormat df = new DecimalFormat("0.00");
         String[][] testResponses;
         Serialize serialize = new Serialize();
@@ -206,9 +208,9 @@ public class Test extends Survey implements Serializable {
             //System.out.println("correct stuff --->" + Arrays.toString(this.questions.get(i).getCorrectResponses()));
             //System.out.println("taker response--->" + Arrays.toString(testResponses[i]));
 
-            // todo - i think i should combine these?
-            if (this.questions.get(i) instanceof Essay && !(this.questions.get(i) instanceof ShortAnswer)) {
+            if (this.questions.get(i) instanceof Essay && !(this.questions.get(i) instanceof ShortAnswer)) {// || (!responseCorrectAnswer.compare(this.questions.get(i).getCorrectResponses(), (testResponses[i])))) {
                 score -= ((double) 100 / this.questions.size());
+                essayQuestionCounter++;
                 continue;
             }
             if (!responseCorrectAnswer.compare(this.questions.get(i).getCorrectResponses(), (testResponses[i]))) {
@@ -216,6 +218,16 @@ public class Test extends Survey implements Serializable {
             }
         }
 
-        System.out.println((score < 0) ? "grade is: 0.00" : "grade is: " + df.format(score)); // todo - make the printed statement match the written instructions pdf
+        //System.out.println((score < 0) ? "grade is: 0.00" : "grade is: " + df.format(score));
+        finalScore = (score < 0) ? 0.00 : Double.parseDouble(df.format(score));
+
+        /*
+        You received an 80 on the test. The test was worth 100 points, but only 90 of those points could be auto graded because there was one essay question.
+         */
+        //System.out.println("Your score on this test is" + finalScore + "%. The test was worth 100 points, but only" + (100 - (100 * essayQuestionCounter / this.questions.size())) + "of those points could be auto graded because there was/were"+essayQuestionCounter +"essay question(s).");
+        //System.out.println("Your score on this test is" + finalScore + "%.");
+        testResultMessage = (essayQuestionCounter < 1) ? "Your score on this test is" + finalScore + "%." : "Your score on this test is" + finalScore + "%. The test was worth 100 points, but only" + (100 - (100 * essayQuestionCounter / this.questions.size())) + "of those points could be auto graded because there was/were" + essayQuestionCounter + "essay question(s).";
+
+        System.out.println(testResultMessage);
     }
 }
