@@ -2,7 +2,6 @@ package survey;
 
 import java.io.Serializable;
 import java.text.DecimalFormat;
-import java.util.Arrays;
 
 public class Test extends Survey implements Serializable {
 
@@ -124,7 +123,7 @@ public class Test extends Survey implements Serializable {
     public void take() {
         int x = 0;
         Serialize serialize = new Serialize();
-        System.out.println("num of questions    =     " + this.questions.size());// debugger
+        //System.out.println("num of questions    =     " + this.questions.size());// debugger
         userAnswers = new String[this.questions.size()][];
 
 
@@ -140,7 +139,7 @@ public class Test extends Survey implements Serializable {
 
             x++;
         }
-        System.out.println("seeing array of arrays" + Arrays.deepToString(this.userAnswers)); // debugger
+        //System.out.println("seeing array of arrays" + Arrays.deepToString(this.userAnswers)); // debugger
 
         serialize.displayUserResponses(this.questions, this.userAnswers);
 
@@ -226,7 +225,7 @@ public class Test extends Survey implements Serializable {
          */
         //System.out.println("Your score on this test is" + finalScore + "%. The test was worth 100 points, but only" + (100 - (100 * essayQuestionCounter / this.questions.size())) + "of those points could be auto graded because there was/were"+essayQuestionCounter +"essay question(s).");
         //System.out.println("Your score on this test is" + finalScore + "%.");
-        testResultMessage = (essayQuestionCounter < 1) ? "Your score on this test is" + finalScore + "%." : "Your score on this test is" + finalScore + "%. The test was worth 100 points, but only" + (100 - (100 * essayQuestionCounter / this.questions.size())) + "of those points could be auto graded because there was/were" + essayQuestionCounter + "essay question(s).";
+        testResultMessage = (essayQuestionCounter < 1) ? "Your score on this test is " + finalScore + "%." : "Your score on this test is " + finalScore + "%. The test was worth 100 points, but only " + Double.parseDouble(df.format(((double) 100 - ((double) 100 * essayQuestionCounter / this.questions.size())))) + " of those points could be auto graded because there was/were " + essayQuestionCounter + " essay question(s).";
 
         Display.displayString(testResultMessage);
     }

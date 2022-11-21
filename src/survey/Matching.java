@@ -18,6 +18,10 @@ public class Matching extends Question implements Serializable {
         int h = 0;
         this.takerFirstChoice = new String[Math.max(firstColumnOptions.length, secondColumnOptions.length)];
         this.takerSecondChoice = new String[Math.max(firstColumnOptions.length, secondColumnOptions.length)];
+        for (int f = 0; f < takerFirstChoice.length; f++) {
+            this.takerFirstChoice[f] = "";
+            this.takerSecondChoice[f] = "";
+        }
         Display.displayString(getPrompt() + " (each item on the left has only one answer on the right - and vice versa)");
         for (h = 0; h < Math.max(numOfFirstColumnItems, numOfSecondColumnItems); h++) {
             if (h + 1 > numOfFirstColumnItems) {
@@ -175,6 +179,10 @@ public class Matching extends Question implements Serializable {
         int h = 0;
         this.takerFirstChoice = new String[Math.max(firstColumnOptions.length, secondColumnOptions.length)];
         this.takerSecondChoice = new String[Math.max(firstColumnOptions.length, secondColumnOptions.length)];
+        for (int f = 0; f < takerFirstChoice.length; f++) {
+            this.takerFirstChoice[f] = "";
+            this.takerSecondChoice[f] = "";
+        }
         Display.displayString(getPrompt() + " (each item on the left has only one answer on the right - and vice versa)");
         for (h = 0; h < Math.max(numOfFirstColumnItems, numOfSecondColumnItems); h++) {
             if (h + 1 > numOfFirstColumnItems) {

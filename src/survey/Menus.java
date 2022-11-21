@@ -12,7 +12,7 @@ public class Menus implements Serializable {
             "Add a new date question", "Add a new matching question", "Return to previous menu"/*, "Quit"*/};
 
     private final String[] testMenu = {"Create a new Test", "Display an existing Test without correct answers", "Display an existing Test with correct answers", "Load an existing Test",
-            "Save the current Test", "Take the current Test", "Modify the current Test", "Tabulate a Test", "Grade a Test", "Return to the previous menu"/*, "Quit"*/};
+            "Save the current Test", "Take an existing Test", "Modify an existing Test", "Tabulate a Test", "Grade a Test", "Return to the previous menu"/*, "Quit"*/};
 
     public void mainMenu() {
         int surveyOrTest;
