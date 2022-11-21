@@ -82,4 +82,31 @@ public class ShortAnswer extends Essay implements Serializable {
 
         System.out.println();
     }
+
+    @Override
+    public void setCorrectAnswer() {
+        Display.displayString(getPrompt());
+        //Display.displayStringArray(multipleChoiceQuestionChoices);
+        Display.displayString("Enter the correct answer(s) for this question.");
+        getCreatorShortAnswerResponse(this.numberOfShortAnswerResponsesRequired, this.shortAnswerLimit);
+    }
+
+    protected void getCreatorShortAnswerResponse(int numOfResponses, int limit) {
+
+        Display.displayString("The limit for your response(s) is " + limit + " characters");
+        int p = 0;
+        while (p < numOfResponses) {
+            Display.displayString("Response #" + (p + 1));
+            String ans = UserInput.getString();
+
+            if (ans.length() > limit) {
+                Display.displayString("Your response is over the " + limit + " character limit. Try again");
+                continue;
+            } //code here to ask for reentry if response is over short answer response limit
+            userShortAnswer = ans + "\n";
+            correctAnswer = correctAnswer + userShortAnswer;
+            responseCorrectAnswer.setCorrectAnswer(this.correctAnswer);
+            p++;
+        }
+    }
 }

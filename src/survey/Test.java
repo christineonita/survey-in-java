@@ -32,6 +32,18 @@ public class Test extends Survey implements Serializable {
         questions.add(question);
     }
 
+    @Override
+    protected void addShortAnswer() {
+        Question question = new ShortAnswer();
+        setQuestionPrompt(question);
+        question.setRequiredNumberOfResponses();
+        question.setShortAnswerLimit();
+
+        question.setCorrectAnswer();
+
+        questions.add(question);
+    }
+
     public void displayTestWithoutCorrectAnswers() {
         int h = 0;
         int choicesLoop = 1;

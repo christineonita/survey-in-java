@@ -168,19 +168,40 @@ public class Serialize implements Serializable {
             for (int i = 0; i < questions.size(); i++) {
                 questionResponsesCounter = new HashMap<String, Integer>();
 
-                countResponses(survey.nameOfSurvey, files, questionResponse, i, questionResponsesCounter);
+                countResponses(survey.nameOfSurvey, this.responsesFolderName, files, questionResponse, i, questionResponsesCounter);
                 questions.get(i).tabulate(questionResponsesCounter);
                 questionResponsesCounter.clear(); // this clears the hashmap after each question
             }
         }
     }
 
-    protected void countResponses(String nameOfSurvey, File[] files, String[][] questionResponse, int loop, HashMap<String, Integer> questionResponsesCounter) {
+    public /*String[][]*/ void tabulateTest(Test test, ArrayList<Question> questions) {
+        File f = new File("." + File.separator + this.testResponsesFolderName + File.separator + test.nameOfTest + "_responses");
+
+        File[] files = f.listFiles();
+        String[][] questionResponse = new String[0][];
+
+        HashMap<String, Integer> questionResponsesCounter = null;
+
+        if (!f.exists() || files.length == 0) {
+            Display.displayString("There are no responses to the chosen survey yet.\n");
+        } else {
+            for (int i = 0; i < questions.size(); i++) {
+                questionResponsesCounter = new HashMap<String, Integer>();
+
+                countResponses(test.nameOfTest, this.testResponsesFolderName, files, questionResponse, i, questionResponsesCounter);
+                questions.get(i).tabulate(questionResponsesCounter);
+                questionResponsesCounter.clear(); // this clears the hashmap after each question
+            }
+        }
+    }
+
+    protected void countResponses(String nameOfSurveyOrTest, String testOrSurveyResponseFolder, File[] files, String[][] questionResponse, int loop, HashMap<String, Integer> questionResponsesCounter) {
         int responseFileCount = 0;
         for (File file : files) {
             //System.out.println(file.getName()); // debugger
             try {
-                FileInputStream fileIn = new FileInputStream("." + File.separator + this.responsesFolderName + File.separator + nameOfSurvey + "_responses" + File.separator + nameOfSurvey + "_response" + (responseFileCount + 1) + ".ser");
+                FileInputStream fileIn = new FileInputStream("." + File.separator + testOrSurveyResponseFolder + File.separator + nameOfSurveyOrTest + "_responses" + File.separator + nameOfSurveyOrTest + "_response" + (responseFileCount + 1) + ".ser");
                 ObjectInputStream in = new ObjectInputStream(fileIn);
                 questionResponse = (String[][]) in.readObject();
                 //System.out.println("seeing array of arrays" + Arrays.deepToString(surveyResponse)); // debugger

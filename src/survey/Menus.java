@@ -224,7 +224,9 @@ public class Menus implements Serializable {
                     Display.displayString("code needed for ------Modify the current Test------");
                     break;
                 case 8:
-                    Display.displayString("code needed for ------Tabulate a Test------");
+                    //Display.displayString("code needed for ------Tabulate a Test------");
+                    test = loadTest();
+                    tabulateTest(test);
                     break;
                 case 9:
                     //Display.displayString("code needed for ------Grade a Test------");
@@ -264,10 +266,10 @@ public class Menus implements Serializable {
                 case 2:
                     test.addMultipleChoice();
                     break;
-                /*case 3:
+                case 3:
                     test.addShortAnswer();
                     break;
-                case 4:
+                /*case 4:
                     test.addEssay();
                     break;
                 case 5:
@@ -324,4 +326,9 @@ public class Menus implements Serializable {
         return serialize.loadTest();
     }
 
+    public /*String[][]*/ void tabulateTest(Test test) {
+        Serialize serialize = new Serialize();
+        //return serialize.tabulateSurvey(survey, survey.questions);
+        serialize.tabulateTest(test, test.questions);
+    }
 }
